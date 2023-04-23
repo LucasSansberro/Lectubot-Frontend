@@ -1,0 +1,26 @@
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[0]" alt="Random first slide" class="mh-100" style="width: 1000px; height: 60vh">
+    </div>
+    <div class="carousel-caption">
+      <h3>Un lugar donde ver tus libros</h3>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[1]" alt="Random second slide" class="mh-100" style="width: 1000px; height: 60vh">
+    </div>
+    <div class="carousel-caption">
+      <h3>Un lugar donde compartir tus lecturas</h3>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img [src]="images[2]" alt="Random third slide" class="mh-100" style="width: 1000px; height: 60vh">
+    </div>
+    <div class="carousel-caption">
+      <h3>Un lugar donde elegir tu próxima aventura</h3>
+    </div>
+  </ng-template>
+</ngb-carousel>
