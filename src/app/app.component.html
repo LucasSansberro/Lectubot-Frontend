@@ -5,10 +5,13 @@
     alt="Logo lectores argentinos"
     src="../assets/logoLectoresArgentinos.png"
   />
-  <span>Lectores Argentinos</span>
+  <span (click)="iniciarSesion()">Lectores Argentinos</span>
   <div class="spacer"></div>
-  <div class="me-3 d-flex" (click)="iniciarSesion()">
-    <p class="me-4">Iniciar sesión</p>
+  <div class="me-3 d-flex">
+    <a
+      href="https://discord.com/oauth2/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fredirect&scope=identify%20guilds&client_id=1078358777574735953"
+      ><p class="me-4">Iniciar sesión</p></a
+    >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="26"
@@ -90,6 +93,8 @@
 
   <!-- Carrousel -->
   <app-carrousel class="mt-5"></app-carrousel>
+
+  <img src={{image}} alt="">
 
   <!--  Fondo de nubes -->
   <svg

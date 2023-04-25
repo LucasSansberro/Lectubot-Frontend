@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   private URL = 'http://localhost:3000';
-  constructor(private http: HttpClient) {}
-  iniciarSesion(): any {
-    console.log("Hola");
+  cookieValue: string;
+  image: string = '';
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.cookieValue = this.cookieService.get('connect.sid');
+  }
 
-    this.http.get(`${this.URL}/auth`).subscribe();
+  iniciarSesion(): any {
+    this.http
+      .get(`${this.URL}`, { withCredentials: true })
+      .subscribe(
+        (data : any) => (
+          console.log(data),
+          (this.image = `https://cdn.discordapp.com/avatars/${data.test.discordId}/${data.test.avatar}.png`)
+        )
+      );
   }
 }
