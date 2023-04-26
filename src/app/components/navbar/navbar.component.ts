@@ -1,28 +1,29 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
-  private URL = 'http://localhost:3000';
-  cookieValue: string;
-  image: string = '';
-  constructor(private http: HttpClient, private cookieService: CookieService) {
-    this.cookieValue = this.cookieService.get('connect.sid');
+export class NavbarComponent implements OnInit {
+  public username: any = '';
+  constructor(private userService: UsersService, private router: Router) {}
+  ngOnInit(): void {
+    this.userService.iniciarSesion().subscribe({
+      next: (data: any) => {
+        if (data.test != null) {
+          this.username = data.test.username;
+          this.router.navigate(['/user'])
+        }
+      },
+      error: (e: any) => {
+        console.log(e);
+      },
+    });
   }
-
-  iniciarSesion(): any {
-    this.http
-      .get(`${this.URL}`, { withCredentials: true })
-      .subscribe(
-        (data : any) => (
-          console.log(data),
-          (this.image = `https://cdn.discordapp.com/avatars/${data.test.discordId}/${data.test.avatar}.png`)
-        )
-      );
+  cerrarSesion(): any {
+    this.userService.cerrarSesion().subscribe(window.location.reload());
   }
 }

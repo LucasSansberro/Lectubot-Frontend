@@ -4,13 +4,22 @@
     alt="Logo lectores argentinos"
     src="../assets/logoLectoresArgentinos.png"
   />
-  <span (click)="iniciarSesion()">Lectores Argentinos</span>
+  <span>Lectores Argentinos</span>
+  <ul class="d-flex justify-content-around w-25 mt-3">
+    <li><a routerLink="/" class="text-light">Inicio</a></li>
+    <li><a routerLink="/libros" class="text-light">Libros</a></li>
+    <li><a routerLink="/user" class="text-light">Perfil</a></li>
+  </ul>
   <div class="spacer"></div>
-  <div class="me-3 d-flex">
+  <div class="me-3 mt-2 d-flex">
     <a
+      *ngIf="username == ''"
       href="https://discord.com/oauth2/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fredirect&scope=identify%20guilds&client_id=1078358777574735953"
-      ><p class="me-4">Iniciar sesión</p></a
+      ><p class="me-4 text-light">Iniciar sesión</p></a
     >
+    <p *ngIf="username != ''" class="me-4 text-light" (click)="cerrarSesion()">
+      {{ username }}
+    </p>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="26"
