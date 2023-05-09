@@ -12,7 +12,7 @@ export class UserProfileComponent {
   public image: any = '';
   constructor(private userService: UsersService) {}
   ngOnInit(): void {
-    this.userService.iniciarSesion().subscribe({
+    this.userService.getLoggedUserData().subscribe({
       next: (data: any) => {
         if (data.test != null) {
           this.username = data.test.username;

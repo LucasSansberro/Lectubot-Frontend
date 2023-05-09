@@ -1,21 +1,20 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../models/Entities/User';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private URL = 'http://localhost:3000';
+  private loggedInUser: User | undefined;
+  private loggedInBoolean: boolean = false;
+  constructor(private dataService: DataService) {}
 
-  constructor(private http: HttpClient) {}
-
-
-  iniciarSesion(): any {
-   return this.http.get(`${this.URL}`, { withCredentials: true });
+  getLoggedUserData(): any {
+    return this.dataService.getLoggedUserData();
   }
 
-  cerrarSesion(): any{
-    return this.http.get(`${this.URL}/auth/logout`, { withCredentials: true });
+  closeSession(): any {
+    return this.dataService.closeSession();
   }
-
 }

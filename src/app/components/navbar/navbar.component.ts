@@ -11,8 +11,9 @@ export class NavbarComponent implements OnInit {
   public username: any = '';
   constructor(private userService: UsersService, private router: Router) {}
   ngOnInit(): void {
-    this.userService.iniciarSesion().subscribe({
+    this.userService.getLoggedUserData().subscribe({
       next: (data: any) => {
+        console.log(data);
         if (data.test != null) {
           this.username = data.test.username;
           this.router.navigate(['/user'])
@@ -24,6 +25,6 @@ export class NavbarComponent implements OnInit {
     });
   }
   cerrarSesion(): any {
-    this.userService.cerrarSesion().subscribe(window.location.reload());
+    this.userService.closeSession().subscribe();
   }
 }
