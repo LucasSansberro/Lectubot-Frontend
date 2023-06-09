@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -8,20 +7,11 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent {
-  public username: any = '';
-  public image: any = '';
-  constructor(private userService: UsersService) {}
-  ngOnInit(): void {
-    this.userService.getLoggedUserData().subscribe({
-      next: (data: any) => {
-        if (data.test != null) {
-          this.username = data.test.username;
-          this.image = `https://cdn.discordapp.com/avatars/${data.test.discordId}/${data.test.avatar}.png`;
-        }
-      },
-      error: (e: any) => {
-        console.log(e);
-      },
-    });
+  public username: string = '';
+  public image: string = '';
+
+  constructor(private userService: UsersService) {
+    this.username = this.userService.loggedInUser?.username!
+    this.image= this.userService.userProfilePic
   }
 }

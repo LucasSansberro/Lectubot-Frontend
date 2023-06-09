@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { APIResponse } from '../models/APIResponse';
 import { User } from '../models/Entities/User';
 import { DataService } from './data.service';
 
@@ -6,15 +8,21 @@ import { DataService } from './data.service';
   providedIn: 'root',
 })
 export class UsersService {
-  private loggedInUser: User | undefined;
-  private loggedInBoolean: boolean = false;
+  loggedInUser: User | undefined;
+  isUserLogged: boolean = false;
+  userProfilePic: string = '';
+
   constructor(private dataService: DataService) {}
 
-  getLoggedUserData(): any {
+  getLoggedUserData(): Observable<APIResponse<User>> {
     return this.dataService.getLoggedUserData();
   }
 
-  closeSession(): any {
-    return this.dataService.closeSession();
+  closeSession(): void {
+    this.dataService.closeSession().subscribe(() => {
+      this.loggedInUser = undefined;
+      this.isUserLogged = false;
+      this.userProfilePic = ""
+    });
   }
 }

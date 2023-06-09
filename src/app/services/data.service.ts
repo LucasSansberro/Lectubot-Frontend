@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { APIResponse } from '../models/APIResponse';
+import { User } from '../models/Entities/User';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +14,12 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
 
-  getLoggedUserData(): any {
-   return this.http.get(`${this.URL}/users/me`, { withCredentials: true });
+  getLoggedUserData(): Observable<APIResponse<User>> {
+   return this.http.get<APIResponse<User>>(`${this.URL}/users/me`, { withCredentials: true });
   }
 
   //TODO Shouldn't it be a post req?
-  closeSession(): any{
-    return this.http.get(`${this.URL}/auth/logout`, { withCredentials: true });
+  closeSession(): Observable<void>{
+    return this.http.get<void>(`${this.URL}/auth/logout`, { withCredentials: true });
   }
 }

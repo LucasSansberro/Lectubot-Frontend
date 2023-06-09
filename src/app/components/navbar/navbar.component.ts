@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { APIResponse } from 'src/app/models/APIResponse';
+import { User } from 'src/app/models/Entities/User';
+import { DataService } from 'src/app/services/data.service';
 import { UsersService } from 'src/app/services/users.service';
-import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-navbar',
@@ -8,23 +10,32 @@ import {Router} from "@angular/router"
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  public username: any = '';
-  constructor(private userService: UsersService, private router: Router) {}
+  username: string = '';
+  isUserLogged: boolean = false;
+
+  constructor(private userService: UsersService) {}
+
   ngOnInit(): void {
     this.userService.getLoggedUserData().subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data.test != null) {
-          this.username = data.test.username;
-          this.router.navigate(['/user'])
+      next: (response: APIResponse<User>) => {
+        if (response.success == true) {
+          this.userService.loggedInUser = response.data!;
+          const { discordId, avatar } = response.data!;
+          this.userService.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
+          this.userService.isUserLogged = true;
+          this.isUserLogged = true;
+          this.username = response.data?.username!;
+        } else {
+          return;
         }
       },
-      error: (e: any) => {
-        console.log(e);
+      error: (e: Error) => {
+        alert('Error conectando con la base de datos: ' + e.name);
       },
     });
   }
-  cerrarSesion(): any {
-    this.userService.closeSession().subscribe();
+
+  closeSession(): any {
+    this.userService.closeSession();
   }
 }

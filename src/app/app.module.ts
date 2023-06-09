@@ -13,6 +13,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { BooksComponent } from './pages/books/books.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UsersService } from './services/users.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
     CarrouselComponent,
     HttpClientModule,
   ],
-  providers: [CookieService],
-  bootstrap: [AppComponent]
+  providers: [CookieService,DataService, UsersService ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
