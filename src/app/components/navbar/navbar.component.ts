@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { APIResponse } from 'src/app/models/APIResponse';
 import { User } from 'src/app/models/Entities/User';
 import { DataService } from 'src/app/services/data.service';
@@ -13,29 +14,34 @@ export class NavbarComponent implements OnInit {
   username: string = '';
   isUserLogged: boolean = false;
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
-    this.userService.getLoggedUserData().subscribe({
-      next: (response: APIResponse<User>) => {
-        if (response.success == true) {
-          this.userService.loggedInUser = response.data!;
-          const { discordId, avatar } = response.data!;
-          this.userService.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
-          this.userService.isUserLogged = true;
-          this.isUserLogged = true;
-          this.username = response.data?.username!;
-        } else {
-          return;
-        }
-      },
-      error: (e: Error) => {
-        alert('Error conectando con la base de datos: ' + e.name);
-      },
-    });
+    if (this.cookieService.check('logged')) {
+      this.userService.getLoggedUserData().subscribe({
+        next: (response: APIResponse<User>) => {
+          if (response.success == true) {
+            this.userService.loggedInUser = response.data!;
+            const { discordId, avatar } = response.data!;
+            this.userService.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
+            this.userService.isUserLogged = true;
+            this.isUserLogged = true;
+            this.username = response.data?.username!;
+          }
+        },
+        error: (e: Error) => {
+          alert('Error conectando con la base de datos: ' + e.name);
+        },
+      });
+    }
   }
 
   closeSession(): any {
     this.userService.closeSession();
+    this.isUserLogged = false;
+    this.username = '';
   }
 }
