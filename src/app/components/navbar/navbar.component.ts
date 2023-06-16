@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { APIResponse } from 'src/app/models/APIResponse';
 import { User } from 'src/app/models/Entities/User';
-import { DataService } from 'src/app/services/data.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -33,6 +32,7 @@ export class NavbarComponent implements OnInit {
           }
         },
         error: (e: Error) => {
+          this.cookieService.delete('logged');
           alert('Error conectando con la base de datos: ' + e.name);
         },
       });

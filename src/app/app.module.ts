@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './pages/home/home.component';
@@ -30,7 +29,6 @@ import { DataService } from './services/data.service';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    CarrouselComponent,
     HttpClientModule,
   ],
   providers: [CookieService,DataService, UsersService ],
