@@ -1,0 +1,45 @@
+<div
+  id="carouselExampleFade"
+  class="carousel slide carousel-fade container-carrousel mx-auto facebook-lightBlue mt-5"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner" id="librosCarrousel">
+    <div
+      *ngFor="let book of books; index as i"
+      class="carousel-item d-flex flex-lg-row flex-column justify-content-around py-5 align-items-center"
+      [ngClass]="{
+        active: i == 0
+      }"
+    >
+      <img
+        class="d-block img-carrousel"
+        src="{{ book.cover }}"
+        alt="Foto de ${libro.libroTitulo}"
+      />
+      <div class="text-carrousel">
+        <h3>{{ book.title }}</h3>
+        <p>
+          {{ book.synopsis }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleFade"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleFade"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

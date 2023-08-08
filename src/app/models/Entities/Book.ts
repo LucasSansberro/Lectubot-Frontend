@@ -12,6 +12,7 @@ export interface Book {
   genre: Genre[];
   cover: string;
   synopsis: string;
+  readByGroup:Date
   stars?: number[];
   reviews?: Review[];
 }

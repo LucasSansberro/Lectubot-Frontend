@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UsersService } from './services/users.service';
 import { DataService } from './services/data.service';
+import { CarrouselComponent } from './components/carrousel/carrousel.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DataService } from './services/data.service';
     BooksComponent,
     NavbarComponent,
     FooterComponent,
+    CarrouselComponent,
   ],
   imports: [
     BrowserModule,
