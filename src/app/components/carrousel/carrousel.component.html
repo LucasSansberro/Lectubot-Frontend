@@ -1,45 +1,41 @@
-<div
-  id="carouselExampleFade"
-  class="carousel slide carousel-fade container-carrousel mx-auto facebook-lightBlue mt-5"
-  data-bs-ride="carousel"
->
-  <div class="carousel-inner" id="librosCarrousel">
-    <div
-      *ngFor="let book of books; index as i"
-      class="carousel-item d-flex flex-lg-row flex-column justify-content-around py-5 align-items-center"
-      [ngClass]="{
-        active: i == 0
-      }"
-    >
+<div class="book-carousel d-flex mt-4">
+
+  <div class="book-container mx-auto discord-blue">
+    <div class="d-flex justify-content-around">
       <img
-        class="d-block img-carrousel"
-        src="{{ book.cover }}"
-        alt="Foto de ${libro.libroTitulo}"
+        src="{{ book1.cover }}"
+        alt="Portada de {{ book1.title }}"
+        class="book-cover-carousel mt-5"
       />
-      <div class="text-carrousel">
-        <h3>{{ book.title }}</h3>
-        <p>
-          {{ book.synopsis }}
+      <div class="book-text-carousel mt-5">
+        <p class="book-title-carousel">
+          {{
+            book1.title.length > 25
+              ? (book1.title | slice : 0 : 25) + "..."
+              : book1.title
+          }}
         </p>
+        <p>por {{ book1.author.name }}</p>
+        <div class="d-flex mt-3 mb-3">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-half"></i>
+          <i class="bi bi-star"></i>
+          <p class="ms-2">17 valoraciones</p>
+        </div>
+        <p>
+          {{
+            book1.synopsis.length > 300
+              ? (book1.synopsis | slice : 0 : 300) + "..."
+              : book1.synopsis
+          }}
+        </p>
+        <button class="link-button-carousel mt-4">Ir al sitio del libro</button>
       </div>
     </div>
   </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleFade"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleFade"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+
+
+
 </div>
