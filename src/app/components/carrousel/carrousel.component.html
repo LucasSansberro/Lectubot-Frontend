@@ -1,21 +1,27 @@
-<div class="book-carousel d-flex mt-4">
+<div class="carousel-container d-flex justify-content-between">
+  <i class="bi bi-chevron-left arrows-carousel" (click)="onPrevClick()"></i>
 
-  <div class="book-container mx-auto discord-blue">
-    <div class="d-flex justify-content-around">
+  <div class="book-carousel d-flex mt-4 justify-content-center" (@carouselAnimation.done)="onAnimationDone()" [@carouselAnimation]="{ value: animationState, params: { startOffset: 0, endOffset: transformOffset } }" #carousel [style.transform]="'translateX(' + transformOffset + 'px)'">
+    <div
+
+      *ngFor="let book of books; let i=index"
+      class="book-container d-flex justify-content-around"
+      [ngClass]="backgroundColors[i]"
+    >
       <img
-        src="{{ book1.cover }}"
-        alt="Portada de {{ book1.title }}"
+        src="{{ book.cover }}"
+        alt="Portada de {{ book.title }}"
         class="book-cover-carousel mt-5"
       />
       <div class="book-text-carousel mt-5">
         <p class="book-title-carousel">
           {{
-            book1.title.length > 25
-              ? (book1.title | slice : 0 : 25) + "..."
-              : book1.title
+            book.title.length > 25
+              ? (book.title | slice : 0 : 25) + "..."
+              : book.title
           }}
         </p>
-        <p>por {{ book1.author.name }}</p>
+        <p>por {{ book.author.name }}</p>
         <div class="d-flex mt-3 mb-3">
           <i class="bi bi-star-fill"></i>
           <i class="bi bi-star-fill"></i>
@@ -26,16 +32,14 @@
         </div>
         <p>
           {{
-            book1.synopsis.length > 300
-              ? (book1.synopsis | slice : 0 : 300) + "..."
-              : book1.synopsis
+            book.synopsis.length > 300
+              ? (book.synopsis | slice : 0 : 300) + "..."
+              : book.synopsis
           }}
         </p>
         <button class="link-button-carousel mt-4">Ir al sitio del libro</button>
       </div>
     </div>
   </div>
-
-
-
+  <i class="bi bi-chevron-right arrows-carousel" (click)="onNextClick()"></i>
 </div>

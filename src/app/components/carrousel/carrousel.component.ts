@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { Book } from 'src/app/models/Entities/Book';
 import { Genre } from 'src/app/models/Enums/Genre';
 
@@ -6,9 +7,25 @@ import { Genre } from 'src/app/models/Enums/Genre';
   selector: 'app-carrousel',
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.css'],
+  animations: [
+    trigger('carouselAnimation', [
+      transition('* => next, * => prev', [
+        style({ transform: 'translateX({{ startOffset }}px)' }),
+        animate(
+          '500ms ease-in-out',
+          style({ transform: 'translateX({{ endOffset }}px)' })
+        ),
+      ]),
+    ]),
+  ],
 })
-export class CarrouselComponent {
-  selectedBook: Book | undefined;
+export class CarrouselComponent implements OnInit {
+  @ViewChild('carousel') carousel: ElementRef | undefined;
+  autoSlideInterval: any;
+  animationState: string = '';
+  currentIndex: number = 1;
+  transformOffset: number | undefined;
+  isAnimationInProgress: boolean = false;
   book1: Book = {
     _id: 'FakeId',
     title: 'Muerte de un viajante',
@@ -58,4 +75,67 @@ export class CarrouselComponent {
   };
 
   books: Book[] = [this.book1, this.book2, this.book3];
+  backgroundColors: string[] = [
+    'discord-blue',
+    'discord-gray',
+    'discord-lightBlack',
+    'facebook-lightBlue',
+    'discord-black',
+    'discord-gray',
+    'facebook-blue',
+    'discord-black',
+    'facebook-cyan',
+  ];
+
+  ngOnInit() {
+    this.startAutoSlide();
+  }
+
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.onNextClick();
+    }, 10000);
+  }
+
+  stopAutoSlide() {
+    clearInterval(this.autoSlideInterval);
+  }
+
+  onNextClick() {
+    if (this.isAnimationInProgress) {
+      return;
+    }
+    this.isAnimationInProgress = true;
+    this.animationState = 'next';
+    this.currentIndex = (this.currentIndex + 1) % this.books.length;
+    this.updateCarouselTransform();
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
+
+  onPrevClick() {
+    if (this.isAnimationInProgress) {
+      return;
+    }
+    this.isAnimationInProgress = true;
+    this.animationState = 'prev';
+    this.currentIndex =
+      (this.currentIndex - 1 + this.books.length) % this.books.length;
+    this.updateCarouselTransform();
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
+
+  updateCarouselTransform() {
+    const itemWidth =
+      this.carousel!.nativeElement.querySelector('.book-container').offsetWidth;
+    const gap = 10;
+    const totalItemWidth = itemWidth + gap;
+    this.transformOffset = -(this.currentIndex - 1) * totalItemWidth;
+  }
+
+  onAnimationDone() {
+    this.animationState = '';
+    this.isAnimationInProgress = false;
+  }
 }
