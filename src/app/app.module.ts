@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { UsersService } from './services/users.service';
 import { DataService } from './services/data.service';
 import { CarrouselComponent } from './components/carrousel/carrousel.component';
+import { CarouselCardBookComponent } from './components/carousel-card-book/carousel-card-book.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CarrouselComponent } from './components/carrousel/carrousel.component';
     NavbarComponent,
     FooterComponent,
     CarrouselComponent,
+    CarouselCardBookComponent,
   ],
   imports: [
     BrowserModule,
