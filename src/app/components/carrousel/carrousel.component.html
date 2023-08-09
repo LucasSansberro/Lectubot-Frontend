@@ -1,15 +1,14 @@
-<div class="carousel-container d-flex justify-content-between">
+<div class="carousel-container">
   <i class="bi bi-chevron-left arrows-carousel" (click)="onPrevClick()"></i>
 
   <div
-    class="book-carousel d-flex mt-4 justify-content-center"
-    (@carouselAnimation.done)="onAnimationDone()"
+    class="book-carousel mt-4"
     [@carouselAnimation]="{
       value: animationState,
       params: { startOffset: 0, endOffset: transformOffset }
     }"
-    #carousel
     [style.transform]="'translateX(' + transformOffset + 'px)'"
+    (@carouselAnimation.done)="onAnimationDone()"
   >
     <app-carousel-card-book
       *ngFor="let book of books; let i = index"

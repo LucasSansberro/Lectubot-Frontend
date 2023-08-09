@@ -1,13 +1,13 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { trigger, style, animate, transition } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
-import { Genre } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-carrousel',
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('carouselAnimation', [
       transition('* => next, * => prev', [
@@ -21,7 +21,6 @@ import { DataService } from 'src/app/services/data.service';
   ],
 })
 export class CarrouselComponent implements OnInit {
-  @ViewChild('carousel') carousel: ElementRef | undefined;
   autoSlideInterval: any;
   animationState: string = '';
   currentIndex: number = 1;
@@ -46,10 +45,7 @@ export class CarrouselComponent implements OnInit {
     this.books = this.dataService.books;
     this.startAutoSlide();
   }
-  onCardWidthCalculated(width: number) {
-    this.cardWidth = width;
-    this.updateCarouselTransform();
-  }
+
   startAutoSlide() {
     this.autoSlideInterval = setInterval(() => {
       this.onNextClick();
@@ -59,7 +55,10 @@ export class CarrouselComponent implements OnInit {
   stopAutoSlide() {
     clearInterval(this.autoSlideInterval);
   }
-
+  onCardWidthCalculated(width: number) {
+    this.cardWidth = width;
+    this.updateCarouselTransform();
+  }
   onNextClick() {
     if (this.isAnimationInProgress || this.books.length <= 2) {
       return;

@@ -1,4 +1,5 @@
 .carousel-container {
+  display:flex;
   align-items: center;
   overflow-x: hidden;
   position: relative;
@@ -7,11 +8,13 @@
 .book-carousel {
   height: 62vh;
   width: 100vw;
+  display:flex;
+  justify-content: center;
 }
 
 .arrows-carousel {
   font-size: 1.5rem;
-  background-color: white;
+  background-color: whitesmoke;
   border-radius: 50%;
   width: 60px;
   height: 60px;
