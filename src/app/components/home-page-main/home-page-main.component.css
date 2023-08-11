@@ -1,0 +1,38 @@
+.main-title {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.most-read-header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-top: 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(176, 169, 169, 0.355);
+}
+
+.most-read-header p {
+  font-size: 1.5rem;
+  width: 50%;
+}
+
+.most-read-header ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter-selected{
+  font-weight: bold;
+  border-bottom: 1px solid cyan;
+}
+
+.most-read-books-container{
+  flex-wrap: wrap;
+}
+
+.most-read-book img{
+  height:300px
+}

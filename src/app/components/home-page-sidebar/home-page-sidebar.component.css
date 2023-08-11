@@ -1,0 +1,33 @@
+.sidebar-container {
+  display:flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(176, 169, 169, 0.355);
+  width: 25vw;
+}
+
+.books-reading-title{
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.books-reading-list{
+  list-style: none;
+  margin-right: 25px;
+  width:65%
+}
+
+.books-reading-list li{
+  margin:15px 0
+}
+
+.books-reading-list img{
+  height:150px
+}
+
+.book-author{
+  font-weight:100 ;
+}
+
+.books-reading-list button{
+  border-radius: 5%;
+}

@@ -16,6 +16,8 @@ import { UsersService } from './services/users.service';
 import { DataService } from './services/data.service';
 import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { CarouselCardBookComponent } from './components/carousel-card-book/carousel-card-book.component';
+import { HomePageSidebarComponent } from './components/home-page-sidebar/home-page-sidebar.component';
+import { HomePageMainComponent } from './components/home-page-main/home-page-main.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { CarouselCardBookComponent } from './components/carousel-card-book/carou
     FooterComponent,
     CarrouselComponent,
     CarouselCardBookComponent,
+    HomePageSidebarComponent,
+    HomePageMainComponent,
   ],
   imports: [
     BrowserModule,
