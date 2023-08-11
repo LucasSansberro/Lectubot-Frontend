@@ -1,5 +1,4 @@
 .book-card {
-  flex-shrink: 0;
   height: 45vh;
   width: 50vw;
   margin-left: 2px;
@@ -11,7 +10,7 @@
 }
 
 .book-text {
-  color: white;
+  color: whitesmoke;
   width: 40%;
 }
 

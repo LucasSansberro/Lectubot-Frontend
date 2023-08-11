@@ -1,5 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
 import { DataService } from 'src/app/services/data.service';
 
@@ -24,22 +29,27 @@ export class CarrouselComponent implements OnInit {
   autoSlideInterval: any;
   animationState: string = '';
   currentIndex: number = 1;
-  transformOffset: number | undefined;
+  transformOffset: number = 0;
   isAnimationInProgress: boolean = false;
   cardWidth: number = 0;
   books: Book[] = [];
   backgroundColors: string[] = [];
+  startOffset: number = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private cdr: ChangeDetectorRef
+  ) {}
   ngOnInit() {
     this.books = this.dataService.books;
-    this.backgroundColors = this.dataService.backgroundColors
+    this.backgroundColors = this.dataService.backgroundColors;
     this.startAutoSlide();
   }
 
   startAutoSlide() {
     this.autoSlideInterval = setInterval(() => {
       this.onNextClick();
+      this.cdr.detectChanges();
     }, 10000);
   }
 
@@ -76,6 +86,7 @@ export class CarrouselComponent implements OnInit {
   }
 
   updateCarouselTransform() {
+    this.startOffset = this.transformOffset;
     const gap = 10;
     const totalItemWidth = this.cardWidth + gap;
     this.transformOffset = -(this.currentIndex - 1) * totalItemWidth;

@@ -1,8 +1,7 @@
-.carousel-container {
+.carousel-container{
+  overflow: hidden;
   display:flex;
   align-items: center;
-  overflow-x: hidden;
-  position: relative;
 }
 
 .book-carousel {
@@ -11,8 +10,6 @@
   display:flex;
   justify-content: center;
 }
-
-
 
 .arrows-carousel {
   font-size: 1.5rem;
@@ -30,7 +27,6 @@
 }
 
 .bi-chevron-left {
-  left: 0;
   margin-left: 25px;
 }
 

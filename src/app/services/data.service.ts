@@ -71,8 +71,18 @@ export class DataService {
       'Tanya Huff’s darkly thrilling Blood novels introduced readers to vampiric P.I. Victoria Nelson and her life amongst the paranormal. Here are some of Tanya’s best short stories featuring Vicki and other unforgettable characters from her world…',
     readByGroup: new Date(),
   };
-  books:Book[]= [this.book1,this.book2,this.book3,this.book1, this.book2, this.book3, this.book2]
+  books:Book[]= [this.book1,this.book2,this.book3,this.book1, this.book2,this.book3,this.book1, this.book2]
   backgroundColors: string[] = [
+    'discord-blue',
+    'discord-gray',
+    'discord-lightBlack',
+    'facebook-lightBlue',
+    'facebook-blue',
+    'discord-black',
+    'discord-blue',
+    'discord-gray',
+    'facebook-blue',
+    'discord-black',
     'discord-blue',
     'discord-gray',
     'discord-lightBlack',
@@ -82,6 +92,5 @@ export class DataService {
     'discord-gray',
     'facebook-blue',
     'discord-black',
-    'facebook-cyan',
   ];
 }

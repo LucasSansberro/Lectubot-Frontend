@@ -5,7 +5,7 @@
     class="book-carousel mt-4"
     [@carouselAnimation]="{
       value: animationState,
-      params: { startOffset: 0, endOffset: transformOffset }
+      params: { startOffset: startOffset, endOffset: transformOffset }
     }"
     [style.transform]="'translateX(' + transformOffset + 'px)'"
     (@carouselAnimation.done)="onAnimationDone()"
