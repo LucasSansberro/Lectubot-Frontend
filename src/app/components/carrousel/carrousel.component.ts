@@ -28,21 +28,12 @@ export class CarrouselComponent implements OnInit {
   isAnimationInProgress: boolean = false;
   cardWidth: number = 0;
   books: Book[] = [];
-  backgroundColors: string[] = [
-    'discord-blue',
-    'discord-gray',
-    'discord-lightBlack',
-    'facebook-lightBlue',
-    'discord-black',
-    'discord-gray',
-    'facebook-blue',
-    'discord-black',
-    'facebook-cyan',
-  ];
+  backgroundColors: string[] = [];
 
   constructor(private dataService: DataService) {}
   ngOnInit() {
     this.books = this.dataService.books;
+    this.backgroundColors = this.dataService.backgroundColors
     this.startAutoSlide();
   }
 
@@ -60,7 +51,7 @@ export class CarrouselComponent implements OnInit {
     this.updateCarouselTransform();
   }
   onNextClick() {
-    if (this.isAnimationInProgress || this.books.length <= 2) {
+    if (this.isAnimationInProgress || this.books.length == 1) {
       return;
     }
     this.isAnimationInProgress = true;
@@ -72,7 +63,7 @@ export class CarrouselComponent implements OnInit {
   }
 
   onPrevClick() {
-    if (this.isAnimationInProgress || this.books.length <= 2) {
+    if (this.isAnimationInProgress || this.books.length == 1) {
       return;
     }
     this.isAnimationInProgress = true;
