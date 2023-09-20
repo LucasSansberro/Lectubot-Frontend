@@ -1,7 +1,7 @@
 <p class="main-title">
   Agosto, mes del SCIFI <i class="bi bi-rocket-takeoff"></i>
 </p>
-<div class="most-read-header">
+<div class="most-read-header mb-5">
   <p>Lo más leido</p>
   <ul>
     <li class="filter-selected">Todos los géneros</li>
@@ -10,18 +10,22 @@
     <li>Ciencia ficción</li>
   </ul>
 </div>
-<div class="most-read-books-container d-flex w-100 justify-content-around">
-  <div *ngFor="let book of books" class="most-read-book w-50 mt-5 me-auto">
-    <div class="d-flex justify-content-around">
+<div class="most-read-books-container ms-3">
+  <div *ngFor="let book of books" class="most-read-book mt-5 mb-5 me-auto">
+    <div class="most-read-book-image-text-container">
       <img src="{{ book.cover }}" alt="Portada de {{ book.title }}" />
-      <div class="d-flex flex-column w-50">
+      <div class="d-flex flex-column w-50 mt-3">
         <p>{{ book.title }}</p>
         <p>por {{ book.author.name }}</p>
         <p>17 valoraciones</p>
-        <p>{{ book.synopsis }}</p>
+        <p> {{
+          book.synopsis.length > 300
+            ? (book.synopsis | slice : 0 : 300) + "..."
+            : book.synopsis
+        }}</p>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center pb-3">
       <button class="me-5">Leer</button> <button>Ir al sitio del libro</button>
     </div>
   </div>
