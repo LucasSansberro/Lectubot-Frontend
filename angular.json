@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "lectubot-frontend:build:production"
+              "buildTarget": "lectubot-frontend:build:production"
             },
             "development": {
-              "browserTarget": "lectubot-frontend:build:development"
+              "buildTarget": "lectubot-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lectubot-frontend:build"
+            "buildTarget": "lectubot-frontend:build"
           }
         },
         "test": {
