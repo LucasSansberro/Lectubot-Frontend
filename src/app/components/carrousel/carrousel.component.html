@@ -9,16 +9,17 @@
     }"
     [style.transform]="'translateX(' + transformOffset + 'px)'"
     (@carouselAnimation.done)="onAnimationDone()"
-  >
-    <app-carousel-card-book
-      *ngFor="let book of books; let i = index"
-      [book]="book"
-      [backgroundColor]="backgroundColors[i]"
-      (itemWidthCalculated)="onCardWidthCalculated($event)"
+    >
+    @for (book of books; track book; let i = $index) {
+      <app-carousel-card-book
+        [book]="book"
+        [backgroundColor]="backgroundColors[i]"
+        (itemWidthCalculated)="onCardWidthCalculated($event)"
       [ngStyle]="
         i == 0 && books.length != 1 ? { 'margin-left': 50 * (books.length - 3) + 'vw' } : {}
       "
-    ></app-carousel-card-book>
+      ></app-carousel-card-book>
+    }
   </div>
   <i class="bi bi-chevron-right arrows-carousel" (click)="onNextClick()"></i>
 </div>

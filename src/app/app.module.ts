@@ -18,6 +18,7 @@ import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { CarouselCardBookComponent } from './components/carousel-card-book/carousel-card-book.component';
 import { HomePageSidebarComponent } from './components/home-page-sidebar/home-page-sidebar.component';
 import { HomePageMainComponent } from './components/home-page-main/home-page-main.component';
+import { HomePageBookCardComponent } from './components/home-page-book-card/home-page-book-card.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HomePageMainComponent } from './components/home-page-main/home-page-mai
     CarouselCardBookComponent,
     HomePageSidebarComponent,
     HomePageMainComponent,
+    HomePageBookCardComponent
   ],
   imports: [
     BrowserModule,

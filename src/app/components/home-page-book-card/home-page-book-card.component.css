@@ -1,0 +1,19 @@
+.most-read-book {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: white;
+  height: 35vh;
+}
+
+.most-read-book-image-text-container {
+  display: flex;
+  justify-content: space-around;
+  overflow: visible;
+}
+
+.most-read-book-image-text-container img {
+  height: 300px;
+  margin-top: -40px;
+}
