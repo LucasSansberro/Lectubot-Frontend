@@ -5,11 +5,13 @@
       <p>{{ book.title }}</p>
       <p>por {{ book.author.name }}</p>
       <p>17 valoraciones</p>
-      <p> {{
-        book.synopsis.length > 300
-          ? (book.synopsis | slice : 0 : 300) + "..."
-          : book.synopsis
-      }}</p>
+      <p>
+        {{
+          book.synopsis.length > 300
+            ? (book.synopsis | slice : 0 : 300) + "..."
+            : book.synopsis
+        }}
+      </p>
     </div>
   </div>
   <div class="d-flex justify-content-center pb-3">

@@ -28,10 +28,3 @@
   font-weight: bold;
   border-bottom: 1px solid cyan;
 }
-
-.most-read-books-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}

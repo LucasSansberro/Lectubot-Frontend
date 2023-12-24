@@ -10,11 +10,8 @@
     <li>Ciencia ficción</li>
   </ul>
 </div>
-<div class="most-read-books-container ms-3">
-
+<div class="ms-3">
   @for (book of books; track book; let i = $index) {
-    <app-home-page-book-card [book]="books[i]"></app-home-page-book-card>
+  <app-home-page-book-card [book]="books[i]"></app-home-page-book-card>
   }
-
-
 </div>
