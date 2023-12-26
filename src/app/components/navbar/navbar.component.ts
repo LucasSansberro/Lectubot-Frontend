@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { APIResponse } from 'src/app/models/APIResponse';
 import { User } from 'src/app/models/Entities/User';
 import { UsersService } from 'src/app/services/users.service';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-navbar',

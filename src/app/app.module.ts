@@ -19,7 +19,7 @@ import { CarouselCardBookComponent } from './components/carousel-card-book/carou
 import { HomePageSidebarComponent } from './components/home-page-sidebar/home-page-sidebar.component';
 import { HomePageMainComponent } from './components/home-page-main/home-page-main.component';
 import { HomePageBookCardComponent } from './components/home-page-book-card/home-page-book-card.component';
-
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +40,7 @@ import { HomePageBookCardComponent } from './components/home-page-book-card/home
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatInputModule
   ],
   providers: [CookieService,DataService, UsersService ],
   bootstrap: [AppComponent],
