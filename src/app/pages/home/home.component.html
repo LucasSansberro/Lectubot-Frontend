@@ -1,6 +1,8 @@
-<app-carrousel></app-carrousel>
+<p class="main-title mt-4">
+  Nuestras lecturas del mes <i class="bi bi-rocket-takeoff"></i>
+</p>
+<app-carrousel [books]="books"></app-carrousel>
 <div class="d-flex mt-5">
-  <app-home-page-sidebar></app-home-page-sidebar>
-  <app-home-page-main class="w-100"></app-home-page-main>
+  <app-home-page-sidebar [books]="books"></app-home-page-sidebar>
+  <app-home-page-main class="w-100" [books]="books"></app-home-page-main>
 </div>
-

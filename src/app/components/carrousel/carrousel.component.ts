@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Input,
   OnInit,
 } from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
@@ -32,16 +33,15 @@ export class CarrouselComponent implements OnInit {
   transformOffset: number = 0;
   isAnimationInProgress: boolean = false;
   cardWidth: number = 0;
-  books: Book[] = [];
   backgroundColors: string[] = [];
   startOffset: number = 0;
+  @Input() books: Book[] = [];
 
   constructor(
     private dataService: DataService,
     private cdr: ChangeDetectorRef
   ) {}
   ngOnInit() {
-    this.books = this.dataService.books;
     this.backgroundColors = this.dataService.backgroundColors;
     this.startAutoSlide();
   }
