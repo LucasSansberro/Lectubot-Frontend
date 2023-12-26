@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
-import { DataService } from 'src/app/services/data.service';
+import { Genre } from 'src/app/models/Enums/Genre';
 
 @Component({
   selector: 'app-home-page-main',
@@ -8,9 +8,40 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./home-page-main.component.css'],
 })
 export class HomePageMainComponent implements OnInit {
-  books: Book[] = [];
-  constructor(private dataService: DataService) {}
+  @Input() books: Book[] = [];
+  renderizedBooks: Book[] = [];
+  filteredGenres: string[] = [
+    'Todos los géneros',
+    'YA',
+    'Clásicos',
+    'Ciencia ficción',
+  ];
+  selectedFilter: string = 'Todos los géneros';
+
   ngOnInit(): void {
-    this.books = this.dataService.books.slice(0, 3);
+    this.renderizedBooks = this.books;
+  }
+
+  filterBooks(genre: string): void {
+    this.selectedFilter = genre;
+    switch (genre) {
+      case 'YA':
+        this.renderizedBooks = this.books.filter((book) =>
+          book.genre.includes(Genre.youngAdult)
+        );
+        break;
+      case 'Clásicos':
+        this.renderizedBooks = this.books.filter((book) =>
+          book.genre.includes(Genre.classic)
+        );
+        break;
+      case 'Ciencia ficción':
+        this.renderizedBooks = this.books.filter((book) =>
+          book.genre.includes(Genre.scifi)
+        );
+        break;
+      default:
+        this.renderizedBooks = this.books;
+    }
   }
 }

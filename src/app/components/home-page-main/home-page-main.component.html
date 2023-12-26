@@ -1,17 +1,25 @@
-<p class="main-title">
-  Agosto, mes del SCIFI <i class="bi bi-rocket-takeoff"></i>
-</p>
 <div class="most-read-header mb-5">
   <p>Lo más leido</p>
   <ul>
-    <li class="filter-selected">Todos los géneros</li>
-    <li>YA</li>
-    <li>Horror</li>
-    <li>Ciencia ficción</li>
+    @for (genre of filteredGenres; track genre){
+    <li>
+      <button
+        type="button"
+        (click)="filterBooks(genre)"
+        [ngClass]="selectedFilter == genre ? 'selected-filter' : ''"
+      >
+        {{ genre }}
+      </button>
+    </li>
+    }
   </ul>
 </div>
-<div class="ms-3">
-  @for (book of books; track book; let i = $index) {
-  <app-home-page-book-card [book]="books[i]"></app-home-page-book-card>
+<div class="most-read-books-container">
+  @for (book of renderizedBooks; track book; let i = $index) {
+  <!-- TODO  Placeholder for empty array-->
+  <app-home-page-book-card
+    [book]="renderizedBooks[i]"
+    class="card-size mx-3"
+  ></app-home-page-book-card>
   }
 </div>

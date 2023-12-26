@@ -1,10 +1,17 @@
-<div class="most-read-book mt-5 mb-5 me-auto">
+<div class="most-read-book my-5 me-auto">
   <div class="most-read-book-image-text-container">
     <img src="{{ book.cover }}" alt="Portada de {{ book.title }}" />
     <div class="d-flex flex-column w-50 mt-3">
       <p>{{ book.title }}</p>
       <p>por {{ book.author.name }}</p>
-      <p>17 valoraciones</p>
+      <div class="d-flex mt-3 mb-3">
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-half"></i>
+        <i class="bi bi-star"></i>
+        <p class="ms-2">17 valoraciones</p>
+      </div>
       <p>
         {{
           book.synopsis.length > 300
@@ -14,7 +21,16 @@
       </p>
     </div>
   </div>
-  <div class="d-flex justify-content-center pb-3">
-    <button class="me-5">Leer</button> <button>Ir al sitio del libro</button>
+  <div class="d-flex justify-content-center pb-3 mt-2">
+    <button class="me-5 py-1 px-4 facebook-cyan rounded">Leer</button>
+    <button class="facebook-cyan py-1 px-4 rounded">
+      Ir al sitio del libro
+    </button>
+  </div>
+  <div class="friends-reading-container py-3">
+    <p class="ms-3">
+      <i class="bi bi-person-circle ms-1 me-2"></i>
+      <span class="fw-bold">Alandra</span> y 3 amigos más están leyendo esto
+    </p>
   </div>
 </div>

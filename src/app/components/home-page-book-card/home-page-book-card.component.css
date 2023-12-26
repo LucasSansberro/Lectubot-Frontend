@@ -1,10 +1,8 @@
 .most-read-book {
-  width: 45%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   background-color: white;
-  height: 35vh;
 }
 
 .most-read-book-image-text-container {
@@ -16,4 +14,13 @@
 .most-read-book-image-text-container img {
   height: 300px;
   margin-top: -40px;
+}
+
+.friends-reading-container{
+  border-top: 1px solid rgba(176, 169, 169, 0.355);
+  height: fit-content;
+}
+
+.friends-reading-container p{
+  margin-bottom: 0px;
 }
