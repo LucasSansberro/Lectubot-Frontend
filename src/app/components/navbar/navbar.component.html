@@ -19,10 +19,19 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul
-        class="navbar-nav d-flex w-25 align-items-lg-center justify-content-between mt-1 me-2"
-      >
+
+    <div
+      class="collapse navbar-collapse justify-content-end mt-1 me-2"
+      id="navbarNav"
+    >
+      <mat-form-field>
+        <mat-label>Buscar un usuario</mat-label>
+        <input type="search" matInput />
+        <input matInput />
+        <mat-icon matSuffix><i class="bi bi-search"></i></mat-icon>
+      </mat-form-field>
+
+      <ul class="navbar-nav w-25 justify-content-between">
         <li class="nav-item">
           <a routerLink="/" class="text-light nav-link">Inicio</a>
         </li>
@@ -42,7 +51,9 @@
         <li class="nav-item d-flex">
           <a
             href="https://discord.com/oauth2/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fredirect&scope=identify%20guilds&client_id=1078358777574735953"
-            ><p class="me-1 text-light nav-link test">Iniciar sesión</p></a
+            ><p class="me-1 text-light nav-link login-text">
+              Iniciar sesión
+            </p></a
           >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +76,3 @@
     </div>
   </div>
 </nav>
-<mat-form-field>
-  <mat-label>Buscar un usuario</mat-label>
-  <input matInput type="search" />
-</mat-form-field>
