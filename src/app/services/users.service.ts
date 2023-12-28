@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 import { APIResponse } from '../models/APIResponse';
 import { User } from '../models/Entities/User';
 import { DataService } from './data.service';
@@ -9,20 +9,31 @@ import { DataService } from './data.service';
 })
 export class UsersService {
   loggedInUser: User | undefined;
-  isUserLogged: boolean = false;
   userProfilePic: string = '';
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private cookieService: CookieService
+  ) {}
 
-  getLoggedUserData(): Observable<APIResponse<User>> {
-    return this.dataService.getLoggedUserData();
+  getLoggedUserData(): void {
+    this.dataService.getLoggedUserData().subscribe({
+      next: (response: APIResponse<User>) => {
+        this.loggedInUser = response.data!;
+        const { discordId, avatar } = response.data!;
+        this.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
+      },
+      error: (e: Error) => {
+        this.cookieService.delete('logged');
+        alert('Error conectando con la base de datos: ' + e.name);
+      },
+    });
   }
 
   closeSession(): void {
     this.dataService.closeSession().subscribe(() => {
       this.loggedInUser = undefined;
-      this.isUserLogged = false;
-      this.userProfilePic = ""
+      this.userProfilePic = '';
     });
   }
 }
