@@ -1,8 +1,11 @@
-.button-logout{
+.button-logout {
   background: none;
   border: none;
 }
 
-.login-text{
-  margin:0px
+.login-text {
+  margin: 0px;
+}
+.navbar-nav {
+  width: 30%;
 }

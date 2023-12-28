@@ -40,9 +40,14 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  closeSession(): any {
+  closeSession(): void {
     this.userService.closeSession();
     this.isUserLogged = false;
     this.username = '';
+  }
+
+  searchUser(event: any): void {
+    const user: string = event.target.value;
+    user.length >= 3 && console.log(event.target.value);
   }
 }

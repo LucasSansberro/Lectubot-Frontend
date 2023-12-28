@@ -21,17 +21,17 @@
     </button>
 
     <div
-      class="collapse navbar-collapse justify-content-end mt-1 me-2"
+      class="collapse navbar-collapse  justify-content-end mt-1 me-2"
       id="navbarNav"
     >
-      <mat-form-field>
-        <mat-label>Buscar un usuario</mat-label>
-        <input type="search" matInput />
-        <input matInput />
-        <mat-icon matSuffix><i class="bi bi-search"></i></mat-icon>
-      </mat-form-field>
-
-      <ul class="navbar-nav w-25 justify-content-between">
+      <ul class="navbar-nav justify-content-between align-items-lg-center">
+        <li class="nav-item">
+          <input
+            type="search"
+            placeholder="Buscar un usuario"
+            (keyup)="searchUser($event)"
+          />
+        </li>
         <li class="nav-item">
           <a routerLink="/" class="text-light nav-link">Inicio</a>
         </li>
