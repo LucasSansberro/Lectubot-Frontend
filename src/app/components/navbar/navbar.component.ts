@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { APIResponse } from 'src/app/models/APIResponse';
-import { User } from 'src/app/models/Entities/User';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({

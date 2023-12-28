@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
     private userService: UsersService
   ) {}
   ngOnInit(): void {
-    if (this.cookieService.check('logged')) {
+    if (this.cookieService.check('logged') && this.userService.loggedInUser == undefined) {
       this.userService.getLoggedUserData()
     }
   }
