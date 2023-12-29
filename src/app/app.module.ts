@@ -20,6 +20,8 @@ import { HomePageSidebarComponent } from './components/home-page-sidebar/home-pa
 import { HomePageMainComponent } from './components/home-page-main/home-page-main.component';
 import { HomePageBookCardComponent } from './components/home-page-book-card/home-page-book-card.component';
 import {MatInputModule} from '@angular/material/input';
+import { BookProfileComponent } from './pages/book-profile/book-profile.component';
+import { BookProfilePageSidebarComponent } from './components/book-profile-page-sidebar/book-profile-page-sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import {MatInputModule} from '@angular/material/input';
     CarouselCardBookComponent,
     HomePageSidebarComponent,
     HomePageMainComponent,
-    HomePageBookCardComponent
+    HomePageBookCardComponent,
+    BookProfileComponent,
+    BookProfilePageSidebarComponent
   ],
   imports: [
     BrowserModule,

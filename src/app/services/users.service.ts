@@ -17,17 +17,17 @@ export class UsersService {
   ) {}
 
   getLoggedUserData(): void {
-      this.dataService.getLoggedUserData().subscribe({
-        next: (response: APIResponse<User>) => {
-          this.loggedInUser = response.data!;
-          const { discordId, avatar } = response.data!;
-          this.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
-        },
-        error: (e: Error) => {
-          this.cookieService.delete('logged');
-          alert('Error conectando con la base de datos: ' + e.name);
-        },
-      });
+    this.dataService.getLoggedUserData().subscribe({
+      next: (response: APIResponse<User>) => {
+        this.loggedInUser = response.data!;
+        const { discordId, avatar } = response.data!;
+        this.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
+      },
+      error: (e: Error) => {
+        this.cookieService.delete('logged');
+        alert('Error conectando con la base de datos: ' + e.name);
+      },
+    });
   }
 
   closeSession(): void {

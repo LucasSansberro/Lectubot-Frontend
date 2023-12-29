@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { BooksComponent } from './pages/books/books.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { BookProfileComponent } from './pages/book-profile/book-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'libros', pathMatch: 'full', component: BooksComponent },
+  { path: 'libro/:libro-id', pathMatch: 'full', component: BookProfileComponent },
   { path: 'user', pathMatch: 'full', component: UserProfileComponent },
 ];
 
