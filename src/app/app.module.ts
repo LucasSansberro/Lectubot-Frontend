@@ -23,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import { BookProfileComponent } from './pages/book-profile/book-profile.component';
 import { BookProfilePageSidebarComponent } from './components/book-profile-page-sidebar/book-profile-page-sidebar.component';
 import { BookProfilePageMainComponent } from './components/book-profile-page-main/book-profile-page-main.component';
+import { BookReviewComponent } from './components/book-review/book-review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { BookProfilePageMainComponent } from './components/book-profile-page-mai
     HomePageBookCardComponent,
     BookProfileComponent,
     BookProfilePageSidebarComponent,
-    BookProfilePageMainComponent
+    BookProfilePageMainComponent,
+    BookReviewComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,12 @@ h2 {
 p {
   font-size: 1.1rem;
 }
-.synopsis {
+.text-container {
   text-align: justify;
   width: 90%;
+}
+
+.reviews-title {
+  font-size: 1.9rem;
+  font-weight: 600;
 }

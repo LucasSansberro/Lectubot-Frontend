@@ -1,0 +1,14 @@
+.text-container {
+  text-align: justify;
+  width: 90%;
+}
+.review-profile-pic {
+  font-size: 5rem;
+}
+
+.review-owner {
+  font-size: 1.2rem;
+}
+p {
+  font-size: 1.1rem;
+}
