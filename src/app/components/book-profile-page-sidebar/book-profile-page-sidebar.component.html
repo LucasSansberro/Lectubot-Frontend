@@ -1,9 +1,19 @@
-<div class="container-fluid">
-  <div class="test col-4">
-    <img
-      src="{{ book.cover }}"
-      alt="Portada del libro {{ book.title }}"
-      class="cover-image"
-    />
+<div class="mt-5 d-flex align-items-center flex-column sidebar-container">
+  <img
+    src="{{ book.cover }}"
+    alt="Portada del libro {{ book.title }}"
+    class="cover-image"
+  />
+  <button class="link-button mt-4">
+   Leer
+  </button>
+  <div class="d-flex mt-4 mb-3 user-rating">
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star"></i>
+    <p class="ms-2">Tu valoración</p>
   </div>
+  <p>Escribiste una <span class="fw-bold text-decoration-underline">reseña</span></p>
 </div>
