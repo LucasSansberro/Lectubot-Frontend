@@ -22,6 +22,7 @@ import { HomePageBookCardComponent } from './components/home-page-book-card/home
 import {MatInputModule} from '@angular/material/input';
 import { BookProfileComponent } from './pages/book-profile/book-profile.component';
 import { BookProfilePageSidebarComponent } from './components/book-profile-page-sidebar/book-profile-page-sidebar.component';
+import { BookProfilePageMainComponent } from './components/book-profile-page-main/book-profile-page-main.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { BookProfilePageSidebarComponent } from './components/book-profile-page-
     HomePageMainComponent,
     HomePageBookCardComponent,
     BookProfileComponent,
-    BookProfilePageSidebarComponent
+    BookProfilePageSidebarComponent,
+    BookProfilePageMainComponent
   ],
   imports: [
     BrowserModule,

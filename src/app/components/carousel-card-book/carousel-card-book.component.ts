@@ -9,7 +9,7 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Book } from 'src/app/models/Entities/Book';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-carousel-card-book',
   templateUrl: './carousel-card-book.component.html',
@@ -20,6 +20,8 @@ export class CarouselCardBookComponent implements OnInit {
   @Input() backgroundColor: string = '';
   @Output() itemWidthCalculated = new EventEmitter<number>();
   resizeSubject: Subject<void> = new Subject<void>();
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.calculateCardWidth();
@@ -39,5 +41,9 @@ export class CarouselCardBookComponent implements OnInit {
       const cardWidth = cardElement.clientWidth;
       this.itemWidthCalculated.emit(cardWidth);
     }
+  }
+
+  redirectToBookPage(bookId : string) {
+    this.router.navigate(['/libro', bookId])
   }
 }

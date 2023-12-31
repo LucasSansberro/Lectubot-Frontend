@@ -1,0 +1,26 @@
+<div class="mt-5">
+  <h2>{{ book.title }}</h2>
+  <p>{{ book.author.name }}</p>
+  <div class="d-flex mt-3 mb-3">
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-fill"></i>
+    <i class="bi bi-star-half"></i>
+    <i class="bi bi-star"></i>
+    <p class="ms-2">4.25</p>
+    <p class="ms-2">17 valoraciones</p>
+    <p class="ms-2">5 reviews</p>
+  </div>
+  <p class="synopsis">{{ book.synopsis }}</p>
+  <p>
+    Generos: @for (genre of book.genre; track $index) {
+    <span>{{ genre }}@if($index != book.genre.length - 1){, } </span>
+    }
+  </p>
+  <p>{{ book.pages }} páginas</p>
+  <p>
+    Leído el {{ book.readByGroup.getMonth() }}/{{
+      book.readByGroup.getFullYear()
+    }}
+  </p>
+</div>

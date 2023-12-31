@@ -31,6 +31,8 @@
           : book.synopsis
       }}
     </p>
-    <button class="link-button mt-4">Ir al sitio del libro</button>
+    <button class="link-button mt-4" (click)="redirectToBookPage(book._id)">
+      Ir al sitio del libro
+    </button>
   </div>
 </div>

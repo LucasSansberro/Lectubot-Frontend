@@ -7,7 +7,7 @@ import { User } from '../models/Entities/User';
 import { Genre } from '../models/Enums/Genre';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
   //TODO Make it an env
@@ -15,20 +15,23 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-
   getLoggedUserData(): Observable<APIResponse<User>> {
-   return this.http.get<APIResponse<User>>(`${this.URL}/users/me`, { withCredentials: true });
+    return this.http.get<APIResponse<User>>(`${this.URL}/users/me`, {
+      withCredentials: true,
+    });
   }
 
   //TODO Shouldn't it be a post req?
-  closeSession(): Observable<void>{
-    return this.http.get<void>(`${this.URL}/auth/logout`, { withCredentials: true });
+  closeSession(): Observable<void> {
+    return this.http.get<void>(`${this.URL}/auth/logout`, {
+      withCredentials: true,
+    });
   }
   book1: Book = {
-    _id: 'FakeId',
+    _id: '1',
     title: 'Muerte de un viajante',
     author: {
-      _id: 'FakeId',
+      _id: '1',
       name: 'Arthur Miller',
     },
     pages: 300,
@@ -41,10 +44,10 @@ export class DataService {
   };
 
   book2: Book = {
-    _id: 'FakeId',
+    _id: '2',
     title: 'La espada de la asesina',
     author: {
-      _id: 'FakeId',
+      _id: '2',
       name: 'Sarah J Mass',
     },
     pages: 300,
@@ -57,10 +60,10 @@ export class DataService {
   };
 
   book3: Book = {
-    _id: 'FakeId',
+    _id: '3',
     title: 'Blood Shot: Stories from the Blood Verse',
     author: {
-      _id: 'FakeId',
+      _id: '3',
       name: 'Tanya Huff',
     },
     pages: 300,
@@ -71,7 +74,7 @@ export class DataService {
       'Tanya Huff’s darkly thrilling Blood novels introduced readers to vampiric P.I. Victoria Nelson and her life amongst the paranormal. Here are some of Tanya’s best short stories featuring Vicki and other unforgettable characters from her world…',
     readByGroup: new Date(),
   };
-  books:Book[]= [this.book1,this.book2,this.book3]
+  books: Book[] = [this.book1, this.book2, this.book3];
   backgroundColors: string[] = [
     'discord-blue',
     'discord-gray',

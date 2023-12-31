@@ -17,7 +17,9 @@ export class BookProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.book = this.dataService.books[params['libro-id']];
+      this.book = this.dataService.books.find(
+        (book) => book._id == params['libro-id']
+      )!;
       console.log(this.book);
     });
   }
