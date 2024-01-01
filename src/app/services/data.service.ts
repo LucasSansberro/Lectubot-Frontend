@@ -33,6 +33,11 @@ export class DataService {
     author: {
       _id: '1',
       name: 'Arthur Miller',
+      image:
+        'https://www.biografiasyvidas.com/biografia/m/fotos/miller_arthur.jpg',
+      nationality: 'Estados Unidos',
+      books: [],
+      genre: [Genre.classic, Genre.theatre],
     },
     pages: 300,
     genre: [Genre.classic, Genre.theatre],
@@ -49,6 +54,11 @@ export class DataService {
     author: {
       _id: '2',
       name: 'Sarah J Mass',
+      image:
+        'https://sarahjmaas.com/wp-content/uploads/2021/08/Sarah-headshot-color-med.jpg',
+      books: [],
+      genre: [Genre.fantasy, Genre.youngAdult],
+      nationality: 'Estados Unidos',
     },
     pages: 300,
     genre: [Genre.fantasy, Genre.youngAdult],
@@ -65,6 +75,10 @@ export class DataService {
     author: {
       _id: '3',
       name: 'Tanya Huff',
+      image: 'https://www.locusmag.com/Magazine/2013/Issue12_Huff_200x281.jpg',
+      books: [],
+      nationality: 'Canadá',
+      genre: [Genre.fantasy, Genre.youngAdult],
     },
     pages: 300,
     genre: [Genre.fantasy, Genre.youngAdult],

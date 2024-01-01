@@ -1,0 +1,12 @@
+<div class="container-fluid d-flex justify-content-between">
+  <img src="{{author.image}}" alt="">
+  <div class="mt-5 col-8">
+    <h2>{{ author.name }}</h2>
+    <p class="text-container">Biografía del autor</p>
+    <p>
+      Generos: @for (genre of author.genre; track $index) {
+      <span>{{ genre }}@if($index != author.genre.length - 1){, } </span>
+      }
+    </p>
+  </div>
+</div>
