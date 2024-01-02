@@ -1,3 +1,23 @@
-i{
-  font-size:15rem ;
+i {
+  font-size: 15rem;
+}
+.image-div {
+  width: 500px;
+}
+.cover-image {
+  width: 15vw;
+  height: 35vh;
+  display: block;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+p {
+  font-size: 1.1rem;
+}
+.separator-border {
+  border-top: 1px solid rgba(176, 169, 169, 0.355);
+  border-bottom: 1px solid rgba(176, 169, 169, 0.355);
 }

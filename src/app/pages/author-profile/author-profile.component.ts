@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Author } from 'src/app/models/Entities/Author';
+import { Book } from 'src/app/models/Entities/Book';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class AuthorProfileComponent implements OnInit {
   @Input() author!: Author;
+  books: Book[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService
@@ -19,7 +21,9 @@ export class AuthorProfileComponent implements OnInit {
       this.author = this.dataService.books.find(
         (book) => book.author._id == params['autor-id']
       )!.author!;
-      console.log(this.author);
+      this.books = this.dataService.books.filter(
+        (book) => (book.author._id = this.author._id)
+      );
     });
   }
 }
