@@ -22,7 +22,7 @@ export class AuthorProfileComponent implements OnInit {
         (book) => book.author._id == params['autor-id']
       )!.author!;
       this.books = this.dataService.books.filter(
-        (book) => (book.author._id = this.author._id)
+        (book) => book.author._id == params['autor-id']
       );
     });
   }
