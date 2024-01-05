@@ -7,51 +7,23 @@
     />
   </div>
   <div class="mt-5 col-8">
-    <h2>{{ author.name }}</h2>
-    <p class="text-container">País de origen: {{ author.nationality }}</p>
-    <p>
-      Generos: @for (genre of author.genre; track $index) {
-      <span>{{ genre }}@if($index != author.genre.length - 1){, } </span>
-      }
-    </p>
-    <div class="mt-5 separator-border">
-      <p>Libros:</p>
-      <ul>
-        @for (book of books; track book._id) {
-        <li class="d-flex justify-content-between">
-          <div class="d-flex">
-            <img
-              src="{{ book.cover }}"
-              alt="Portada de {{ book.title }}"
-              class="book-cover"
-            />
-            <div class="d-flex flex-column justify-content-between ms-4">
-              <p class="fw-bold">{{ book.title }}</p>
-              <p>por {{ book.author.name }}</p>
-              <div class="d-flex">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-                <i class="bi bi-star"></i>
-                <p class="ms-2">4.25</p>
-                <p class="ms-2">17 valoraciones</p>
-                <p class="ms-2">5 reviews</p>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex flex-column justify-content-around">
-            <button class="link-button mx-auto">Leer</button>
-            <div class="d-flex">
-              <p>Tu puntaje:</p>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-half"></i>
-              <i class="bi bi-star"></i>
-            </div>
-          </div>
-        </li>
+    <div class="d-flex flex-column">
+      <h2>{{ author.name }}</h2>
+      <p class="text-container">País de origen: {{ author.nationality }}</p>
+      <p>
+        Generos: @for (genre of author.genre; track $index) {
+        <span>{{ genre }}@if($index != author.genre.length - 1){, } </span>
+        }
+      </p>
+    </div>
+    <div>
+      <p class="fw-bold mt-5">Libros:</p>
+      <ul class="mt-3 separator-border">
+        @for (book of books; track book._id; let last = $last) {
+        <app-book-item-list
+          [book]="book"
+          [ngClass]="last ? '' : 'separator-border'"
+        ></app-book-item-list>
         }
       </ul>
     </div>

@@ -21,9 +21,9 @@ export class AuthorProfileComponent implements OnInit {
       this.author = this.dataService.books.find(
         (book) => book.author._id == params['autor-id']
       )!.author!;
-      this.books = this.dataService.books.filter(
+      this.books =this.dataService.books /* this.dataService.books.filter(
         (book) => book.author._id == params['autor-id']
-      );
+      ); */
     });
   }
 }
