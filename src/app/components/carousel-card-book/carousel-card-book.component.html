@@ -15,7 +15,7 @@
           : book.title
       }}
     </p>
-    <p>por {{ book.author.name }}</p>
+    <p>por <span class="author-link" (click)="redirectToAuthorPage(book.author._id)">{{ book.author.name }}</span></p>
     <div class="d-flex mt-3 mb-3">
       <i class="bi bi-star-fill"></i>
       <i class="bi bi-star-fill"></i>

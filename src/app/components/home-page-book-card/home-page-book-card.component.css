@@ -16,11 +16,15 @@
   margin-top: -40px;
 }
 
-.friends-reading-container{
+.friends-reading-container {
   border-top: 1px solid rgba(176, 169, 169, 0.355);
   height: fit-content;
 }
 
-.friends-reading-container p{
+.friends-reading-container p {
   margin-bottom: 0px;
+}
+.author-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

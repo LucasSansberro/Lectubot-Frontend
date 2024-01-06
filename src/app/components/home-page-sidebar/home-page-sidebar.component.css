@@ -31,3 +31,7 @@
 .books-reading-list button{
   border-radius: 5%;
 }
+.author-link:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}

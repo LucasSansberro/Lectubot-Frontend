@@ -22,7 +22,8 @@
         @for (book of books; track book._id; let last = $last) {
         <app-book-item-list
           [book]="book"
-          [ngClass]="last ? '' : 'separator-border'"
+          class="d-block"
+          [class.separator-border]="!last"
         ></app-book-item-list>
         }
       </ul>

@@ -22,11 +22,3 @@ p {
   border-top: 1px solid rgba(176, 169, 169, 0.355);
   border-bottom: 1px solid rgba(176, 169, 169, 0.355);
 }
-
-
-.test{
-  background-color: black;
-  height: 100000px;
-  display: block
-
-}

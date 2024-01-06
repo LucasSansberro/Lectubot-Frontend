@@ -43,7 +43,10 @@ export class CarouselCardBookComponent implements OnInit {
     }
   }
 
-  redirectToBookPage(bookId : string) {
-    this.router.navigate(['/libro', bookId])
+  redirectToBookPage(bookId: string) {
+    this.router.navigate(['/libro', bookId]);
+  }
+  redirectToAuthorPage(authorId: string) {
+    this.router.navigate(['/autor', authorId]);
   }
 }

@@ -26,6 +26,7 @@ import { BookProfilePageMainComponent } from './components/book-profile-page-mai
 import { BookReviewComponent } from './components/book-review/book-review.component';
 import { AuthorProfileComponent } from './pages/author-profile/author-profile.component';
 import { BookItemListComponent } from './components/book-item-list/book-item-list.component';
+import { BooksPageBookCardComponent } from './components/books-page-book-card/books-page-book-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { BookItemListComponent } from './components/book-item-list/book-item-lis
     BookProfilePageMainComponent,
     BookReviewComponent,
     AuthorProfileComponent,
-    BookItemListComponent
+    BookItemListComponent,
+    BooksPageBookCardComponent
   ],
   imports: [
     BrowserModule,

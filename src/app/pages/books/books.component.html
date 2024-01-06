@@ -1,1 +1,3 @@
-<p>books works!</p>
+@for(book of books; track book._id){
+<app-books-page-book-card [book]="book"></app-books-page-book-card>
+}
