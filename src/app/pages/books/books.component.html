@@ -1,3 +1,8 @@
-@for(book of books; track book._id){
-<app-books-page-book-card [book]="book"></app-books-page-book-card>
-}
+<div class="container-fluid d-flex flex-wrap">
+  @for(book of books; track book._id){
+  <app-books-page-book-card
+    [book]="book"
+    class="d-block col-2"
+  ></app-books-page-book-card>
+  }
+</div>

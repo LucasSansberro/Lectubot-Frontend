@@ -18,12 +18,12 @@
     </div>
     <div>
       <p class="fw-bold mt-5">Libros:</p>
-      <ul class="mt-3 separator-border">
+      <ul class="mt-3 vertical-border-separator">
         @for (book of books; track book._id; let last = $last) {
         <app-book-item-list
           [book]="book"
           class="d-block"
-          [class.separator-border]="!last"
+          [class.bottom-border-separator]="!last"
         ></app-book-item-list>
         }
       </ul>

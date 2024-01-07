@@ -12,5 +12,17 @@ export class BooksComponent implements OnInit {
   constructor(private dataService: DataService) {}
   ngOnInit(): void {
     this.books = this.dataService.books;
+    this.books.push(this.dataService.book1)
+    this.books.push(this.dataService.book2)
+    this.books.push(this.dataService.book3)
+    this.books.push(this.dataService.book1)
+    this.books.push(this.dataService.book2)
+    this.books.push(this.dataService.book3)
+    this.books.push(this.dataService.book1)
+    this.books.push(this.dataService.book2)
+    this.books.push(this.dataService.book3)
+    this.books.push(this.dataService.book1)
+    this.books.push(this.dataService.book2)
+    this.books.push(this.dataService.book3)
   }
 }

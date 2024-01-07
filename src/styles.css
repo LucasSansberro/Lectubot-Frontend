@@ -28,6 +28,16 @@
 .ocean-blue {
   background-color: rgb(25, 118, 210);
 }
-body{
-  background-color:#f7f7f7;
+body {
+  background-color: #f7f7f7;
+}
+.top-border-separator {
+  border-top: 1px solid rgba(176, 169, 169, 0.355);
+}
+.bottom-border-separator {
+  border-bottom: 1px solid rgba(176, 169, 169, 0.355);
+}
+.vertical-border-separator {
+  border-top: 1px solid rgba(176, 169, 169, 0.355);
+  border-bottom: 1px solid rgba(176, 169, 169, 0.355);
 }

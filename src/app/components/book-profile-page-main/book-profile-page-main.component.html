@@ -1,6 +1,8 @@
 <div class="mt-5">
   <h2>{{ book.title }}</h2>
-  <p class="author-link" (click)="redirectToAuthorPage(book.author._id)">{{ book.author.name }}</p>
+  <p class="author-link" (click)="redirectToAuthorPage(book.author._id)">
+    {{ book.author.name }}
+  </p>
   <div class="d-flex mt-3 mb-3">
     <i class="bi bi-star-fill"></i>
     <i class="bi bi-star-fill"></i>
@@ -25,7 +27,7 @@
   </p>
 
   <div
-    class="d-flex justify-content-around mt-5 py-3 align-items-center text-container separator-border"
+    class="d-flex justify-content-around mt-5 py-3 align-items-center text-container vertical-border-separator"
   >
     <div class="d-flex mt-2">
       <i class="bi bi-person-circle ms-1 me-2"></i>
@@ -40,7 +42,7 @@
     </div>
   </div>
 
-  <p class="mt-5 reviews-title">Reseñas</p>
+  <p class="mt-5 mb-4 reviews-title">Reseñas</p>
   <app-book-review
     [review]="book.synopsis"
     reviewOwner="Tu reseña"

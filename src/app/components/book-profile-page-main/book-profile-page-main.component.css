@@ -13,10 +13,6 @@ p {
   font-size: 1.9rem;
   font-weight: 600;
 }
-.separator-border {
-  border-top: 1px solid rgba(176, 169, 169, 0.355);
-  border-bottom: 1px solid rgba(176, 169, 169, 0.355);
-}
 
 .author-link{
   width: fit-content;
