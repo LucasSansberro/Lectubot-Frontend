@@ -6,3 +6,12 @@
   ></app-books-page-book-card>
   }
 </div>
+<mat-paginator
+  [length]="books.length"
+  [pageSize]="18"
+  [showFirstLastButtons]="true"
+  [pageSizeOptions]="[6, 18, 30, 60]"
+  [pageIndex]=""
+  (page)="handlePageEvent($event)"
+>
+</mat-paginator>
