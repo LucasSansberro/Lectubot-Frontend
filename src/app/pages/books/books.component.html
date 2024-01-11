@@ -1,5 +1,5 @@
 <div class="container-fluid d-flex flex-wrap">
-  @for(book of books; track book._id){
+  @for(book of renderingBooks; track book._id){
   <app-books-page-book-card
     [book]="book"
     class="d-block col-2 my-5"
@@ -11,7 +11,7 @@
   [pageSize]="18"
   [showFirstLastButtons]="true"
   [pageSizeOptions]="[6, 18, 30, 60]"
-  [pageIndex]=""
+  [pageIndex]="2"
   (page)="handlePageEvent($event)"
 >
 </mat-paginator>
