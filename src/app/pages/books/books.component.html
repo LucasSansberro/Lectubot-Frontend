@@ -8,10 +8,10 @@
 </div>
 <mat-paginator
   [length]="books.length"
-  [pageSize]="18"
+  [pageSize]=pageSize
   [showFirstLastButtons]="true"
   [pageSizeOptions]="[6, 18, 30, 60]"
-  [pageIndex]="2"
+  [pageIndex]=pageIndex
   (page)="handlePageEvent($event)"
 >
 </mat-paginator>
