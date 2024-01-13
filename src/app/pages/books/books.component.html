@@ -1,17 +1,30 @@
-<div class="container-fluid d-flex flex-wrap">
-  @for(book of renderingBooks; track book._id){
-  <app-books-page-book-card
-    [book]="book"
-    class="d-block col-2 my-5"
-  ></app-books-page-book-card>
-  }
+<div class="container-fluid d-flex flex-column">
+  <div class="d-flex justify-content-end me-5 mt-4">
+    <p>Filtrar por:</p>
+    <mat-form-field>
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selected">
+        @for(genre of genres; track genre){
+        <mat-option value="genre">{{ genre }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="d-flex flex-wrap">
+    @for(book of renderingBooks; track book._id){
+    <app-books-page-book-card
+      [book]="book"
+      class="d-block col-2 my-5"
+    ></app-books-page-book-card>
+    }
+  </div>
 </div>
 <mat-paginator
   [length]="books.length"
-  [pageSize]=pageSize
+  [pageSize]="pageSize"
   [showFirstLastButtons]="true"
   [pageSizeOptions]="[6, 18, 30, 60]"
-  [pageIndex]=pageIndex
+  [pageIndex]="pageIndex"
   (page)="handlePageEvent($event)"
 >
 </mat-paginator>

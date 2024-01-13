@@ -28,7 +28,7 @@ import { AuthorProfileComponent } from './pages/author-profile/author-profile.co
 import { BookItemListComponent } from './components/book-item-list/book-item-list.component';
 import { BooksPageBookCardComponent } from './components/books-page-book-card/books-page-book-card.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {MatSelectModule} from '@angular/material/select'
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +51,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BooksPageBookCardComponent
   ],
   imports: [
+    MatSelectModule,
     MatPaginatorModule,
     BrowserModule,
     AppRoutingModule,

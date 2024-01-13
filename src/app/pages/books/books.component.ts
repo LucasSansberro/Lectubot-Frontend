@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Book } from 'src/app/models/Entities/Book';
 import { DataService } from 'src/app/services/data.service';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { Genre } from 'src/app/models/Enums/Genre';
 
 interface PageEvent {
   pageIndex: number;
@@ -14,15 +17,17 @@ interface PageEvent {
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent implements OnInit {
-  @ViewChild(MatPaginator, { static: true }) paginator:
-    | MatPaginator
-    | undefined;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   books: Book[] = [];
   renderingBooks: Book[] = [];
   pageIndex: number = 0;
   pageSize: number = 18;
+  selected :any
+  genres : string[]= []
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) {
+    this.genres = Object.values(Genre);
+  }
 
   ngOnInit(): void {
     this.paginator!._intl.itemsPerPageLabel = 'Libros por página';
