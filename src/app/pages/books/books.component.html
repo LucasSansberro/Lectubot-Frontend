@@ -2,13 +2,22 @@
   <div class="d-flex justify-content-end me-5 mt-4">
     <p>Filtrar por:</p>
     <mat-form-field>
-      <mat-label>Select an option</mat-label>
-      <mat-select [(value)]="selected">
+      <mat-label>Escoja un filtro</mat-label>
+      <mat-select (selectionChange)="test($event)">
         @for(genre of genres; track genre){
-        <mat-option value="genre">{{ genre }}</mat-option>
+        <mat-option value="{{ genre }}">{{ genre }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
+
+    @for(genre of genresFilter; track genre){
+    <mat-chip-row (removed)="remove(genre)" [editable]="true">
+      {{ genre }}
+      <button matChipRemove [attr.aria-label]="'remove ' + genre">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    }
   </div>
   <div class="d-flex flex-wrap">
     @for(book of renderingBooks; track book._id){

@@ -29,6 +29,9 @@ import { BookItemListComponent } from './components/book-item-list/book-item-lis
 import { BooksPageBookCardComponent } from './components/books-page-book-card/books-page-book-card.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select'
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,8 @@ import {MatSelectModule} from '@angular/material/select'
     BooksPageBookCardComponent
   ],
   imports: [
+    MatIconModule,
+    MatChipsModule,
     MatSelectModule,
     MatPaginatorModule,
     BrowserModule,
