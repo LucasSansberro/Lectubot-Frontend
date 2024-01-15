@@ -1,5 +1,13 @@
-mat-paginator{
-position: fixed;
-bottom: 0;
-right:0;
+mat-paginator {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.filter-container {
+  display:flex;
+  align-self: flex-end;
+  width: 50vw;
+  margin-left: 0px;
+  align-items: center;
 }

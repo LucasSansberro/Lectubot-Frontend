@@ -22,7 +22,6 @@ export class BooksComponent implements OnInit {
   renderingBooks: Book[] = [];
   pageIndex: number = 0;
   pageSize: number = 18;
-  selected: any;
   genres: string[] = [];
   genresFilter: string[] = [];
 
@@ -38,22 +37,35 @@ export class BooksComponent implements OnInit {
       this.books.push(this.dataService.book2);
       this.books.push(this.dataService.book3);
     }
-    this.renderingBooks = this.renderBooks(this.pageIndex, this.pageSize);
+    this.renderBooks();
   }
 
   handlePageEvent(event: PageEvent) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.renderingBooks = this.renderBooks(this.pageIndex, this.pageSize);
+    this.renderBooks();
   }
 
-  renderBooks(pageIndex: number, pageSize: number): Book[] {
-    return this.books.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);
+  renderBooks() {
+    this.renderingBooks = this.books.slice(
+      this.pageIndex * this.pageSize,
+      (this.pageIndex + 1) * this.pageSize
+    );
   }
-  test(event: MatSelectChange) {
-    this.genresFilter.push(event.value);
+
+  addFilter(event: MatSelectChange) {
+    if (this.genresFilter.includes(event.value)) {
+      alert('Ya se está filtrando por ese género');
+      return
+    }
+    if (this.genresFilter.length >= 4) {
+      alert('No se pueden poner más de cuatro filtros');
+    } else {
+      this.genresFilter.push(event.value);
+    }
   }
-  remove(genre: string) {
+
+  removeFilter(genre: string) {
     this.genresFilter = this.genresFilter.filter(
       (genreInArray) => genreInArray != genre
     );
