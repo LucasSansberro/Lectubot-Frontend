@@ -4,7 +4,7 @@ import { Book } from 'src/app/models/Entities/Book';
 import { DataService } from 'src/app/services/data.service';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Genre } from 'src/app/models/Enums/Genre';
+import { Genre, genreConversion } from 'src/app/models/Enums/Genre';
 
 interface PageEvent {
   pageIndex: number;
@@ -56,12 +56,13 @@ export class BooksComponent implements OnInit {
   addFilter(event: MatSelectChange) {
     if (this.genresFilter.includes(event.value)) {
       alert('Ya se está filtrando por ese género');
-      return
+      return;
     }
     if (this.genresFilter.length >= 4) {
       alert('No se pueden poner más de cuatro filtros');
     } else {
       this.genresFilter.push(event.value);
+      this.applyFilter()
     }
   }
 
@@ -69,5 +70,9 @@ export class BooksComponent implements OnInit {
     this.genresFilter = this.genresFilter.filter(
       (genreInArray) => genreInArray != genre
     );
+  }
+
+  applyFilter() {
+    this.genresFilter.forEach((genre) => console.log(genreConversion(genre)));
   }
 }
