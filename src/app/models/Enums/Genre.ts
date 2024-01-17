@@ -21,7 +21,13 @@ export enum Genre {
   literaryTheory = 'Teoría literaria',
 }
 
-export function genreConversion(name: string): Genre {
-  const genreKey: keyof typeof Genre = name as keyof typeof Genre;
+export function genreKeyToValueConversion(key: string): Genre {
+  const genreKey: keyof typeof Genre = key as keyof typeof Genre;
   return Genre[genreKey];
+}
+
+export function genreValueToKeyConversion(value: string): Genre {
+  const genreKeys = Object.keys(Genre) as (keyof typeof Genre)[];
+  const key = genreKeys.find((k) => Genre[k] === value);
+  return key as Genre;
 }

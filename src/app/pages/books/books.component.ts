@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSelectChange } from '@angular/material/select';
 import { Book } from 'src/app/models/Entities/Book';
+import { Genre, genreValueToKeyConversion } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { Genre, genreConversion } from 'src/app/models/Enums/Genre';
 
 interface PageEvent {
   pageIndex: number;
@@ -62,7 +61,7 @@ export class BooksComponent implements OnInit {
       alert('No se pueden poner más de cuatro filtros');
     } else {
       this.genresFilter.push(event.value);
-      this.applyFilter()
+      this.applyFilter();
     }
   }
 
@@ -73,6 +72,11 @@ export class BooksComponent implements OnInit {
   }
 
   applyFilter() {
-    this.genresFilter.forEach((genre) => console.log(genreConversion(genre)));
+    const filteredArray: string[] = [];
+    this.genresFilter.forEach((genre) =>
+      this.books.filter((book) =>
+        book.genre.includes(genreValueToKeyConversion(genre))
+      )
+    );
   }
 }
