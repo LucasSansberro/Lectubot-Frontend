@@ -26,8 +26,7 @@ export function genreKeyToValueConversion(key: string): Genre {
   return Genre[genreKey];
 }
 
-export function genreValueToKeyConversion(value: string): Genre {
+export function genreValueToKeyConversion(value: string): keyof typeof Genre {
   const genreKeys = Object.keys(Genre) as (keyof typeof Genre)[];
-  const key = genreKeys.find((k) => Genre[k] === value);
-  return key as Genre;
+  return genreKeys.find((key) => Genre[key] === value)!;
 }

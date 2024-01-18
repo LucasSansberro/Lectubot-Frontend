@@ -72,11 +72,11 @@ export class BooksComponent implements OnInit {
   }
 
   applyFilter() {
-    const filteredArray: string[] = [];
-    this.genresFilter.forEach((genre) =>
-      this.books.filter((book) =>
-        book.genre.includes(genreValueToKeyConversion(genre))
-      )
-    );
+    const filteredArray: Array<Book>[] = [];
+
+    this.genresFilter.forEach((genre) => {
+      const key = genreValueToKeyConversion(genre);
+      console.log(this.books.filter((book) => book.genre.includes(Genre[key])));
+    });
   }
 }
