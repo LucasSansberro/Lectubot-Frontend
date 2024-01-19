@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Book } from 'src/app/models/Entities/Book';
 import { Genre, genreValueToKeyConversion } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
@@ -17,6 +17,7 @@ interface PageEvent {
 })
 export class BooksComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSelect) matSelect: any;
   books: Book[] = [];
   renderingBooks: Book[] = [];
   pageIndex: number = 0;
@@ -31,11 +32,6 @@ export class BooksComponent implements OnInit {
   ngOnInit(): void {
     this.paginator!._intl.itemsPerPageLabel = 'Libros por página';
     this.books = this.dataService.books;
-    for (let i = 0; i < 30; i++) {
-      this.books.push(this.dataService.book1);
-      this.books.push(this.dataService.book2);
-      this.books.push(this.dataService.book3);
-    }
     this.renderBooks();
   }
 
@@ -55,14 +51,13 @@ export class BooksComponent implements OnInit {
   addFilter(event: MatSelectChange) {
     if (this.genresFilter.includes(event.value)) {
       alert('Ya se está filtrando por ese género');
-      return;
-    }
-    if (this.genresFilter.length >= 4) {
+    } else if (this.genresFilter.length >= 4) {
       alert('No se pueden poner más de cuatro filtros');
     } else {
       this.genresFilter.push(event.value);
       this.applyFilter();
     }
+    this.matSelect.value = '';
   }
 
   removeFilter(genre: string) {
@@ -72,11 +67,17 @@ export class BooksComponent implements OnInit {
   }
 
   applyFilter() {
-    const filteredArray: Array<Book>[] = [];
+    const filteredArray: Array<Book[]> = [];
+    let flatenedFilteredArray: Book[] = [];
 
     this.genresFilter.forEach((genre) => {
       const key = genreValueToKeyConversion(genre);
-      console.log(this.books.filter((book) => book.genre.includes(Genre[key])));
+      filteredArray.push(
+        this.books.filter((book) => book.genre.includes(Genre[key]))
+      );
     });
+    flatenedFilteredArray = filteredArray.flat();
+    let sinDuplicados: Book[] = [...new Set(flatenedFilteredArray)];
+    this.renderingBooks = sinDuplicados;
   }
 }

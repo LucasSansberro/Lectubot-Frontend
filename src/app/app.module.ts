@@ -19,7 +19,7 @@ import { CarouselCardBookComponent } from './components/carousel-card-book/carou
 import { HomePageSidebarComponent } from './components/home-page-sidebar/home-page-sidebar.component';
 import { HomePageMainComponent } from './components/home-page-main/home-page-main.component';
 import { HomePageBookCardComponent } from './components/home-page-book-card/home-page-book-card.component';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { BookProfileComponent } from './pages/book-profile/book-profile.component';
 import { BookProfilePageSidebarComponent } from './components/book-profile-page-sidebar/book-profile-page-sidebar.component';
 import { BookProfilePageMainComponent } from './components/book-profile-page-main/book-profile-page-main.component';
@@ -27,10 +27,11 @@ import { BookReviewComponent } from './components/book-review/book-review.compon
 import { AuthorProfileComponent } from './pages/author-profile/author-profile.component';
 import { BookItemListComponent } from './components/book-item-list/book-item-list.component';
 import { BooksPageBookCardComponent } from './components/books-page-book-card/books-page-book-card.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSelectModule} from '@angular/material/select'
-import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,9 +52,10 @@ import {MatIconModule} from '@angular/material/icon';
     BookReviewComponent,
     AuthorProfileComponent,
     BookItemListComponent,
-    BooksPageBookCardComponent
+    BooksPageBookCardComponent,
   ],
   imports: [
+    FormsModule,
     MatIconModule,
     MatChipsModule,
     MatSelectModule,
@@ -63,9 +65,9 @@ import {MatIconModule} from '@angular/material/icon';
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatInputModule
+    MatInputModule,
   ],
-  providers: [CookieService,DataService, UsersService ],
+  providers: [CookieService, DataService, UsersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
