@@ -17,6 +17,7 @@ export class HomePageMainComponent implements OnInit {
     'Ciencia ficción',
   ];
   selectedFilter: string = 'Todos los géneros';
+  //TODO see if you can use the genreKeyToValueConversion
 
   ngOnInit(): void {
     this.renderizedBooks = this.books;

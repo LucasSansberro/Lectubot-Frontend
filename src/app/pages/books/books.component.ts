@@ -64,20 +64,22 @@ export class BooksComponent implements OnInit {
     this.genresFilter = this.genresFilter.filter(
       (genreInArray) => genreInArray != genre
     );
+    this.renderingBooks = this.books;
+    if (this.genresFilter.length == 0) {
+      return;
+    } else {
+      this.applyFilter();
+    }
   }
 
   applyFilter() {
     const filteredArray: Array<Book[]> = [];
-    let flatenedFilteredArray: Book[] = [];
-
     this.genresFilter.forEach((genre) => {
       const key = genreValueToKeyConversion(genre);
       filteredArray.push(
         this.books.filter((book) => book.genre.includes(Genre[key]))
       );
     });
-    flatenedFilteredArray = filteredArray.flat();
-    let sinDuplicados: Book[] = [...new Set(flatenedFilteredArray)];
-    this.renderingBooks = sinDuplicados;
+    this.renderingBooks = [...new Set(filteredArray.flat())];
   }
 }

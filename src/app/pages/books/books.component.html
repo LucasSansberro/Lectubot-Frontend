@@ -1,25 +1,30 @@
 <div class="container-fluid d-flex flex-column">
-
-  <div class="filter-container me-5 mt-4">
-    <div class="d-flex flex-wrap justify-content-end w-100">
-      @for(genre of genresFilter; track genre){
-      <mat-chip-row (removed)="removeFilter(genre)" class="m-2">
-        {{ genre }}
-        <button matChipRemove [attr.aria-label]="'remove ' + genre">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip-row>
-      }
+  <div
+    class="container-fluid d-flex justify-content-between align-items-center mt-4"
+  >
+    <div class="d-flex justify-content-start">
+      <p>Hola</p>
     </div>
-
-    <mat-form-field class="filter-selector">
-      <mat-label>Escoja un filtro</mat-label>
-      <mat-select (selectionChange)="addFilter($event)">
-        @for(genre of genres; track genre){
-        <mat-option value="{{ genre }}">{{ genre }}</mat-option>
+    <div class=" w-100">
+      <div class="d-flex">
+        @for(genre of genresFilter; track genre){
+        <mat-chip-row (removed)="removeFilter(genre)" class="m-2">
+          {{ genre }}
+          <button matChipRemove [attr.aria-label]="'remove ' + genre">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
         }
-      </mat-select>
-    </mat-form-field>
+      </div>
+      <mat-form-field class="filter-selector">
+        <mat-label>Escoja un filtro</mat-label>
+        <mat-select (selectionChange)="addFilter($event)">
+          @for(genre of genres; track genre){
+          <mat-option value="{{ genre }}">{{ genre }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
   <div class="d-flex flex-wrap">

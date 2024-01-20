@@ -22,8 +22,7 @@ export enum Genre {
 }
 
 export function genreKeyToValueConversion(key: string): Genre {
-  const genreKey: keyof typeof Genre = key as keyof typeof Genre;
-  return Genre[genreKey];
+  return Genre[key as keyof typeof Genre];
 }
 
 export function genreValueToKeyConversion(value: string): keyof typeof Genre {

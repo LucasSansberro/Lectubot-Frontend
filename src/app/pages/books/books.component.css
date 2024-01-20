@@ -4,14 +4,6 @@ mat-paginator {
   right: 0;
 }
 
-.filter-container {
-  display: flex;
-  align-self: flex-end;
-  width: 50vw;
-  margin-left: 0px;
-  align-items: center;
-}
-
 .filter-selector {
   width: 40%;
 }
