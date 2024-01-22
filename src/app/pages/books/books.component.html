@@ -5,7 +5,8 @@
     <div class="d-flex justify-content-start">
       <p>Hola</p>
     </div>
-    <div class=" w-100">
+    <div class="w-50 d-flex justify-content-end">
+      <app-filter-selector [filterArray]="genresFilter"></app-filter-selector>
       <div class="d-flex">
         @for(genre of genresFilter; track genre){
         <mat-chip-row (removed)="removeFilter(genre)" class="m-2">

@@ -32,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { FilterSelectorComponent } from './components/filter-selector/filter-selector.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { FormsModule } from '@angular/forms';
     AuthorProfileComponent,
     BookItemListComponent,
     BooksPageBookCardComponent,
+    FilterSelectorComponent,
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,18 @@
+<div class="d-flex">
+  @for(filter of filterArray; track filter){
+  <mat-chip-row (removed)="removeFilter(filter)" class="m-2">
+    {{ filter }}
+    <button matChipRemove [attr.aria-label]="'remove ' + filter">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-chip-row>
+  }
+</div>
+<mat-form-field class="filter-selector">
+  <mat-label>Escoja un filtro</mat-label>
+  <mat-select (selectionChange)="addFilter($event)">
+    @for(genre of genres; track genre){
+    <mat-option value="{{ genre }}">{{ genre }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
