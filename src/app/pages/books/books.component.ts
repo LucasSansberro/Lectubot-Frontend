@@ -17,13 +17,11 @@ interface PageEvent {
 })
 export class BooksComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  @ViewChild(MatSelect) matSelect: any;
   books: Book[] = [];
   renderingBooks: Book[] = [];
   pageIndex: number = 0;
   pageSize: number = 18;
   genres: string[] = [];
-  genresFilter: string[] = [];
 
   constructor(private dataService: DataService) {
     this.genres = Object.values(Genre);
@@ -48,38 +46,18 @@ export class BooksComponent implements OnInit {
     );
   }
 
-  addFilter(event: MatSelectChange) {
-    if (this.genresFilter.includes(event.value)) {
-      alert('Ya se está filtrando por ese género');
-    } else if (this.genresFilter.length >= 4) {
-      alert('No se pueden poner más de cuatro filtros');
+  applyFilter(event: string[]) {
+    if (event.length == 0) {
+      this.renderingBooks = this.books;
     } else {
-      this.genresFilter.push(event.value);
-      this.applyFilter();
+      const filteredArray: Array<Book[]> = [];
+      event.forEach((genre) => {
+        const key = genreValueToKeyConversion(genre);
+        filteredArray.push(
+          this.books.filter((book) => book.genre.includes(Genre[key]))
+        );
+      });
+      this.renderingBooks = [...new Set(filteredArray.flat())];
     }
-    this.matSelect.value = '';
-  }
-
-  removeFilter(genre: string) {
-    this.genresFilter = this.genresFilter.filter(
-      (genreInArray) => genreInArray != genre
-    );
-    this.renderingBooks = this.books;
-    if (this.genresFilter.length == 0) {
-      return;
-    } else {
-      this.applyFilter();
-    }
-  }
-
-  applyFilter() {
-    const filteredArray: Array<Book[]> = [];
-    this.genresFilter.forEach((genre) => {
-      const key = genreValueToKeyConversion(genre);
-      filteredArray.push(
-        this.books.filter((book) => book.genre.includes(Genre[key]))
-      );
-    });
-    this.renderingBooks = [...new Set(filteredArray.flat())];
   }
 }

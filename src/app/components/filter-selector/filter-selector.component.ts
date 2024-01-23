@@ -1,5 +1,11 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { MatSelectChange } from '@angular/material/select';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Genre } from 'src/app/models/Enums/Genre';
 
 @Component({
@@ -8,31 +14,27 @@ import { Genre } from 'src/app/models/Enums/Genre';
   styleUrl: './filter-selector.component.css',
 })
 export class FilterSelectorComponent {
-  @Input() filterArray: string[] = [];
+  @ViewChild(MatSelect) matSelect: any;
+  @Input() optionsInSelect: string[] = [];
   @Output() filterArrayEmmitter: EventEmitter<string[]> = new EventEmitter();
-  genres: string[] = [];
+  selectedItemsArray: string[] = [];
 
-  constructor() {
-    this.genres = Object.values(Genre);
-  }
-
-  removeFilter(genre: string) {
-    console.log(genre);
-    /*  this.filterArray = this.filterArray.filter(
-      (genreInArray) => genreInArray != genre
+  removeFilter(toBeRemovedElement: string) {
+    this.selectedItemsArray = this.selectedItemsArray.filter(
+      (element) => element != toBeRemovedElement
     );
-    this.filterArrayEmmitter.emit(this.filterArray); */
+    this.filterArrayEmmitter.emit(this.selectedItemsArray);
   }
 
   addFilter(event: MatSelectChange) {
-    /*   if (this.genresFilter.includes(event.value)) {
-      alert('Ya se está filtrando por ese género');
-    } else if (this.genresFilter.length >= 4) {
+    if (this.selectedItemsArray.includes(event.value)) {
+      alert('Ya se está filtrando por ' + event.value);
+    } else if (this.selectedItemsArray.length >= 4) {
       alert('No se pueden poner más de cuatro filtros');
     } else {
-      this.genresFilter.push(event.value);
-      this.applyFilter();
+      this.selectedItemsArray.push(event.value);
+      this.filterArrayEmmitter.emit(this.selectedItemsArray);
     }
-    this.matSelect.value = ''; */
+    this.matSelect.value = '';
   }
 }
