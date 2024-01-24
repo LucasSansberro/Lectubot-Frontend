@@ -22,6 +22,7 @@ export class BooksComponent implements OnInit {
   pageIndex: number = 0;
   pageSize: number = 18;
   genres: string[] = [];
+  value: string = '';
 
   constructor(private dataService: DataService) {
     this.genres = Object.values(Genre);
@@ -59,5 +60,12 @@ export class BooksComponent implements OnInit {
       });
       this.renderingBooks = [...new Set(filteredArray.flat())];
     }
+  }
+
+  searchByTitle(event: Event) {
+    const searchedInput = (event.target as HTMLInputElement)?.value;
+    this.renderingBooks = this.books.filter((book) =>
+      book.title.toLowerCase().includes(searchedInput.toLowerCase())
+    );
   }
 }

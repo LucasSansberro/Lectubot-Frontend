@@ -1,12 +1,11 @@
 import {
   Component,
-  Input,
   EventEmitter,
+  Input,
   Output,
   ViewChild,
 } from '@angular/core';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
-import { Genre } from 'src/app/models/Enums/Genre';
 
 @Component({
   selector: 'app-filter-selector',
