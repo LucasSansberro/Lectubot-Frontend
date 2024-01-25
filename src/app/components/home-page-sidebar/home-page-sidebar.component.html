@@ -3,16 +3,29 @@
     <p class="books-reading-title">Tus lecturas</p>
     <ul class="books-reading-list">
       @for (book of books; track book) {
-        <li>
-          <div class="d-flex justify-content-between">
-            <img src="{{ book.cover }}" alt="Portada de {{ book.title }}" />
-            <div class="d-flex flex-column w-50">
-              <p>{{ book.title }}</p>
-              <p class="book-author">por <span class="author-link" (click)="redirectToAuthorPage(book.author._id)">{{ book.author.name }}</span></p>
-            </div>
+      <li>
+        <div class="d-flex justify-content-between">
+          <img src="{{ book.cover }}" alt="Portada de {{ book.title }}" />
+          <div class="d-flex flex-column w-50">
+            <p>{{ book.title }}</p>
+            <p class="book-author">
+              por
+              <span
+                class="author-link"
+                (click)="redirectToAuthorPage(book.author._id)"
+                >{{ book.author.name }}</span
+              >
+            </p>
           </div>
-          <button class="mt-3 mb-5 w-50 mx-auto d-block py-1 facebook-cyan">Actualizar</button>
-        </li>
+        </div>
+        <button
+          class="mt-3 mb-5 w-50 mx-auto d-block py-1 facebook-cyan"
+          data-bs-toggle="modal"
+          data-bs-target="#update-reading-status"
+        >
+          Actualizar
+        </button>
+      </li>
       }
     </ul>
   </div>

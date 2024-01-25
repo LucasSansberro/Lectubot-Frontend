@@ -33,6 +33,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { FilterSelectorComponent } from './components/filter-selector/filter-selector.component';
+import { UpdateReadingStatusModalComponent } from './components/update-reading-status-modal/update-reading-status-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FilterSelectorComponent } from './components/filter-selector/filter-sel
     BookItemListComponent,
     BooksPageBookCardComponent,
     FilterSelectorComponent,
+    UpdateReadingStatusModalComponent,
   ],
   imports: [
     FormsModule,
