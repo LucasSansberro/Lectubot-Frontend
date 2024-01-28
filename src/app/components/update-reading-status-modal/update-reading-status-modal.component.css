@@ -10,6 +10,7 @@
   font-size: 1.5rem;
   margin: 2vh 0;
 }
-.review-input input {
-  height: 15vh;
+.review-input textarea{
+  min-height: 5vh;
+  max-height: 50vh;
 }

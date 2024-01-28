@@ -68,7 +68,9 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="end-reading-label">Lectura finalizada</h1>
+        <h1 class="modal-title fs-5" id="end-reading-label">
+          Lectura finalizada
+        </h1>
         <button
           type="button"
           class="btn-close"
@@ -79,8 +81,24 @@
       </div>
       <div class="modal-body d-flex flex-column justify-content-between">
         <div class="d-flex flex-column review-input">
-          <label for="">¿Quieres escribir una reseña?</label>
-          <input type="text" />
+          <div class="d-flex mb-3">
+            <label for="review-input">¿Quieres escribir una reseña?</label>
+            <mat-button-toggle-group
+              name="review-input-render"
+              aria-label="Review input rendering"
+              class="ms-3"
+            >
+              <mat-button-toggle value="yes">Sí</mat-button-toggle>
+              <mat-button-toggle value="no">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <textarea
+            name="review-input"
+            #reviewinput
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
         <div class="user-rating">
           <p>Puntaje</p>
@@ -93,7 +111,7 @@
             <i class="bi bi-star"></i>
           </div>
         </div>
-        <div class="d-flex justify-content-between ">
+        <div class="d-flex justify-content-between">
           <button>Confirmar</button>
           <button>Cancelar</button>
         </div>

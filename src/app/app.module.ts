@@ -34,7 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { FilterSelectorComponent } from './components/filter-selector/filter-selector.component';
 import { UpdateReadingStatusModalComponent } from './components/update-reading-status-modal/update-reading-status-modal.component';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+//TODO Create another module for mat imports
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { UpdateReadingStatusModalComponent } from './components/update-reading-s
     UpdateReadingStatusModalComponent,
   ],
   imports: [
+    MatButtonToggleModule,
     FormsModule,
     MatIconModule,
     MatChipsModule,
