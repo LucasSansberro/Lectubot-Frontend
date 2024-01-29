@@ -7,10 +7,20 @@
 }
 
 .review-input label {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin: 2vh 0;
 }
-.review-input textarea{
+.review-input textarea {
   min-height: 5vh;
   max-height: 50vh;
+}
+
+.expanding-textarea {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease; /* Ajusta la duración y el tipo de transición según tus preferencias */
+}
+
+.expanding-textarea-expanded {
+  height: 150px; /* Ajusta la altura final del textarea */
 }

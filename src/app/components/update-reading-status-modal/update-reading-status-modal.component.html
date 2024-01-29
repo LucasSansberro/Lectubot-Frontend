@@ -81,15 +81,16 @@
       </div>
       <div class="modal-body d-flex flex-column justify-content-between">
         <div class="d-flex flex-column review-input">
-          <div class="d-flex mb-3">
+          <div class="d-flex mb-3 test">
             <label for="review-input">¿Quieres escribir una reseña?</label>
             <mat-button-toggle-group
               name="review-input-render"
               aria-label="Review input rendering"
-              class="ms-3"
+              class="ms-3 mt-1"
+              [(ngModel)]="selectedValue"
             >
               <mat-button-toggle value="yes">Sí</mat-button-toggle>
-              <mat-button-toggle value="no">No</mat-button-toggle>
+              <mat-button-toggle value="no" checked>No</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
 
@@ -98,6 +99,9 @@
             #reviewinput
             cols="30"
             rows="10"
+            *ngIf="selectedValue === 'yes'"
+            [@expandTextarea]="selectedValue"
+            class="expanding-textarea"
           ></textarea>
         </div>
         <div class="user-rating">
