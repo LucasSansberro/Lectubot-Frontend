@@ -99,9 +99,9 @@
             #reviewinput
             cols="30"
             rows="10"
+            @heightTransition
             *ngIf="selectedValue === 'yes'"
-            [@expandTextarea]="selectedValue"
-            class="expanding-textarea"
+
           ></textarea>
         </div>
         <div class="user-rating">

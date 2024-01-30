@@ -9,17 +9,22 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 
 import Swal from 'sweetalert2';
 
+const heightTransition = trigger('heightTransition', [
+  state(
+    'in',
+    style({
+      height: '50vh',
+    })
+  ),
+  transition('void => *', [style({ height: '0' }), animate('0.5s ease-out')]),
+  transition('* => void', [animate('0.5s ease-out'), style({ height: '0' })]),
+]);
+
 @Component({
   selector: 'app-update-reading-status-modal',
   templateUrl: './update-reading-status-modal.component.html',
   styleUrl: './update-reading-status-modal.component.css',
-  animations: [
-    trigger('expandTextarea', [
-      state('yes', style({ height: '150px' })),
-      state('no', style({ height: '0' })),
-      transition('no <=> yes', animate('5s ease')),
-    ]),
-  ],
+  animations: [heightTransition],
 })
 export class UpdateReadingStatusModalComponent {
   @ViewChild('closeButton') closeButton!: ElementRef;
