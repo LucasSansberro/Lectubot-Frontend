@@ -46,6 +46,7 @@ export class DataService {
     synopsis:
       "Willy Loman ha trabajado como viajante de comercio durante toda su vida para conseguir lo que cualquier hombre desea: comprar una casa, educar a sus hijos, darle una vida digna a su mujer. Tiene sesenta años, y está extenuado; pide un aumento de sueldo, pero se lo niegan y acaba siendo despedido 'por su propio bien', pues ya no rinde en su trabajo como antes. Todo parece derrumbarse: no podrá pagar la hipoteca de la casa y, para colmo, sus dos hijos no hacen nada de provecho. ¿No se ha sacrificado él siempre para que estudiaran y se colocaran bien? A medida que avanzan las horas, la avalancha de problemas crece de modo imparable, pero Willy vive otra realidad, en otro mundo: ¡ha soñado con tantas cosas!... Ha sido un perfecto trabajador, un perfecto padre y marido: ¿dónde está el error?, ¿en él o en los demás?",
     readByGroup: new Date(),
+    stars: [4, 5, 3, 5],
   };
 
   book2: Book = {
@@ -67,6 +68,7 @@ export class DataService {
     synopsis:
       'Celaena Sardothien es la asesina más temida de Adarlan. Como parte del Gremio de Asesinos, ha jurado proteger a su maestro, Arobynn Hamel, pero Celaena no escucha a nadie y solo confía en su amigo Sam. En esta precuela cargada de acción, Celaena se embarca en cinco arriesgadas misiones que la llevan a visitar islas remotas y hostiles desiertos, allí liberará a gente de la esclavitud y castigará la tiranía. Pero al actuar por cuenta propia, ¿conseguirá librarse del yugo de su maestro o sufrirá un inimaginable castigo por su traición?',
     readByGroup: new Date(),
+    stars: [2, 1, 3],
   };
 
   book3: Book = {
@@ -87,6 +89,7 @@ export class DataService {
     synopsis:
       'Tanya Huff’s darkly thrilling Blood novels introduced readers to vampiric P.I. Victoria Nelson and her life amongst the paranormal. Here are some of Tanya’s best short stories featuring Vicki and other unforgettable characters from her world…',
     readByGroup: new Date(),
+    stars: [4, 3, 3],
   };
   books: Book[] = [this.book1, this.book2, this.book3];
   backgroundColors: string[] = [

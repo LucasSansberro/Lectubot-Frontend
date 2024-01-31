@@ -35,6 +35,8 @@ import { FormsModule } from '@angular/forms';
 import { FilterSelectorComponent } from './components/filter-selector/filter-selector.component';
 import { UpdateReadingStatusModalComponent } from './components/update-reading-status-modal/update-reading-status-modal.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FinishReadingStatusModalComponent } from './components/finish-reading-status-modal/finish-reading-status-modal.component';
+import { RatingStarsComponent } from './components/rating-stars/rating-stars.component';
 //TODO Create another module for mat imports
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BooksPageBookCardComponent,
     FilterSelectorComponent,
     UpdateReadingStatusModalComponent,
+    FinishReadingStatusModalComponent,
+    RatingStarsComponent,
   ],
   imports: [
     MatButtonToggleModule,

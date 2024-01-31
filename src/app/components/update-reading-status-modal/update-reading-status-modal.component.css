@@ -5,11 +5,3 @@
   margin: 2vh auto;
   width: 10vw;
 }
-
-.review-input label {
-  font-size: 1.75rem;
-  margin: 2vh 0;
-}
-.review-input textarea {
-  max-height: 50vh;
-}

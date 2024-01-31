@@ -1,0 +1,8 @@
+.review-input label {
+  font-size: 1.75rem;
+  margin: 2vh 0;
+}
+.review-input textarea {
+  min-height: 10vh;
+  max-height: 50vh;
+}
