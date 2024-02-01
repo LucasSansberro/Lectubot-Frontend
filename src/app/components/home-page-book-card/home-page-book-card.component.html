@@ -4,7 +4,7 @@
     <div class="d-flex flex-column w-50 mt-3">
       <p>{{ book.title }}</p>
       <p>por <span (click)="redirectToAuthorPage(book.author._id)" class="author-link">{{ book.author.name }}</span></p>
-      <app-rating-stars></app-rating-stars>
+      <app-rating-stars [stars]="book.stars!"></app-rating-stars>
       <p>
         {{
           book.synopsis.length > 300
