@@ -17,16 +17,21 @@ export class RatingStarsComponent implements OnInit {
     const sum = this.stars.reduce((acc, el) => acc + el, 0);
     this.average = sum / this.stars.length;
     for (let i = 0; i < 5; i++) {
-      if (numero >= i + 1) {
-        // Ícono de estrella completa
+      console.log(i)
+      if (this.average >= i + 1) {
         this.starsToRender.push(1);
-      } else if (numero > i) {
-        // Ícono de media estrella
-        this.starsToRender.push(2);
+      } else if (this.average < i && this.average > i - 1) {
+        console.log('Entro acá!');
+        if (this.average - (i - 1) >= 0.5) {
+          this.starsToRender.push(2);
+        } else {
+          this.starsToRender.push(0);
+        }
       } else {
-        // Ícono de estrella vacía
         this.starsToRender.push(0);
       }
     }
+    console.log(this.average);
+    console.log(this.starsToRender);
   }
 }

@@ -89,7 +89,7 @@ export class DataService {
     synopsis:
       'Tanya Huff’s darkly thrilling Blood novels introduced readers to vampiric P.I. Victoria Nelson and her life amongst the paranormal. Here are some of Tanya’s best short stories featuring Vicki and other unforgettable characters from her world…',
     readByGroup: new Date(),
-    stars: [4, 3, 3],
+    stars: [4, 5, 5],
   };
   books: Book[] = [this.book1, this.book2, this.book3];
   backgroundColors: string[] = [
