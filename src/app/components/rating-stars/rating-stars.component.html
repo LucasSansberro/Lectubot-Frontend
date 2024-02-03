@@ -1,9 +1,11 @@
 <div class="d-flex mt-3 mb-3">
-
-  <i class="bi bi-star-fill"></i>
-  <i class="bi bi-star-fill"></i>
-  <i class="bi bi-star-fill"></i>
+  @for(digit of starsToRender; track digit){ @if(digit=== 2){
   <i class="bi bi-star-half"></i>
+  } @if(digit===1){
+  <i class="bi bi-star-fill"></i>
+  } @else{
   <i class="bi bi-star"></i>
-  <p class="ms-2">17 valoraciones</p>
+  } }
+
+  <p class="ms-2">{{ stars.length }} valoraciones</p>
 </div>

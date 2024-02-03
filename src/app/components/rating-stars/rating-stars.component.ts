@@ -11,18 +11,17 @@ export class RatingStarsComponent implements OnInit {
   starsToRender: number[] = [];
 
   ngOnInit(): void {
-    if (this.stars.length === 0) {
-      return;
-    }
+    this.stars.length > 0 && this.calculateAverageAndRenderStars();
+  }
+
+  calculateAverageAndRenderStars() {
     const sum = this.stars.reduce((acc, el) => acc + el, 0);
     this.average = sum / this.stars.length;
     for (let i = 0; i < 5; i++) {
-      console.log(i)
       if (this.average >= i + 1) {
         this.starsToRender.push(1);
-      } else if (this.average < i && this.average > i - 1) {
-        console.log('Entro acá!');
-        if (this.average - (i - 1) >= 0.5) {
+      } else if (this.average < i + 1 && this.average > i) {
+        if (this.average - i >= 0.5) {
           this.starsToRender.push(2);
         } else {
           this.starsToRender.push(0);
@@ -31,7 +30,5 @@ export class RatingStarsComponent implements OnInit {
         this.starsToRender.push(0);
       }
     }
-    console.log(this.average);
-    console.log(this.starsToRender);
   }
 }
