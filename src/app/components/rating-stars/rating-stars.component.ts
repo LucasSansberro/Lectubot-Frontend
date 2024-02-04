@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RatingStarsComponent implements OnInit {
   @Input() stars: number[] = [];
+  @Input() static: boolean = true;
   average: number = 0;
   starsToRender: number[] = [];
 
@@ -30,5 +31,9 @@ export class RatingStarsComponent implements OnInit {
         this.starsToRender.push(0);
       }
     }
+  }
+
+  test(event: any) {
+    console.log(event);
   }
 }
