@@ -10,6 +10,7 @@ export class RatingStarsComponent implements OnInit {
   @Input() static: boolean = true;
   average: number = 0;
   starsToRender: number[] = [];
+  userRatingStars: number[] = [];
 
   ngOnInit(): void {
     this.stars.length > 0 && this.calculateAverageAndRenderStars();
@@ -33,7 +34,12 @@ export class RatingStarsComponent implements OnInit {
     }
   }
 
-  test(event: any) {
-    console.log(event);
+  userRating(index: number) {
+    this.userRatingStars = new Array(index + 1).fill(1, 0, index + 1);
+    if (this.userRatingStars.length < 5) {
+      for (let i = this.userRatingStars.length; i < 5; i++) {
+        this.userRatingStars.push(0);
+      }
+    }
   }
 }

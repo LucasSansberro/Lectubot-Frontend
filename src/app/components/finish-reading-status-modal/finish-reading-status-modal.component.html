@@ -43,8 +43,8 @@
             *ngIf="selectedValue === 'yes'"
           ></textarea>
         </div>
-        <div class="user-rating">
-          <p>Puntaje</p>
+        <div class="d-flex flex-column justify-content-between align-items-center mt-3">
+          <p class="user-score-title">¿Qué puntaje le das?</p>
           <!--TODO  <app-rating-stars [stars]="book.stars!"></app-rating-stars> -->
           <app-rating-stars [static]="false"></app-rating-stars>
         </div>

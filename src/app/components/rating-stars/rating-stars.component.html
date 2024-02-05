@@ -6,9 +6,13 @@
   } @else{
   <i class="bi bi-star"></i>
   } }
-
   <p class="ms-2">{{ stars.length }} valoraciones</p>
-  } @else { @for(digit of [].constructor(5) ; track $index){
-  <i class="bi bi-star" (mouseenter)="test($index)"></i>
-  } }
+
+  } @else { @for(digit of userRatingStars ; track $index){ @if(digit===1){
+  <i class="bi bi-star-fill star-font-size" (mouseenter)="userRating($index)"></i>
+  } @else{
+  <i class="bi bi-star star-font-size" (mouseenter)="userRating($index)"></i>
+  } } @empty { @for(digit of [].constructor(5) ; track $index){
+  <i class="bi bi-star star-font-size" (mouseenter)="userRating($index)"></i>
+  } } }
 </div>
