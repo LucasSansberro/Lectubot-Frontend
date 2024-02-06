@@ -1,17 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rating-stars',
   templateUrl: './rating-stars.component.html',
   styleUrl: './rating-stars.component.css',
 })
-export class RatingStarsComponent implements OnInit {
+export class RatingStarsComponent implements OnInit, OnDestroy {
   @Input() stars: number[] = [];
   @Input() static: boolean = true;
   average: number = 0;
   starsToRender: number[] = [];
   userRatingStars: number[] = [];
-
+  scoreSelected: boolean = false;
   ngOnInit(): void {
     this.stars.length > 0 && this.calculateAverageAndRenderStars();
   }
@@ -35,11 +35,29 @@ export class RatingStarsComponent implements OnInit {
   }
 
   userRating(index: number) {
-    this.userRatingStars = new Array(index + 1).fill(1, 0, index + 1);
-    if (this.userRatingStars.length < 5) {
-      for (let i = this.userRatingStars.length; i < 5; i++) {
-        this.userRatingStars.push(0);
+    if (!this.scoreSelected) {
+      this.userRatingStars = new Array(index + 1).fill(1, 0, index + 1);
+      if (this.userRatingStars.length < 5) {
+        for (let i = this.userRatingStars.length; i < 5; i++) {
+          this.userRatingStars.push(0);
+        }
       }
     }
+  }
+
+  setScore(index: number) {
+    this.scoreSelected = false;
+    this.userRating(index);
+    this.scoreSelected = true;
+  }
+
+  resetStarRating() {
+    !this.scoreSelected ? (this.userRatingStars = []) : '';
+  }
+
+  ngOnDestroy() {
+    console.log("hola")
+    this.scoreSelected = false;
+    this.userRatingStars = [];
   }
 }

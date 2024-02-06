@@ -1,5 +1,5 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 const heightTransition = trigger('heightTransition', [
   transition('void => *', [
@@ -19,5 +19,12 @@ const heightTransition = trigger('heightTransition', [
   animations: [heightTransition],
 })
 export class FinishReadingStatusModalComponent {
+  @ViewChild('app-rating-stars') ratingStars: any;
   selectedValue: string = 'no';
+
+  resetRating() {
+    console.log(this.ratingStars)
+  /*   this.ratingStars.scoreSelected = false;
+    this.ratingStars.userRatingStars = []; */
+  }
 }
