@@ -1,11 +1,15 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-rating-stars',
   templateUrl: './rating-stars.component.html',
   styleUrl: './rating-stars.component.css',
 })
-export class RatingStarsComponent implements OnInit, OnDestroy {
+export class RatingStarsComponent implements OnInit{
   @Input() stars: number[] = [];
   @Input() static: boolean = true;
   average: number = 0;
@@ -53,11 +57,5 @@ export class RatingStarsComponent implements OnInit, OnDestroy {
 
   resetStarRating() {
     !this.scoreSelected ? (this.userRatingStars = []) : '';
-  }
-
-  ngOnDestroy() {
-    console.log("hola")
-    this.scoreSelected = false;
-    this.userRatingStars = [];
   }
 }
