@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { User } from 'src/app/models/Entities/User';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -17,7 +18,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cookieService.check('logged')) {
-      this.username = this.userService.loggedInUser!.username;
+      this.userService.userData$.subscribe((userData: User) => {
+        this.username = userData.username;
+      });
     }
   }
 
