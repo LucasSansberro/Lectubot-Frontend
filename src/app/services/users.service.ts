@@ -22,7 +22,6 @@ export class UsersService {
   getLoggedUserData(): void {
     this.dataService.getLoggedUserData().subscribe({
       next: (response: APIResponse<User>) => {
-        console.log(response);
         this.loggedInUser = response.data!;
         const { discordId, avatar } = response.data!;
         this.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
