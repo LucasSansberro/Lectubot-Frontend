@@ -1,6 +1,6 @@
 <div class="mt-5">
   <h2>{{ book.title }}</h2>
-  <p class="author-link" (click)="redirectToAuthorPage(book.author._id)">
+  <p class="author-link" routerLink="/autor/{{ book.author._id }}">
     {{ book.author.name }}
   </p>
   <div class="d-flex mt-3 mb-3">

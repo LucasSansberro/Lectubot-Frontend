@@ -12,7 +12,7 @@
               por
               <span
                 class="author-link"
-                (click)="redirectToAuthorPage(book.author._id)"
+                routerLink="autor/{{ book.author._id }}"
                 >{{ book.author.name }}</span
               >
             </p>

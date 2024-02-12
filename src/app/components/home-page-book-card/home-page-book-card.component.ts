@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Book } from 'src/app/models/Entities/Book';
 
 @Component({
@@ -9,12 +8,4 @@ import { Book } from 'src/app/models/Entities/Book';
 })
 export class HomePageBookCardComponent {
   @Input() book!: Book;
-  constructor(private router: Router){}
-
-  redirectToBookPage(bookId : string) {
-    this.router.navigate(['/libro', bookId])
-  }
-  redirectToAuthorPage(authorId: string) {
-    this.router.navigate(['/autor', authorId]);
-  }
 }

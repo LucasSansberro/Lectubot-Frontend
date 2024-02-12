@@ -20,7 +20,6 @@ export class BookProfileComponent implements OnInit {
       this.book = this.dataService.books.find(
         (book) => book._id == params['libro-id']
       )!;
-      console.log(this.book);
     });
   }
 }

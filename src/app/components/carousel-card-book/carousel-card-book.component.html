@@ -19,7 +19,7 @@
       por
       <span
         class="author-link"
-        (click)="redirectToAuthorPage(book.author._id)"
+        routerLink="/autor/{{ book.author._id }}"
         >{{ book.author.name }}</span
       >
     </p>
@@ -31,7 +31,7 @@
           : book.synopsis
       }}
     </p>
-    <button class="link-button mt-4" (click)="redirectToBookPage(book._id)">
+    <button class="link-button mt-4" routerLink="/libro/{{ book._id }}">
       Ir al sitio del libro
     </button>
   </div>

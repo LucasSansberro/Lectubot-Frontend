@@ -1,8 +1,12 @@
 <div class="d-flex container mt-5">
-  <img src="{{ image }}" alt="" class="user-avatar" />
+  <img
+    src="{{ profilePic }}"
+    alt="{{ username }} Discord profile pic"
+    class="user-avatar"
+  />
   <div class="d-flex flex-column">
     <h2>{{ username }}</h2>
-    <p>Miembro desde</p>
+    <p>Miembro desde {{dateOfCreation}}</p>
     <div>
       <p>Reseña destacada</p>
     </div>
