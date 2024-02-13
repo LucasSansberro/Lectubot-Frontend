@@ -16,15 +16,12 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
-    this.userService.userData$.subscribe((userData: User) => {
-      this.username = userData.username;
-      this.profilePic = this.userService.userProfilePic;
-      this.dateOfCreation = this.formatDate(userData.createdAt);
-      this.booksRead = this.userService.loggedInUser?.books!;
-    });
+    this.userService.loggedInUser == null
+      ? this.getDataFromDB()
+      : this.getDataFromMemory();
   }
 
-  private formatDate(dateString: string): string {
+  formatDate(dateString: string): string {
     const date = new Date(dateString);
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -32,5 +29,22 @@ export class UserProfileComponent implements OnInit {
     return `${day < 10 ? '0' + day : day}/${
       month < 10 ? '0' + month : month
     }/${year}`;
+  }
+
+  getDataFromDB() {
+    this.userService.userData$.subscribe((userData: User) => {
+      this.username = userData.username;
+      this.profilePic = `https://cdn.discordapp.com/avatars/${userData.discordId}/${userData.avatar}.png`;
+      this.dateOfCreation = this.formatDate(userData.createdAt);
+      this.booksRead = userData.books!;
+    });
+  }
+  getDataFromMemory() {
+    this.username = this.userService.loggedInUser?.username!;
+    this.profilePic = this.userService.userProfilePic;
+    this.dateOfCreation = this.formatDate(
+      this.userService.loggedInUser!.createdAt
+    );
+    this.booksRead = this.userService.loggedInUser?.books!;
   }
 }
