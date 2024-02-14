@@ -1,5 +1,4 @@
 import { BookReadStatus } from '../Enums/BookReadStatus.js';
-import { Genre } from '../Enums/Genre.js';
 import { Review } from './Review.js';
 
 export interface BookRead {

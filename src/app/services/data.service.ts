@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APIResponse } from '../models/APIResponse';
 import { Book } from '../models/Entities/Book';
 import { User } from '../models/Entities/User';
 import { Genre } from '../models/Enums/Genre';
+import { BookRead } from '../models/Entities/BookRead';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,12 @@ import { Genre } from '../models/Enums/Genre';
 export class DataService {
   //TODO Make it an env
   private URL = 'http://localhost:3000';
+  httpOptions: object = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+    withCredentials: true,
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +34,15 @@ export class DataService {
       withCredentials: true,
     });
   }
+
+  postBookRead(bookRead: BookRead): Observable<any> {
+    return this.http.post<any>(
+      `${this.URL}/booksRead`,
+      bookRead,
+      this.httpOptions
+    );
+  }
+
   book1: Book = {
     _id: '1',
     title: 'Muerte de un viajante',
