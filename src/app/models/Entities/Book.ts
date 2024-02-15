@@ -3,7 +3,7 @@ import { Author } from "./Author.js";
 import { Review } from "./Review.js";
 
 export interface Book {
-  _id: string;
+  _id?: string;
   title: string;
   author: Author;
   pages: number;
