@@ -1,11 +1,15 @@
 <div class="container-fluid d-flex flex-column">
+  <button class="my-5"  data-bs-toggle="modal"
+  data-bs-target="#add-book">
+    Agregar libro
+  </button>
   <div
     class="container-fluid d-flex justify-content-between align-items-center mt-4"
   >
     <div class="d-flex justify-content-start ms-4">
       <mat-form-field>
         <mat-label>Buscar por título</mat-label>
-        <input matInput type="search" (input)="searchByTitle($event)"/>
+        <input matInput type="search" (input)="searchByTitle($event)" />
       </mat-form-field>
     </div>
     <div class="w-50 d-flex justify-content-end me-4">
@@ -35,3 +39,5 @@
   (page)="handlePageEvent($event)"
 >
 </mat-paginator>
+
+<app-add-book-modal></app-add-book-modal>

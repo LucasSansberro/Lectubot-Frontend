@@ -21,6 +21,7 @@ export class UpdateReadingStatusModalComponent {
     );
     this.closeModal();
   }
+
   showAlert(title: string, text: string) {
     Swal.fire({
       title,

@@ -19,6 +19,7 @@ import { RatingStarsComponent } from '../components/rating-stars/rating-stars.co
 import { UpdateReadingStatusModalComponent } from '../components/update-reading-status-modal/update-reading-status-modal.component';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from '../app-routing.module';
+import { AddBookModalComponent } from '../components/add-book-modal/add-book-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AppRoutingModule } from '../app-routing.module';
     UpdateReadingStatusModalComponent,
     FinishReadingStatusModalComponent,
     RatingStarsComponent,
+    AddBookModalComponent,
   ],
   imports: [CommonModule, MaterialModule, FormsModule, AppRoutingModule],
   exports: [
@@ -57,6 +59,7 @@ import { AppRoutingModule } from '../app-routing.module';
     UpdateReadingStatusModalComponent,
     FinishReadingStatusModalComponent,
     RatingStarsComponent,
+    AddBookModalComponent
   ],
 })
 export class ComponentsModule {}
