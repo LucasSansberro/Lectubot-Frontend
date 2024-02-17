@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div class="d-flex" style="z-index: 1000000 !important;">
   @for(item of selectedItemsArray; track item){
   <mat-chip-row (removed)="removeFilter(item)" class="m-2">
     {{ item }}

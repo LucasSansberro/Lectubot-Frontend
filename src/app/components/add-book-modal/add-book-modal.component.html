@@ -17,38 +17,35 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body d-flex flex-column justify-content-between"></div>
-      <mat-form-field>
-        <mat-label>Título</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Portada</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Autor</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Cantidad de páginas</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Leído por el grupo en:</mat-label>
-        <input matInput />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Géneros (Hasta 2)</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Sinópsis</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
+      <div class="modal-body d-flex flex-column justify-content-between">
+        <mat-form-field>
+          <mat-label>Título</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Portada</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Autor</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cantidad de páginas</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Leído por el grupo en:</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <app-filter-selector
+          [optionsInSelect]="genres"
+        ></app-filter-selector>
+        <mat-form-field>
+          <mat-label>Sinópsis</mat-label>
+          <textarea matInput></textarea>
+        </mat-form-field>
+      </div>
     </div>
   </div>
 </div>
