@@ -39,6 +39,8 @@
           <input matInput />
         </mat-form-field>
         <app-filter-selector
+          [column]="true"
+          [filterLimit]="2"
           [optionsInSelect]="genres"
         ></app-filter-selector>
         <mat-form-field>
