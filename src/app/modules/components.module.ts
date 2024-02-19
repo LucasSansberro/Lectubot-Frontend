@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookItemListComponent } from '../components/book-item-list/book-item-list.component';
 import { BookProfilePageMainComponent } from '../components/book-profile-page-main/book-profile-page-main.component';
 import { BookProfilePageSidebarComponent } from '../components/book-profile-page-sidebar/book-profile-page-sidebar.component';
@@ -41,7 +41,7 @@ import { AddBookModalComponent } from '../components/add-book-modal/add-book-mod
     RatingStarsComponent,
     AddBookModalComponent,
   ],
-  imports: [CommonModule, MaterialModule, FormsModule, AppRoutingModule],
+  imports: [CommonModule, MaterialModule, FormsModule, AppRoutingModule,  ReactiveFormsModule ],
   exports: [
     NavbarComponent,
     FooterComponent,

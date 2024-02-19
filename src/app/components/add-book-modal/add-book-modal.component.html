@@ -17,26 +17,30 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body d-flex flex-column justify-content-between">
+      <form
+        class="modal-body d-flex flex-column justify-content-between"
+        [formGroup]="formulario"
+        (ngSubmit)="agregarLibro()"
+      >
         <mat-form-field>
           <mat-label>Título</mat-label>
-          <input matInput />
+          <input matInput formControlName="titulo" />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Portada</mat-label>
-          <input matInput />
+          <mat-label>Portada (URL)</mat-label>
+          <input matInput formControlName="portada" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Autor</mat-label>
-          <input matInput />
+          <input matInput formControlName="autor" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Cantidad de páginas</mat-label>
-          <input matInput />
+          <input matInput  formControlName="cantidadPaginas"/>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Leído por el grupo en:</mat-label>
-          <input matInput />
+          <input matInput formControlName="leidoPorElGrupo" />
         </mat-form-field>
         <app-filter-selector
           [column]="true"
@@ -45,9 +49,10 @@
         ></app-filter-selector>
         <mat-form-field>
           <mat-label>Sinópsis</mat-label>
-          <textarea matInput></textarea>
+          <textarea matInput formControlName="sinopsis"></textarea>
         </mat-form-field>
-      </div>
+        <button [disabled]="!formulario.valid">Agregar</button>
+      </form>
     </div>
   </div>
 </div>

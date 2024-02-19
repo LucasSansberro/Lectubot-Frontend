@@ -1,6 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +11,6 @@ import { MaterialModule } from './modules/material.module';
 import { PagesModule } from './modules/pages.module';
 import { DataService } from './services/data.service';
 import { UsersService } from './services/users.service';
-import { AddBookModalComponent } from './components/add-book-modal/add-book-modal.component';
 
 @NgModule({
   declarations: [AppComponent],

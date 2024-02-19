@@ -1,5 +1,5 @@
 <div class="d-flex"  [ngClass]="column ? 'flex-column-reverse' : ''">
-  <div class="d-flex">
+  <div class="d-flex mb-0">
     @for(item of selectedItemsArray; track item){
       <mat-chip-row (removed)="removeFilter(item)" class="m-2 mb-3" [ngClass]="column ? 'chip-column' : ''" >
         {{ item }}
