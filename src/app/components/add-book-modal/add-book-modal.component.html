@@ -24,34 +24,39 @@
       >
         <mat-form-field>
           <mat-label>Título</mat-label>
-          <input matInput formControlName="titulo" />
+          <input matInput formControlName="title" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Portada (URL)</mat-label>
-          <input matInput formControlName="portada" />
+          <input matInput formControlName="cover" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Autor</mat-label>
-          <input matInput formControlName="autor" />
+          <input matInput formControlName="author" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Cantidad de páginas</mat-label>
-          <input matInput  formControlName="cantidadPaginas"/>
+          <input matInput formControlName="pages" />
         </mat-form-field>
         <mat-form-field>
           <mat-label>Leído por el grupo en:</mat-label>
-          <input matInput formControlName="leidoPorElGrupo" />
+          <input matInput formControlName="readByGroup" />
         </mat-form-field>
         <app-filter-selector
           [column]="true"
           [filterLimit]="2"
           [optionsInSelect]="genres"
+          (filterArrayEmmitter)="applyFilter($event)"
         ></app-filter-selector>
         <mat-form-field>
           <mat-label>Sinópsis</mat-label>
-          <textarea matInput formControlName="sinopsis"></textarea>
+          <textarea matInput formControlName="synopsis"></textarea>
         </mat-form-field>
-        <button [disabled]="!formulario.valid">Agregar</button>
+        <button
+          [disabled]="!(formulario.valid && this.selectedGenres.length > 0)"
+        >
+          Agregar
+        </button>
       </form>
     </div>
   </div>

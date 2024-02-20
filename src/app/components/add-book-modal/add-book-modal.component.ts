@@ -9,18 +9,20 @@ import { Genre } from 'src/app/models/Enums/Genre';
 })
 export class AddBookModalComponent {
   formulario: FormGroup;
+  selectedGenres : string[] = []
   @Input() genres: string[] = [];
 
   constructor(private formBuilder: FormBuilder) {
     this.genres = Object.values(Genre);
 
     this.formulario = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      portada: ['', Validators.required],
-      autor: ['', Validators.required],
-      cantidadPaginas: ['', Validators.required],
-      leidoPorElGrupo: ['', Validators.required],
-      sinopsis: ['', Validators.required],
+      title: ['', Validators.required],
+      cover: ['', Validators.required],
+      author: ['', Validators.required],
+      pages: ['', Validators.required],
+      readByGroup: ['', Validators.required],
+      synopsis: ['', Validators.required],
+      genre: ['']
     });
   }
 
@@ -30,5 +32,8 @@ export class AddBookModalComponent {
       console.log(nuevoLibro);
     }
   }
-
+  applyFilter(event: string[]) {
+   this.selectedGenres = event
+   this.formulario.get('genre')!.setValue(this.selectedGenres)
+  }
 }
