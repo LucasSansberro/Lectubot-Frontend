@@ -37,10 +37,27 @@
         <mat-form-field>
           <mat-label>Cantidad de páginas</mat-label>
           <input matInput formControlName="pages" />
+          <mat-error *ngIf="formulario.get('pages')!.invalid && (formulario.get('pages')!.dirty || formulario.get('pages')!.touched)">
+            La cantidad de páginas es requerida y debe ser un número mayor o igual a 1.
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Leído por el grupo en:</mat-label>
-          <input matInput formControlName="readByGroup" />
+          <mat-label>Fecha de inicio de lectura</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="readByGroup"
+          />
+          <mat-hint>MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            #picker
+            startView="multi-year"
+            (monthSelected)="setMonthAndYear($event, picker)"
+          ></mat-datepicker>
         </mat-form-field>
         <app-filter-selector
           [column]="true"

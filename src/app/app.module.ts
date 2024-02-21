@@ -11,10 +11,12 @@ import { MaterialModule } from './modules/material.module';
 import { PagesModule } from './modules/pages.module';
 import { DataService } from './services/data.service';
 import { UsersService } from './services/users.service';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    MatNativeDateModule,
     PagesModule,
     ComponentsModule,
     MaterialModule,
