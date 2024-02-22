@@ -35,6 +35,10 @@ export class DataService {
     });
   }
 
+  postBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(`${this.URL}/books`, book, this.httpOptions);
+  }
+
   postBookRead(bookRead: BookRead): Observable<any> {
     return this.http.post<any>(
       `${this.URL}/booksRead`,

@@ -63,7 +63,7 @@
           [column]="true"
           [filterLimit]="2"
           [optionsInSelect]="genres"
-          (filterArrayEmmitter)="applyFilter($event)"
+          (filterArrayEmmitter)="addGenreToForm($event)"
         ></app-filter-selector>
         <mat-form-field>
           <mat-label>Sinópsis</mat-label>
