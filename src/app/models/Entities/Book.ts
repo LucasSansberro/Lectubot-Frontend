@@ -5,7 +5,10 @@ import { Review } from "./Review.js";
 export interface Book {
   _id?: string;
   title: string;
-  author: Author;
+  author:  {
+    _id?: string;
+    name: string;
+  };
   pages: number;
   genre: Genre[];
   cover: string;

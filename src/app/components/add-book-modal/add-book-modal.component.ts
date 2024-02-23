@@ -42,7 +42,12 @@ export class AddBookModalComponent {
   agregarLibro() {
     if (this.formulario.valid) {
       const nuevoLibro: Book = this.formulario.value;
-      this.dataService.postBook(nuevoLibro).subscribe();
+      nuevoLibro.author.name = this.formulario.value.author;
+      console.log(nuevoLibro);
+      /*  this.dataService
+        .postBook(nuevoLibro)
+        .subscribe({ next: (resp) => console.log(resp) });
+    } */
     }
   }
   addGenreToForm(event: string[]) {

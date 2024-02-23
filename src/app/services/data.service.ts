@@ -6,6 +6,7 @@ import { Book } from '../models/Entities/Book';
 import { User } from '../models/Entities/User';
 import { Genre } from '../models/Enums/Genre';
 import { BookRead } from '../models/Entities/BookRead';
+import { Author } from '../models/Entities/Author';
 
 @Injectable({
   providedIn: 'root',
@@ -53,11 +54,6 @@ export class DataService {
     author: {
       _id: '1',
       name: 'Arthur Miller',
-      image:
-        'https://www.biografiasyvidas.com/biografia/m/fotos/miller_arthur.jpg',
-      nationality: 'Estados Unidos',
-      books: [],
-      genre: [Genre.classic, Genre.theatre],
     },
     pages: 300,
     genre: [Genre.classic, Genre.theatre],
@@ -75,11 +71,6 @@ export class DataService {
     author: {
       _id: '2',
       name: 'Sarah J Mass',
-      image:
-        'https://sarahjmaas.com/wp-content/uploads/2021/08/Sarah-headshot-color-med.jpg',
-      books: [],
-      genre: [Genre.fantasy, Genre.youngAdult],
-      nationality: 'Estados Unidos',
     },
     pages: 300,
     genre: [Genre.fantasy, Genre.youngAdult],
@@ -97,10 +88,6 @@ export class DataService {
     author: {
       _id: '3',
       name: 'Tanya Huff',
-      image: 'https://www.locusmag.com/Magazine/2013/Issue12_Huff_200x281.jpg',
-      books: [],
-      nationality: 'Canadá',
-      genre: [Genre.fantasy, Genre.youngAdult],
     },
     pages: 300,
     genre: [Genre.fantasy, Genre.youngAdult],
@@ -111,6 +98,34 @@ export class DataService {
     readByGroup: new Date(),
     stars: [4, 5, 5],
   };
+
+  author1: Author = {
+    _id: '1',
+    name: 'Arthur Miller',
+    image:
+      'https://www.biografiasyvidas.com/biografia/m/fotos/miller_arthur.jpg',
+    nationality: 'Estados Unidos',
+    books: [],
+    genre: [Genre.classic, Genre.theatre],
+  };
+  author2: Author = {
+    _id: '2',
+    name: 'Sarah J Mass',
+    image:
+      'https://sarahjmaas.com/wp-content/uploads/2021/08/Sarah-headshot-color-med.jpg',
+    books: [],
+    genre: [Genre.fantasy, Genre.youngAdult],
+    nationality: 'Estados Unidos',
+  };
+  author3: Author = {
+    _id: '3',
+    name: 'Tanya Huff',
+    image: 'https://www.locusmag.com/Magazine/2013/Issue12_Huff_200x281.jpg',
+    books: [],
+    nationality: 'Canadá',
+    genre: [Genre.fantasy, Genre.youngAdult],
+  };
+  authors : Author[] = [this.author1,this.author2,this.author3]
   books: Book[] = [this.book1, this.book2, this.book3];
   backgroundColors: string[] = [
     'discord-blue',

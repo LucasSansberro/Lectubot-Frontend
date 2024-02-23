@@ -18,9 +18,9 @@ export class AuthorProfileComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.author = this.dataService.books.find(
-        (book) => book.author._id == params['autor-id']
-      )!.author!;
+      this.author = this.dataService.authors.find(
+        (author) => author._id == params['autor-id']
+      )!;
       this.books = this.dataService.books.filter(
         (book) => book.author._id == params['autor-id']
       );
