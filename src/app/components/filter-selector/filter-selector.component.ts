@@ -5,6 +5,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { MatInput } from '@angular/material/input';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 @Component({
@@ -13,13 +14,17 @@ import { MatSelect, MatSelectChange } from '@angular/material/select';
   styleUrl: './filter-selector.component.css',
 })
 export class FilterSelectorComponent {
-  @ViewChild(MatSelect) matSelect: any;
   @Input() optionsInSelect: string[] = [];
   @Input() column: boolean = false;
   @Input() filterLimit: number = 4;
   @Output() filterArrayEmmitter: EventEmitter<string[]> = new EventEmitter();
   selectedItemsArray: string[] = [];
+  @ViewChild(MatInput) filterInput!: MatInput;
+  optionsToRender: string[] = [];
 
+  constructor() {
+    this.optionsToRender = this.optionsInSelect;
+  }
   removeFilter(toBeRemovedElement: string) {
     this.selectedItemsArray = this.selectedItemsArray.filter(
       (element) => element != toBeRemovedElement
@@ -27,15 +32,23 @@ export class FilterSelectorComponent {
     this.filterArrayEmmitter.emit(this.selectedItemsArray);
   }
 
-  addFilter(event: MatSelectChange) {
-    if (this.selectedItemsArray.includes(event.value)) {
-      alert('Ya se está filtrando por ' + event.value);
+  addFilter(event: string) {
+    if (this.selectedItemsArray.includes(event)) {
+      alert('Ya se está filtrando por ' + event);
     } else if (this.selectedItemsArray.length >= this.filterLimit) {
       alert(`No se pueden poner más ${this.filterLimit} de filtros`);
     } else {
-      this.selectedItemsArray.push(event.value);
+      this.selectedItemsArray.push(event);
       this.filterArrayEmmitter.emit(this.selectedItemsArray);
     }
-    this.matSelect.value = '';
+    this.filterInput.value = '';
+  }
+
+  filterAutoComplete(event: any) {
+    event.value == ''
+      ? this.optionsInSelect
+      : (this.optionsToRender = this.optionsInSelect.filter((option) =>
+          option.includes(event.value)
+        ));
   }
 }

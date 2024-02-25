@@ -42,7 +42,7 @@ export class AddBookModalComponent {
   agregarLibro() {
     if (this.formulario.valid) {
       const nuevoLibro: Book = this.formulario.value;
-      nuevoLibro.author.name = this.formulario.value.author;
+      nuevoLibro.author = { name: this.formulario.value.author };
       console.log(nuevoLibro);
       /*  this.dataService
         .postBook(nuevoLibro)
