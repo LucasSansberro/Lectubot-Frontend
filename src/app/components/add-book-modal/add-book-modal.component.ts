@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { APIResponse } from 'src/app/models/APIResponse';
+import { Author } from 'src/app/models/Entities/Author';
 import { Book } from 'src/app/models/Entities/Book';
 import { Genre } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
@@ -10,10 +10,12 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './add-book-modal.component.html',
   styleUrl: './add-book-modal.component.css',
 })
-export class AddBookModalComponent {
-  formulario: FormGroup;
-  selectedGenres: string[] = [];
+export class AddBookModalComponent implements OnInit {
   @Input() genres: string[] = [];
+  authorsName: string[] = [];
+  addBookForm: FormGroup;
+  selectedGenres: string[] = [];
+  selectedAuthor!: Author;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,7 +23,7 @@ export class AddBookModalComponent {
   ) {
     this.genres = Object.values(Genre);
 
-    this.formulario = this.formBuilder.group({
+    this.addBookForm = this.formBuilder.group({
       title: ['', Validators.required],
       cover: ['', Validators.required],
       author: ['', Validators.required],
@@ -39,10 +41,14 @@ export class AddBookModalComponent {
     });
   }
 
-  agregarLibro() {
-    if (this.formulario.valid) {
-      const nuevoLibro: Book = this.formulario.value;
-      nuevoLibro.author = { name: this.formulario.value.author };
+  ngOnInit(): void {
+    this.authorsName = this.dataService.authors.map((author) => author.name);
+  }
+
+  addBook() {
+    if (this.addBookForm.valid) {
+      const nuevoLibro: Book = this.addBookForm.value;
+      nuevoLibro.author = { name: this.addBookForm.value.author };
       console.log(nuevoLibro);
       /*  this.dataService
         .postBook(nuevoLibro)
@@ -50,13 +56,21 @@ export class AddBookModalComponent {
     } */
     }
   }
+
+  addAuthorToForm(event: string[]) {
+    this.selectedAuthor = this.dataService.authors.find(
+      (author) => author.name == event[0]
+    )!;
+    this.addBookForm.get('author')!.setValue(this.selectedAuthor);
+  }
+
   addGenreToForm(event: string[]) {
     this.selectedGenres = event;
-    this.formulario.get('genre')!.setValue(this.selectedGenres);
+    this.addBookForm.get('genre')!.setValue(this.selectedGenres);
   }
 
   setMonthAndYear(event: string, picker: MatDatepicker<any>) {
-    this.formulario.get('readByGroup')!.setValue(event);
+    this.addBookForm.get('readByGroup')!.setValue(event);
     picker.close();
   }
 }

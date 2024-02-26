@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -13,7 +14,8 @@ import { MatSelect, MatSelectChange } from '@angular/material/select';
   templateUrl: './filter-selector.component.html',
   styleUrl: './filter-selector.component.css',
 })
-export class FilterSelectorComponent {
+export class FilterSelectorComponent implements OnInit {
+  @Input() placeholder: string = '';
   @Input() optionsInSelect: string[] = [];
   @Input() column: boolean = false;
   @Input() filterLimit: number = 4;
@@ -22,9 +24,10 @@ export class FilterSelectorComponent {
   @ViewChild(MatInput) filterInput!: MatInput;
   optionsToRender: string[] = [];
 
-  constructor() {
+  ngOnInit() {
     this.optionsToRender = this.optionsInSelect;
   }
+
   removeFilter(toBeRemovedElement: string) {
     this.selectedItemsArray = this.selectedItemsArray.filter(
       (element) => element != toBeRemovedElement
@@ -36,19 +39,20 @@ export class FilterSelectorComponent {
     if (this.selectedItemsArray.includes(event)) {
       alert('Ya se está filtrando por ' + event);
     } else if (this.selectedItemsArray.length >= this.filterLimit) {
-      alert(`No se pueden poner más ${this.filterLimit} de filtros`);
+      alert(`No se pueden seleccionar más ${this.filterLimit} de opciones`);
     } else {
       this.selectedItemsArray.push(event);
       this.filterArrayEmmitter.emit(this.selectedItemsArray);
     }
     this.filterInput.value = '';
+    this.optionsToRender = this.optionsInSelect;
   }
 
   filterAutoComplete(event: any) {
-    event.value == ''
-      ? this.optionsInSelect
+    event.value.toLowerCase() == ''
+      ? (this.optionsToRender = this.optionsInSelect)
       : (this.optionsToRender = this.optionsInSelect.filter((option) =>
-          option.includes(event.value)
+          option.toLowerCase().includes(event.value)
         ));
   }
 }
