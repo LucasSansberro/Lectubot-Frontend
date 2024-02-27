@@ -20,6 +20,7 @@ import { UpdateReadingStatusModalComponent } from '../components/update-reading-
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { AddBookModalComponent } from '../components/add-book-modal/add-book-modal.component';
+import { AddAuthorModalComponent } from '../components/add-author-modal/add-author-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddBookModalComponent } from '../components/add-book-modal/add-book-mod
     FinishReadingStatusModalComponent,
     RatingStarsComponent,
     AddBookModalComponent,
+    AddAuthorModalComponent,
   ],
   imports: [CommonModule, MaterialModule, FormsModule, AppRoutingModule,  ReactiveFormsModule ],
   exports: [
@@ -59,7 +61,8 @@ import { AddBookModalComponent } from '../components/add-book-modal/add-book-mod
     UpdateReadingStatusModalComponent,
     FinishReadingStatusModalComponent,
     RatingStarsComponent,
-    AddBookModalComponent
+    AddBookModalComponent,
+    AddAuthorModalComponent,
   ],
 })
 export class ComponentsModule {}

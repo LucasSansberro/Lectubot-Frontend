@@ -52,7 +52,7 @@ export class FilterSelectorComponent implements OnInit {
     event.value.toLowerCase() == ''
       ? (this.optionsToRender = this.optionsInSelect)
       : (this.optionsToRender = this.optionsInSelect.filter((option) =>
-          option.toLowerCase().includes(event.value)
+          option.toLowerCase().includes((event.value).toLowerCase())
         ));
   }
 }

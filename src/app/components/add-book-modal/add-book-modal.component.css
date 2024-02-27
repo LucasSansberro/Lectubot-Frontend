@@ -1,0 +1,11 @@
+.author-filter-selector {
+  width: 90%;
+  display: block;
+}
+.add-author-button {
+  width: 10%;
+  height: 6vh;
+  display: block;
+  border-radius: 5px;
+  box-shadow: 0px 5px 10px 1px rgba(34, 34, 34, 0.1);
+}

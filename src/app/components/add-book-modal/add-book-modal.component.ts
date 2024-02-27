@@ -47,9 +47,9 @@ export class AddBookModalComponent implements OnInit {
 
   addBook() {
     if (this.addBookForm.valid) {
-      const nuevoLibro: Book = this.addBookForm.value;
-      nuevoLibro.author = { name: this.addBookForm.value.author };
-      console.log(nuevoLibro);
+      const newBook: Book = this.addBookForm.value;
+      newBook.author = { name: this.addBookForm.value.author };
+      console.log(newBook);
       /*  this.dataService
         .postBook(nuevoLibro)
         .subscribe({ next: (resp) => console.log(resp) });

@@ -1,0 +1,42 @@
+<div
+  class="modal fade"
+  id="add-book"
+  tabindex="-1"
+  aria-labelledby="add-book"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="add-book-label">Agregar autor</h1>
+        <button
+          type="button"
+          class="btn-close"
+          #closeButton
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form
+        class="modal-body d-flex flex-column justify-content-between"
+        [formGroup]="addAuthorForm"
+        (ngSubmit)="addAuthor()"
+      >
+        <mat-form-field>
+          <mat-label>Título</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Portada (URL)</mat-label>
+          <input matInput formControlName="cover" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Sinópsis</mat-label>
+          <textarea matInput formControlName="synopsis"></textarea>
+        </mat-form-field>
+        <button [disabled]="!addAuthorForm.valid">Agregar</button>
+      </form>
+    </div>
+  </div>
+</div>

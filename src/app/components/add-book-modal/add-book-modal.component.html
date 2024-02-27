@@ -30,13 +30,18 @@
           <mat-label>Portada (URL)</mat-label>
           <input matInput formControlName="cover" />
         </mat-form-field>
-        <app-filter-selector
-          [column]="true"
-          [filterLimit]="2"
-          [optionsInSelect]="authorsName"
-          (filterArrayEmmitter)="addAuthorToForm($event)"
-          placeholder="Autor"
-        ></app-filter-selector>
+        <div class="d-flex">
+          <app-filter-selector
+            [column]="true"
+            [filterLimit]="2"
+            [optionsInSelect]="authorsName"
+            (filterArrayEmmitter)="addAuthorToForm($event)"
+            placeholder="Autor (Cargar nuevo si no se encuentra en el listado)"
+            class="author-filter-selector"
+          ></app-filter-selector>
+          <button class="add-author-button" type="button">Cargar</button>
+        </div>
+
         <mat-form-field>
           <mat-label>Cantidad de páginas</mat-label>
           <input matInput formControlName="pages" />
