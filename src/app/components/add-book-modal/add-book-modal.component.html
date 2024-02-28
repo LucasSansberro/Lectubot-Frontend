@@ -39,7 +39,9 @@
             placeholder="Autor (Cargar nuevo si no se encuentra en el listado)"
             class="author-filter-selector"
           ></app-filter-selector>
-          <button class="add-author-button" type="button">Cargar</button>
+          <button class="add-author-button" type="button"  data-bs-toggle="modal"
+          data-bs-target="#add-author" #closeButton
+          data-bs-dismiss="modal">Cargar</button>
         </div>
 
         <mat-form-field>
@@ -78,7 +80,7 @@
           [filterLimit]="2"
           [optionsInSelect]="genres"
           (filterArrayEmmitter)="addGenreToForm($event)"
-          placeholder="Escoja un filtro"
+          placeholder="Géneros del libro (Hasta 2)"
         ></app-filter-selector>
         <mat-form-field>
           <mat-label>Sinópsis</mat-label>
@@ -93,3 +95,4 @@
     </div>
   </div>
 </div>
+

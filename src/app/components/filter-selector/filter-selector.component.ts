@@ -37,7 +37,7 @@ export class FilterSelectorComponent implements OnInit {
 
   addFilter(event: string) {
     if (this.selectedItemsArray.includes(event)) {
-      alert('Ya se está filtrando por ' + event);
+      alert('Ya se ha seleccionado ' + event);
     } else if (this.selectedItemsArray.length >= this.filterLimit) {
       alert(`No se pueden seleccionar más ${this.filterLimit} de opciones`);
     } else {

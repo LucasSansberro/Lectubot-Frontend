@@ -1,20 +1,22 @@
 <div
   class="modal fade"
-  id="add-book"
+  id="add-author"
   tabindex="-1"
-  aria-labelledby="add-book"
+  aria-labelledby="add-author"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="add-book-label">Agregar autor</h1>
+        <h1 class="modal-title fs-5" id="add-author-label">Agregar autor</h1>
         <button
           type="button"
           class="btn-close"
           #closeButton
           data-bs-dismiss="modal"
           aria-label="Close"
+          data-bs-toggle="modal"
+          data-bs-target="#add-book"
         ></button>
       </div>
       <form
@@ -23,19 +25,29 @@
         (ngSubmit)="addAuthor()"
       >
         <mat-form-field>
-          <mat-label>Título</mat-label>
-          <input matInput formControlName="title" />
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" />
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Portada (URL)</mat-label>
-          <input matInput formControlName="cover" />
+          <mat-label>Foto del autor (URL)</mat-label>
+          <input matInput formControlName="image" />
         </mat-form-field>
-
         <mat-form-field>
-          <mat-label>Sinópsis</mat-label>
-          <textarea matInput formControlName="synopsis"></textarea>
+          <mat-label>País de origen</mat-label>
+          <input matInput formControlName="nationality" />
         </mat-form-field>
-        <button [disabled]="!addAuthorForm.valid">Agregar</button>
+        <app-filter-selector
+          [column]="true"
+          [filterLimit]="4"
+          [optionsInSelect]="genres"
+          (filterArrayEmmitter)="addGenreToForm($event)"
+          placeholder="Géneros que suele escribir el autor (Hasta 4)"
+        ></app-filter-selector>
+        <button
+          [disabled]="!(addAuthorForm.valid && selectedGenres.length > 0)"
+        >
+          Agregar
+        </button>
       </form>
     </div>
   </div>

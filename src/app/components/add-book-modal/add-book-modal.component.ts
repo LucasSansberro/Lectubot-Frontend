@@ -15,7 +15,7 @@ export class AddBookModalComponent implements OnInit {
   authorsName: string[] = [];
   addBookForm: FormGroup;
   selectedGenres: string[] = [];
-  selectedAuthor!: Author;
+  selectedAuthorName!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,7 +42,16 @@ export class AddBookModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authorsName = this.dataService.authors.map((author) => author.name);
+    if (this.dataService.authorsName.length == 0) {
+      this.dataService.getAuthorsName().subscribe({
+        next: (resp) => {
+          (this.authorsName = resp.data!),
+            (this.dataService.authorsName = resp.data!);
+        },
+      });
+    } else {
+      this.authorsName = this.dataService.authorsName;
+    }
   }
 
   addBook() {
@@ -58,10 +67,10 @@ export class AddBookModalComponent implements OnInit {
   }
 
   addAuthorToForm(event: string[]) {
-    this.selectedAuthor = this.dataService.authors.find(
-      (author) => author.name == event[0]
+    this.selectedAuthorName = this.dataService.authorsName.find(
+      (name) => name == event[0]
     )!;
-    this.addBookForm.get('author')!.setValue(this.selectedAuthor);
+    this.addBookForm.get('author')!.setValue(this.selectedAuthorName);
   }
 
   addGenreToForm(event: string[]) {

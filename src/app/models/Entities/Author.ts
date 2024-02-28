@@ -7,5 +7,5 @@ export interface Author {
   image: string;
   nationality: string;
   genre: Genre[];
-  books: Book[];
+  books?: Book[];
 }

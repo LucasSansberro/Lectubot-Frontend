@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Author } from 'src/app/models/Entities/Author';
+import { Genre } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-author-modal',
@@ -9,27 +11,43 @@ import { DataService } from 'src/app/services/data.service';
   styleUrl: './add-author-modal.component.css',
 })
 export class AddAuthorModalComponent {
+  @ViewChild('closeButton') closeButton!: ElementRef;
   addAuthorForm: FormGroup;
+  genres: string[] = [];
+  selectedGenres: string[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService
   ) {
+    this.genres = Object.values(Genre);
     this.addAuthorForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      cover: ['', Validators.required],
-      author: ['', Validators.required],
-      readByGroup: ['', Validators.required],
-      synopsis: ['', Validators.required],
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      nationality: ['', Validators.required],
+      genre: [''],
     });
   }
+
+
   addAuthor() {
     if (this.addAuthorForm.valid) {
       const newAuthor: Author = this.addAuthorForm.value;
-      console.log(newAuthor);
-      /*  this.dataService
-        .postBook(nuevoLibro)
-        .subscribe({ next: (resp) => console.log(resp) });
-    } */
+      this.dataService.postAuthor(newAuthor).subscribe({
+        next: () => {
+          (this.closeButton.nativeElement as HTMLElement).click(),
+            Swal.fire({
+              title: 'Autor agregado',
+              text: `${newAuthor.name} se agregó exitosamente a la base de datos`,
+              icon: 'success',
+            }),
+            this.dataService.authorsName.push(newAuthor.name);
+        },
+      });
     }
+  }
+  addGenreToForm(event: string[]) {
+    this.selectedGenres = event;
+    this.addAuthorForm.get('genre')!.setValue(this.selectedGenres);
   }
 }

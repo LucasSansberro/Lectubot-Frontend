@@ -29,6 +29,14 @@ export class DataService {
     });
   }
 
+  getAuthorsName(): Observable<APIResponse<string[]>> {
+    return this.http.get<APIResponse<string[]>>(`${this.URL}/authors`);
+  }
+
+  getAuthorById(id:string): Observable<APIResponse<Author>>{
+    return this.http.get<APIResponse<Author>>(`${this.URL}/authors/${id}`)
+  }
+
   //TODO Shouldn't it be a post req?
   closeSession(): Observable<void> {
     return this.http.get<void>(`${this.URL}/auth/logout`, {
@@ -40,8 +48,12 @@ export class DataService {
     return this.http.post<Book>(`${this.URL}/books`, book, this.httpOptions);
   }
 
+  postAuthor(author: Author): Observable<Author> {
+    return this.http.post<Author>(`${this.URL}/authors`, author, this.httpOptions);
+  }
+
   postBookRead(bookRead: BookRead): Observable<any> {
-    return this.http.post<any>(
+    return this.http.post<BookRead>(
       `${this.URL}/booksRead`,
       bookRead,
       this.httpOptions
@@ -125,7 +137,7 @@ export class DataService {
     nationality: 'Canadá',
     genre: [Genre.fantasy, Genre.youngAdult],
   };
-  authors : Author[] = [this.author1,this.author2,this.author3]
+  authorsName : string[] = []
   books: Book[] = [this.book1, this.book2, this.book3];
   backgroundColors: string[] = [
     'discord-blue',
