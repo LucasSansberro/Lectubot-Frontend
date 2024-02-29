@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Author } from 'src/app/models/Entities/Author';
 import { Book } from 'src/app/models/Entities/Book';
 import { Genre } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
+import { AddAuthorModalComponent } from '../add-author-modal/add-author-modal.component';
 @Component({
   selector: 'app-add-book-modal',
   templateUrl: './add-book-modal.component.html',
@@ -15,9 +17,11 @@ export class AddBookModalComponent implements OnInit {
   authorsName: string[] = [];
   addBookForm: FormGroup;
   selectedGenres: string[] = [];
-  selectedAuthorName!: string;
+  selectedAuthor!: Author;
 
   constructor(
+    private dialogRef: MatDialogRef<AddBookModalComponent>,
+    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private dataService: DataService
   ) {
@@ -42,15 +46,17 @@ export class AddBookModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.dataService.authorsName.length == 0) {
-      this.dataService.getAuthorsName().subscribe({
+    if (this.dataService.authorsNameAndId.length == 0) {
+      this.dataService.getAuthorsNameAndId().subscribe({
         next: (resp) => {
-          (this.authorsName = resp.data!),
-            (this.dataService.authorsName = resp.data!);
+          (this.authorsName = resp.data!.map((author) => author.name)),
+            (this.dataService.authorsNameAndId = resp.data!);
         },
       });
     } else {
-      this.authorsName = this.dataService.authorsName;
+      this.authorsName = this.dataService.authorsNameAndId.map(
+        (author) => author.name
+      );
     }
   }
 
@@ -67,10 +73,10 @@ export class AddBookModalComponent implements OnInit {
   }
 
   addAuthorToForm(event: string[]) {
-    this.selectedAuthorName = this.dataService.authorsName.find(
-      (name) => name == event[0]
+    this.selectedAuthor = this.dataService.authorsNameAndId.find(
+      (author) => author.name == event[0]
     )!;
-    this.addBookForm.get('author')!.setValue(this.selectedAuthorName);
+    this.addBookForm.get('author')!.setValue(this.selectedAuthor);
   }
 
   addGenreToForm(event: string[]) {
@@ -81,5 +87,12 @@ export class AddBookModalComponent implements OnInit {
   setMonthAndYear(event: string, picker: MatDatepicker<any>) {
     this.addBookForm.get('readByGroup')!.setValue(event);
     picker.close();
+  }
+
+  closeModal() {
+    this.dialogRef.close();
+  }
+  openAddAuthorModal(){
+    this.dialog.open(AddAuthorModalComponent);
   }
 }

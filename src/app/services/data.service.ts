@@ -29,8 +29,8 @@ export class DataService {
     });
   }
 
-  getAuthorsName(): Observable<APIResponse<string[]>> {
-    return this.http.get<APIResponse<string[]>>(`${this.URL}/authors`);
+  getAuthorsNameAndId(): Observable<APIResponse<Author[]>> {
+    return this.http.get<APIResponse<Author[]>>(`${this.URL}/authors`);
   }
 
   getAuthorById(id:string): Observable<APIResponse<Author>>{
@@ -137,7 +137,7 @@ export class DataService {
     nationality: 'Canadá',
     genre: [Genre.fantasy, Genre.youngAdult],
   };
-  authorsName : string[] = []
+  authorsNameAndId : Author[] = []
   books: Book[] = [this.book1, this.book2, this.book3];
   backgroundColors: string[] = [
     'discord-blue',

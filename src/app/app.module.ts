@@ -12,6 +12,7 @@ import { PagesModule } from './modules/pages.module';
 import { DataService } from './services/data.service';
 import { UsersService } from './services/users.service';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,17 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [CookieService, DataService, UsersService],
+  providers: [
+    CookieService,
+    DataService,
+    UsersService,
+    [
+      {
+        provide: MatDialogRef,
+        useValue: {},
+      },
+    ],
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

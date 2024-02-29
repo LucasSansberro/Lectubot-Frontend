@@ -1,6 +1,7 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, ViewChild } from '@angular/core';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 const heightTransition = trigger('heightTransition', [
   transition('void => *', [
@@ -23,8 +24,16 @@ export class FinishReadingStatusModalComponent {
   @ViewChild(RatingStarsComponent) ratingStars!: RatingStarsComponent;
   selectedValue: string = 'no';
 
+  constructor(
+    private dialogRef: MatDialogRef<FinishReadingStatusModalComponent>
+  ) {}
+
   resetRating() {
     this.ratingStars.scoreSelected = false;
     this.ratingStars.userRatingStars = [];
+  }
+
+  closeModal() {
+    this.dialogRef.close();
   }
 }

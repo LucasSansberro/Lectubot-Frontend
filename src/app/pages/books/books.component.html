@@ -1,8 +1,5 @@
 <div class="container-fluid d-flex flex-column">
-  <button class="my-5"  data-bs-toggle="modal"
-  data-bs-target="#add-book">
-    Agregar libro
-  </button>
+  <button class="my-5" (click)="openAddBookModal()">Agregar libro</button>
   <div
     class="container-fluid d-flex justify-content-between align-items-center mt-4"
   >
@@ -40,5 +37,3 @@
   (page)="handlePageEvent($event)"
 >
 </mat-paginator>
-
-<app-add-book-modal></app-add-book-modal>

@@ -1,54 +1,13 @@
-<div
-  class="modal fade"
-  id="update-reading-status"
-  tabindex="-1"
-  aria-labelledby="update-reading-status"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered test">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="update-reading-status-label">
-          Actualizar lectura
-        </h1>
-        <button
-          type="button"
-          class="btn-close"
-          #closeButton
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div
-        class="modal-body d-flex flex-column justify-content-between align-items-center"
-      >
-        <button
-          class="shadow-button"
-          (click)="startReading()"
-        >
-          Leer
-        </button>
-        <button
-          class="shadow-button"
-          data-bs-toggle="modal"
-          data-bs-target="#end-reading"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          Finalizado
-        </button>
-        <button
-          class="shadow-button"
-          (click)="
-            showAlert(
-              'Movido a DNF',
-              'El libro se removió de tu lista de lectura'
-            )
-          "
-        >
-          DNF
-        </button>
-      </div>
-    </div>
+<div class="modal-container">
+  <div
+    class="d-flex justify-content-between align-items-center bottom-border-separator"
+  >
+    <h1 mat-dialog-title>Actualizar lectura</h1>
+    <i class="bi bi-x-lg" (click)="closeModal()"></i>
+  </div>
+  <div mat-dialog-content class="d-flex justify-content-between flex-column">
+    <button class="shadow-button" (click)="startReading()">Leer</button>
+    <button class="shadow-button" (click)="finishReading()">Finalizado</button>
+    <button class="shadow-button" (click)="DNF()">DNF</button>
   </div>
 </div>

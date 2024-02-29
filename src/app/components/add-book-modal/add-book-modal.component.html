@@ -1,98 +1,81 @@
-<div
-  class="modal fade"
-  id="add-book"
-  tabindex="-1"
-  aria-labelledby="add-book"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="add-book-label">Agregar libro</h1>
-        <button
-          type="button"
-          class="btn-close"
-          #closeButton
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <form
-        class="modal-body d-flex flex-column justify-content-between"
-        [formGroup]="addBookForm"
-        (ngSubmit)="addBook()"
-      >
-        <mat-form-field>
-          <mat-label>Título</mat-label>
-          <input matInput formControlName="title" />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Portada (URL)</mat-label>
-          <input matInput formControlName="cover" />
-        </mat-form-field>
-        <div class="d-flex">
-          <app-filter-selector
-            [column]="true"
-            [filterLimit]="2"
-            [optionsInSelect]="authorsName"
-            (filterArrayEmmitter)="addAuthorToForm($event)"
-            placeholder="Autor (Cargar nuevo si no se encuentra en el listado)"
-            class="author-filter-selector"
-          ></app-filter-selector>
-          <button class="add-author-button" type="button"  data-bs-toggle="modal"
-          data-bs-target="#add-author" #closeButton
-          data-bs-dismiss="modal">Cargar</button>
-        </div>
-
-        <mat-form-field>
-          <mat-label>Cantidad de páginas</mat-label>
-          <input matInput formControlName="pages" />
-          <mat-error
-            *ngIf="
-              addBookForm.get('pages')!.invalid &&
-              (addBookForm.get('pages')!.dirty ||
-                addBookForm.get('pages')!.touched)
-            "
-          >
-            La cantidad de páginas es requerida y debe ser un número mayor o
-            igual a 1.
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Fecha de inicio de lectura</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            formControlName="readByGroup"
-          />
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker
-            #picker
-            startView="multi-year"
-            (monthSelected)="setMonthAndYear($event, picker)"
-          ></mat-datepicker>
-        </mat-form-field>
-        <app-filter-selector
-          [column]="true"
-          [filterLimit]="2"
-          [optionsInSelect]="genres"
-          (filterArrayEmmitter)="addGenreToForm($event)"
-          placeholder="Géneros del libro (Hasta 2)"
-        ></app-filter-selector>
-        <mat-form-field>
-          <mat-label>Sinópsis</mat-label>
-          <textarea matInput formControlName="synopsis"></textarea>
-        </mat-form-field>
-        <button
-          [disabled]="!(addBookForm.valid && this.selectedGenres.length > 0)"
-        >
-          Agregar
-        </button>
-      </form>
-    </div>
+<div class="modal-container">
+  <div
+    class="d-flex justify-content-between align-items-center bottom-border-separator"
+  >
+    <h1 mat-dialog-title>Agregar libro</h1>
+    <i class="bi bi-x-lg" (click)="closeModal()"></i>
   </div>
-</div>
+  <form
+    mat-dialog-content
+    class="d-flex justify-content-between flex-column"
+    [formGroup]="addBookForm"
+    (ngSubmit)="addBook()"
+  >
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Portada (URL)</mat-label>
+      <input matInput formControlName="cover" />
+    </mat-form-field>
+    <div class="d-flex">
+      <app-filter-selector
+        [column]="true"
+        [filterLimit]="2"
+        [optionsInSelect]="authorsName"
+        (filterArrayEmmitter)="addAuthorToForm($event)"
+        placeholder="Autor (Cargar nuevo si no se encuentra en el listado)"
+        class="author-filter-selector"
+      ></app-filter-selector>
+      <button
+        class="add-author-button"
+        type="button"
+        (click)="openAddAuthorModal()"
+      >
+        Cargar
+      </button>
+    </div>
 
+    <mat-form-field>
+      <mat-label>Cantidad de páginas</mat-label>
+      <input matInput formControlName="pages" />
+      <mat-error
+        *ngIf="
+          addBookForm.get('pages')!.invalid &&
+          (addBookForm.get('pages')!.dirty || addBookForm.get('pages')!.touched)
+        "
+      >
+        La cantidad de páginas es requerida y debe ser un número mayor o igual a
+        1.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha de inicio de lectura</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="readByGroup" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker
+        #picker
+        startView="multi-year"
+        (monthSelected)="setMonthAndYear($event, picker)"
+      ></mat-datepicker>
+    </mat-form-field>
+    <app-filter-selector
+      [column]="true"
+      [filterLimit]="2"
+      [optionsInSelect]="genres"
+      (filterArrayEmmitter)="addGenreToForm($event)"
+      placeholder="Géneros del libro (Hasta 2)"
+    ></app-filter-selector>
+    <mat-form-field>
+      <mat-label>Sinópsis</mat-label>
+      <textarea matInput formControlName="synopsis"></textarea>
+    </mat-form-field>
+    <button [disabled]="!(addBookForm.valid && this.selectedGenres.length > 0)">
+      Agregar
+    </button>
+  </form>
+</div>

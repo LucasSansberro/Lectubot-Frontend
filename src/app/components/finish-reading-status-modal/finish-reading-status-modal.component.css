@@ -1,3 +1,7 @@
+.modal-container{
+  width:60vw;
+}
+
 .review-input label {
   font-size: 1.75rem;
   margin: 2vh 0;

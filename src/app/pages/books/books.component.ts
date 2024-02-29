@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { AddBookModalComponent } from 'src/app/components/add-book-modal/add-book-modal.component';
 import { Book } from 'src/app/models/Entities/Book';
 import { Genre, genreValueToKeyConversion } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
@@ -24,7 +26,7 @@ export class BooksComponent implements OnInit {
   genres: string[] = [];
   value: string = '';
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private dialog: MatDialog) {
     this.genres = Object.values(Genre);
   }
 
@@ -67,5 +69,8 @@ export class BooksComponent implements OnInit {
     this.renderingBooks = this.books.filter((book) =>
       book.title.toLowerCase().includes(searchedInput.toLowerCase())
     );
+  }
+  openAddBookModal() {
+    this.dialog.open(AddBookModalComponent);
   }
 }

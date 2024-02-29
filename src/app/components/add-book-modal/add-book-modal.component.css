@@ -9,3 +9,7 @@
   border-radius: 5px;
   box-shadow: 0px 5px 10px 1px rgba(34, 34, 34, 0.1);
 }
+
+.modal-container{
+  width:75vw;
+}
