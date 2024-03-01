@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatInput } from '@angular/material/input';
-import { MatSelect, MatSelectChange } from '@angular/material/select';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-filter-selector',
@@ -16,43 +16,48 @@ import { MatSelect, MatSelectChange } from '@angular/material/select';
 })
 export class FilterSelectorComponent implements OnInit {
   @Input() placeholder: string = '';
-  @Input() optionsInSelect: string[] = [];
+  @Input() optionsList: string[] = [];
   @Input() column: boolean = false;
   @Input() filterLimit: number = 4;
   @Output() filterArrayEmmitter: EventEmitter<string[]> = new EventEmitter();
-  selectedItemsArray: string[] = [];
   @ViewChild(MatInput) filterInput!: MatInput;
+  selectedOptions: string[] = [];
   optionsToRender: string[] = [];
 
   ngOnInit() {
-    this.optionsToRender = this.optionsInSelect;
+    this.optionsToRender = this.optionsList;
   }
 
-  removeFilter(toBeRemovedElement: string) {
-    this.selectedItemsArray = this.selectedItemsArray.filter(
+  removeSelectedOption(toBeRemovedElement: string) {
+    this.selectedOptions = this.selectedOptions.filter(
       (element) => element != toBeRemovedElement
     );
-    this.filterArrayEmmitter.emit(this.selectedItemsArray);
+    this.filterArrayEmmitter.emit(this.selectedOptions);
   }
 
-  addFilter(event: string) {
-    if (this.selectedItemsArray.includes(event)) {
-      alert('Ya se ha seleccionado ' + event);
-    } else if (this.selectedItemsArray.length >= this.filterLimit) {
-      alert(`No se pueden seleccionar más ${this.filterLimit} de opciones`);
+  selectOption(event: string) {
+    if (this.selectedOptions.includes(event)) {
+      Swal.fire('Error', `Ya se ha seleccionado ${event}`, 'error');
+    } else if (this.selectedOptions.length >= this.filterLimit) {
+      Swal.fire(
+        'Error',
+        this.selectedOptions.length == 1
+          ? 'No se puede seleccionar más de una opción'
+          : `No se pueden seleccionar más ${this.filterLimit} de opciones`,
+        'error'
+      );
     } else {
-      this.selectedItemsArray.push(event);
-      this.filterArrayEmmitter.emit(this.selectedItemsArray);
+      this.selectedOptions.push(event);
+      this.filterArrayEmmitter.emit(this.selectedOptions);
     }
     this.filterInput.value = '';
-    this.optionsToRender = this.optionsInSelect;
   }
 
   filterAutoComplete(event: any) {
     event.value.toLowerCase() == ''
-      ? (this.optionsToRender = this.optionsInSelect)
-      : (this.optionsToRender = this.optionsInSelect.filter((option) =>
-          option.toLowerCase().includes((event.value).toLowerCase())
+      ? (this.optionsToRender = this.optionsList)
+      : (this.optionsToRender = this.optionsList.filter((option) =>
+          option.toLowerCase().includes(event.value.toLowerCase())
         ));
   }
 }

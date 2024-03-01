@@ -14,7 +14,7 @@ import { FinishReadingStatusModalComponent } from '../finish-reading-status-moda
   styleUrl: './update-reading-status-modal.component.css',
 })
 export class UpdateReadingStatusModalComponent {
-  @ViewChild('closeButton') closeButton!: ElementRef;
+
 
   constructor(
     private dialogRef: MatDialogRef<UpdateReadingStatusModalComponent>,
@@ -26,9 +26,10 @@ export class UpdateReadingStatusModalComponent {
     console.log(this.book);
     //TODO Create BookRead with this.book data
     /*  this.bookService.postBookRead(this.book).subscribe({next: ()=> {
-  this.showAlert(
+  Swal.fire(
       'Comenzada la lectura!',
-      'El libro se agregó a tu lista de lectura'
+      'El libro se agregó a tu lista de lectura',
+      'success'
     );
     this.closeModal()
     }});
@@ -42,22 +43,15 @@ export class UpdateReadingStatusModalComponent {
   }
 
   DNF() {
-    this.showAlert(
+    Swal.fire(
       'Movido a DNF',
-      'Se removió el libro de tu lista de lecturas en progresó'
+      'Se removió el libro de tu lista de lecturas en progresó',
+      'success'
     );
     this.closeModal();
   }
 
   closeModal() {
     this.dialogRef.close();
-  }
-
-  showAlert(title: string, text: string) {
-    Swal.fire({
-      title,
-      text,
-      icon: 'success',
-    });
   }
 }

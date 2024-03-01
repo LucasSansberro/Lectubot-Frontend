@@ -12,14 +12,11 @@ import { UpdateReadingStatusModalComponent } from '../update-reading-status-moda
 export class HomePageSidebarComponent {
   @Input() books: Book[] = [];
 
-  constructor(private bookService: BooksService, private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) {}
 
   openUpdateReadingModal(book: Book) {
     this.dialog.open(UpdateReadingStatusModalComponent, {
       data: book,
     });
-  }
-  setSelectedBook(book: Book) {
-    this.bookService.setSelectedBookInModal(book);
   }
 }

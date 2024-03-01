@@ -12,10 +12,6 @@ export class BooksService {
   selectedBook!: Book
   constructor(private dataService: DataService) {}
 
-  setSelectedBookInModal(book: Book) {
-    this.selectedBook = book;
-  }
-
   postBookRead(book: Book): void {
     const bookRead : BookRead = {
       book_id: book._id!,

@@ -7,6 +7,10 @@ import { Book } from 'src/app/models/Entities/Book';
 import { Genre } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
 import { AddAuthorModalComponent } from '../add-author-modal/add-author-modal.component';
+import Swal from 'sweetalert2';
+
+const numberValidator = Validators.pattern(/^[0-9]+$/);
+const minValidator = Validators.min(1);
 @Component({
   selector: 'app-add-book-modal',
   templateUrl: './add-book-modal.component.html',
@@ -14,8 +18,8 @@ import { AddAuthorModalComponent } from '../add-author-modal/add-author-modal.co
 })
 export class AddBookModalComponent implements OnInit {
   @Input() genres: string[] = [];
-  authorsName: string[] = [];
   addBookForm: FormGroup;
+  authorsNameList: string[] = [];
   selectedGenres: string[] = [];
   selectedAuthor!: Author;
 
@@ -31,14 +35,7 @@ export class AddBookModalComponent implements OnInit {
       title: ['', Validators.required],
       cover: ['', Validators.required],
       author: ['', Validators.required],
-      pages: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9]+$/),
-          Validators.min(1),
-        ],
-      ],
+      pages: ['', [Validators.required, numberValidator, minValidator]],
       readByGroup: ['', Validators.required],
       synopsis: ['', Validators.required],
       genre: [''],
@@ -46,15 +43,22 @@ export class AddBookModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.dataService.authorsNameAndId.length == 0) {
-      this.dataService.getAuthorsNameAndId().subscribe({
+    if (this.dataService.authorsNameAndIdList.length == 0) {
+      this.dataService.getauthorsNameAndIdList().subscribe({
         next: (resp) => {
-          (this.authorsName = resp.data!.map((author) => author.name)),
-            (this.dataService.authorsNameAndId = resp.data!);
+          (this.authorsNameList = resp.data!.map((author) => author.name)),
+            (this.dataService.authorsNameAndIdList = resp.data!);
+        },
+        error: (resp) => {
+          Swal.fire(
+            'Error',
+            `Ocurrió un error al intentar conseguir la lista de autores de la base de datos. ${resp.error}`,
+            'error'
+          );
         },
       });
     } else {
-      this.authorsName = this.dataService.authorsNameAndId.map(
+      this.authorsNameList = this.dataService.authorsNameAndIdList.map(
         (author) => author.name
       );
     }
@@ -63,17 +67,29 @@ export class AddBookModalComponent implements OnInit {
   addBook() {
     if (this.addBookForm.valid) {
       const newBook: Book = this.addBookForm.value;
-      newBook.author = { name: this.addBookForm.value.author };
-      console.log(newBook);
-      /*  this.dataService
-        .postBook(nuevoLibro)
-        .subscribe({ next: (resp) => console.log(resp) });
-    } */
+      this.dataService.postBook(newBook).subscribe({
+        next: (resp) => {
+          Swal.fire(
+            'Autor agregado',
+            `${newBook.title} se agregó exitosamente a la base de datos`,
+            'success'
+          );
+          this.dataService.books.push(resp.data!);
+          this.closeModal();
+        },
+        error: (resp) => {
+          Swal.fire(
+            'Error',
+            `Ocurrió un error al agregar a ${newBook.title} a la base de datos. ${resp.error}`,
+            'error'
+          );
+        },
+      });
     }
   }
 
   addAuthorToForm(event: string[]) {
-    this.selectedAuthor = this.dataService.authorsNameAndId.find(
+    this.selectedAuthor = this.dataService.authorsNameAndIdList.find(
       (author) => author.name == event[0]
     )!;
     this.addBookForm.get('author')!.setValue(this.selectedAuthor);
@@ -92,7 +108,8 @@ export class AddBookModalComponent implements OnInit {
   closeModal() {
     this.dialogRef.close();
   }
-  openAddAuthorModal(){
+
+  openAddAuthorModal() {
     this.dialog.open(AddAuthorModalComponent);
   }
 }

@@ -1,8 +1,8 @@
 <div class="d-flex" [ngClass]="column ? 'flex-column-reverse' : ''">
   <div class="d-flex">
-    @for(item of selectedItemsArray; track item){
+    @for(item of selectedOptions; track item){
     <mat-chip-row
-      (removed)="removeFilter(item)"
+      (removed)="removeSelectedOption(item)"
       class="mt-2 mx-2"
       [ngClass]="column ? 'chip-column' : ''"
     >
@@ -24,7 +24,7 @@
     />
     <mat-autocomplete
       #auto="matAutocomplete"
-      (optionSelected)="addFilter($event.option.value)"
+      (optionSelected)="selectOption($event.option.value)"
     >
       <mat-option *ngFor="let option of optionsToRender" [value]="option">
         {{ option }}

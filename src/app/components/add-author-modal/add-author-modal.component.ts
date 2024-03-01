@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Author } from 'src/app/models/Entities/Author';
@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
   styleUrl: './add-author-modal.component.css',
 })
 export class AddAuthorModalComponent {
-  @ViewChild('closeButton') closeButton!: ElementRef;
   addAuthorForm: FormGroup;
   genres: string[] = [];
   selectedGenres: string[] = [];
@@ -36,14 +35,20 @@ export class AddAuthorModalComponent {
       const newAuthor: Author = this.addAuthorForm.value;
       this.dataService.postAuthor(newAuthor).subscribe({
         next: (resp) => {
-          (this.closeButton.nativeElement as HTMLElement).click(),
-            Swal.fire({
-              title: 'Autor agregado',
-              text: `${newAuthor.name} se agregó exitosamente a la base de datos`,
-              icon: 'success',
-            }),
-            console.log(resp);
-          this.dataService.authorsNameAndId.push(resp);
+          Swal.fire(
+            'Autor agregado',
+            `${newAuthor.name} se agregó exitosamente a la base de datos`,
+            'success'
+          ),
+            this.dataService.authorsNameAndIdList.push(resp.data!);
+          this.closeModal();
+        },
+        error: (resp) => {
+          Swal.fire(
+            'Error',
+            `Ocurrió un error al agregar a ${newAuthor.name} a la base de datos. ${resp.error}`,
+            'error'
+          );
         },
       });
     }

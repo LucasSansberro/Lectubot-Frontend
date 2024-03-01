@@ -22,8 +22,8 @@
     <div class="d-flex">
       <app-filter-selector
         [column]="true"
-        [filterLimit]="2"
-        [optionsInSelect]="authorsName"
+        [filterLimit]="1"
+        [optionsList]="authorsNameList"
         (filterArrayEmmitter)="addAuthorToForm($event)"
         placeholder="Autor (Cargar nuevo si no se encuentra en el listado)"
         class="author-filter-selector"
@@ -66,7 +66,7 @@
     <app-filter-selector
       [column]="true"
       [filterLimit]="2"
-      [optionsInSelect]="genres"
+      [optionsList]="genres"
       (filterArrayEmmitter)="addGenreToForm($event)"
       placeholder="Géneros del libro (Hasta 2)"
     ></app-filter-selector>
