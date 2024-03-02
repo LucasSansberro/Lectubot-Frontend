@@ -1,7 +1,7 @@
 <div class="mt-5 d-flex align-items-center flex-column sidebar-container">
   <img
-    src="{{ book.cover }}"
-    alt="Portada del libro {{ book.title }}"
+    src="{{ book?.cover }}"
+    alt="Portada del libro {{ book?.title }}"
     class="cover-image"
   />
   <button class="link-button mt-4">
@@ -9,7 +9,7 @@
   </button>
   <div class="d-flex mt-4 mb-3 user-rating">
     <!-- Agregar puntaje propio de entity User -->
-    <app-rating-stars [stars]="book.stars!"></app-rating-stars>
+    <app-rating-stars [stars]="book?.stars!"></app-rating-stars>
     <p class="ms-2">Tu valoración</p>
   </div>
   <p>Escribiste una <span class="fw-bold text-decoration-underline">reseña</span></p>

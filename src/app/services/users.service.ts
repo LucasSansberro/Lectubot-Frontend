@@ -4,6 +4,8 @@ import { APIResponse } from '../models/APIResponse';
 import { User } from '../models/Entities/User';
 import { DataService } from './data.service';
 import { Observable, Subject } from 'rxjs';
+import { BookRead } from '../models/Entities/BookRead';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +13,9 @@ import { Observable, Subject } from 'rxjs';
 export class UsersService {
   loggedInUser: User | undefined;
   userProfilePic: string = '';
-  private userDataSubject: Subject<User> = new Subject<User>();
+  userDataSubject: Subject<User> = new Subject<User>();
   userData$: Observable<User> = this.userDataSubject.asObservable();
+  booksReadByUser: BookRead[] = [];
 
   constructor(
     private dataService: DataService,
@@ -20,17 +23,25 @@ export class UsersService {
   ) {}
 
   getLoggedUserData(): void {
-    this.dataService.getLoggedUserData().subscribe({
-      next: (response: APIResponse<User>) => {
-        this.loggedInUser = response.data!;
-        const { discordId, avatar } = response.data!;
+    forkJoin({
+      userData: this.dataService.getLoggedUserData(),
+      booksRead: this.dataService.getOwnBooksRead()
+    }).subscribe({
+      next: (responses: { userData: APIResponse<User>, booksRead: APIResponse<BookRead[]> }) => {
+        console.log(responses)
+        const userDataResponse = responses.userData;
+        this.loggedInUser = userDataResponse.data!;
+        const { discordId, avatar } = userDataResponse.data!;
         this.userProfilePic = `https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png`;
         this.userDataSubject.next(this.loggedInUser);
+
+        const booksReadResponse = responses.booksRead;
+        this.booksReadByUser = booksReadResponse.data!;
       },
       error: (e: Error) => {
         this.cookieService.delete('logged');
         alert('Error conectando con la base de datos: ' + e.name);
-      },
+      }
     });
   }
 

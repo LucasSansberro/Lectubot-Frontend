@@ -6,6 +6,7 @@ import { AddBookModalComponent } from 'src/app/components/add-book-modal/add-boo
 import { Book } from 'src/app/models/Entities/Book';
 import { Genre, genreValueToKeyConversion } from 'src/app/models/Enums/Genre';
 import { DataService } from 'src/app/services/data.service';
+import Swal from 'sweetalert2';
 
 interface PageEvent {
   pageIndex: number;
@@ -32,8 +33,25 @@ export class BooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.paginator!._intl.itemsPerPageLabel = 'Libros por página';
-    this.books = this.dataService.books;
-    this.renderBooks();
+    if (this.dataService.books.length == 0) {
+      this.dataService.getBooks().subscribe({
+        next: (resp) => {
+          this.books = resp.data!;
+          this.dataService.books = resp.data!;
+          this.renderBooks();
+        },
+        error: (resp) => {
+          Swal.fire(
+            'Error',
+            `Ocurrió un error al intentar conseguir la lista de libros de la base de datos. ${resp.error}`,
+            'error'
+          );
+        },
+      });
+    } else {
+      this.books = this.dataService.books;
+      this.renderBooks();
+    }
   }
 
   handlePageEvent(event: PageEvent) {

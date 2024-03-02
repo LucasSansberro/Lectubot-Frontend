@@ -6,7 +6,7 @@
   } @else{
   <i class="bi bi-star"></i>
   } }
-  <p class="ms-2">{{ stars.length }} valoraciones</p>
+  <p class="ms-2">{{ stars?.length }} valoraciones</p>
 
   } @else { @for(digit of userRatingStars ; track $index){ @if(digit===1){
   <i

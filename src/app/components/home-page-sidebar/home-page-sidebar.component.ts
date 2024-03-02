@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Book } from 'src/app/models/Entities/Book';
-import { BooksService } from 'src/app/services/books.service';
 import { UpdateReadingStatusModalComponent } from '../update-reading-status-modal/update-reading-status-modal.component';
 
 @Component({

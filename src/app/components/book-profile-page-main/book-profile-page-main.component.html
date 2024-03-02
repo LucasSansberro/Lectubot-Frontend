@@ -1,23 +1,21 @@
 <div class="mt-5">
-  <h2>{{ book.title }}</h2>
-  <p class="author-link" routerLink="/autor/{{ book.author._id }}">
-    {{ book.author.name }}
+  <h2>{{ book?.title }}</h2>
+  <p class="author-link" routerLink="/autor/{{ book?.author!._id }}">
+    {{ book?.author!.name }}
   </p>
   <div class="d-flex mt-3 mb-3">
-    <app-rating-stars [stars]="book.stars!"></app-rating-stars>
+    <app-rating-stars [stars]="book?.stars!"></app-rating-stars>
     <p class="ms-2">5 reviews</p>
   </div>
-  <p class="text-container">{{ book.synopsis }}</p>
+  <p class="text-container">{{ book?.synopsis }}</p>
   <p>
-    Generos: @for (genre of book.genre; track $index) {
-    <span>{{ genre }}@if($index != book.genre.length - 1){, } </span>
+    Generos: @for (genre of book?.genre; track $index) {
+    <span>{{ genre }}@if($index != book?.genre!.length - 1){, } </span>
     }
   </p>
-  <p>{{ book.pages }} páginas</p>
+  <p>{{ book?.pages }} páginas</p>
   <p>
-    Leído grupalmente el {{ book.readByGroup.getMonth() }}/{{
-      book.readByGroup.getFullYear()
-    }}
+    Leído grupalmente el {{ book?.readByGroup | date:'MM/yyyy'}}
   </p>
 
   <div
@@ -38,11 +36,11 @@
 
   <p class="mt-5 mb-4 reviews-title">Reseñas</p>
   <app-book-review
-    [review]="book.synopsis"
+    [review]="book?.synopsis"
     reviewOwner="Tu reseña"
   ></app-book-review>
   <app-book-review
-    [review]="book.synopsis"
+    [review]="book?.synopsis"
     reviewOwner="Pepito47"
   ></app-book-review>
 </div>

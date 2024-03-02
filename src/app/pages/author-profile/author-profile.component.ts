@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrl: './author-profile.component.css',
 })
 export class AuthorProfileComponent implements OnInit {
-  @Input() author!: Author;
+  @Input() author: Author | undefined;
   books: Book[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,

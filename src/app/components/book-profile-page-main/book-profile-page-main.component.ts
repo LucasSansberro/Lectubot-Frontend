@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
 
 @Component({
@@ -6,6 +6,8 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './book-profile-page-main.component.html',
   styleUrl: './book-profile-page-main.component.css',
 })
-export class BookProfilePageMainComponent {
-  @Input() book!: Book;
+export class BookProfilePageMainComponent implements OnInit {
+  @Input() book: Book | undefined;
+
+  ngOnInit(){}
 }

@@ -79,10 +79,31 @@ export class DataService {
     return this.http.get<APIResponse<Book[]>>(`${this.URL}/books`);
   }
 
+  getBookById(bookId: string): Observable<APIResponse<Book>> {
+    return this.http.get<APIResponse<Book>>(`${this.URL}/books/${bookId}`);
+  }
+
   postBook(book: Book): Observable<APIResponse<Book>> {
     return this.http.post<APIResponse<Book>>(
       `${this.URL}/books`,
       book,
+      this.httpOptions
+    );
+  }
+
+  getOwnBooksRead(): Observable<APIResponse<BookRead[]>> {
+    return this.http.get<APIResponse<BookRead[]>>(
+      `${this.URL}/booksRead/ownbooksread`,
+      this.httpOptions
+    );
+  }
+
+  getBooksReadByUserOrBookId(
+    type: string,
+    id: string
+  ): Observable<APIResponse<BookRead[]>> {
+    return this.http.get<APIResponse<BookRead[]>>(
+      `${this.URL}/booksRead/${type}/${id}`,
       this.httpOptions
     );
   }

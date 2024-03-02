@@ -1,12 +1,17 @@
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
 
+import { BookRead } from 'src/app/models/Entities/BookRead';
+import { BookReadStatus } from 'src/app/models/Enums/BookReadStatus';
+import { UsersService } from 'src/app/services/users.service';
 import Swal from 'sweetalert2';
 import { FinishReadingStatusModalComponent } from '../finish-reading-status-modal/finish-reading-status-modal.component';
+import { DataService } from 'src/app/services/data.service';
+import { Book } from 'src/app/models/Entities/Book';
 
 @Component({
   selector: 'app-update-reading-status-modal',
@@ -14,26 +19,32 @@ import { FinishReadingStatusModalComponent } from '../finish-reading-status-moda
   styleUrl: './update-reading-status-modal.component.css',
 })
 export class UpdateReadingStatusModalComponent {
-
-
   constructor(
     private dialogRef: MatDialogRef<UpdateReadingStatusModalComponent>,
-    @Inject(MAT_DIALOG_DATA) private book: any,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UsersService,
+    private dataService: DataService,
+    @Inject(MAT_DIALOG_DATA) private book: Book
   ) {}
 
   startReading() {
-    console.log(this.book);
-    //TODO Create BookRead with this.book data
-    /*  this.bookService.postBookRead(this.book).subscribe({next: ()=> {
-  Swal.fire(
-      'Comenzada la lectura!',
-      'El libro se agregó a tu lista de lectura',
-      'success'
-    );
-    this.closeModal()
-    }});
-   */
+    const newBookRead: BookRead = {
+      book_id: this.book._id!,
+      user_id: this.userService.loggedInUser?._id!,
+      status: BookReadStatus.reading,
+      started: new Date(),
+    };
+    this.dataService.postBookRead(newBookRead).subscribe({
+      next: (resp) => {
+        console.log(resp);
+        Swal.fire(
+          'Comenzada la lectura!',
+          `${this.book.title} se agregó a tu lista de lectura`,
+          'success'
+        );
+        this.closeModal();
+      },
+    });
   }
 
   finishReading() {

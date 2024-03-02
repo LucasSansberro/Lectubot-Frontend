@@ -10,19 +10,19 @@ import {
   styleUrl: './rating-stars.component.css',
 })
 export class RatingStarsComponent implements OnInit{
-  @Input() stars: number[] = [];
+  @Input() stars: number[] | undefined ;
   @Input() static: boolean = true;
   average: number = 0;
   starsToRender: number[] = [];
   userRatingStars: number[] = [];
   scoreSelected: boolean = false;
   ngOnInit(): void {
-    this.stars.length > 0 && this.calculateAverageAndRenderStars();
+    this.stars?.length! > 0 && this.calculateAverageAndRenderStars();
   }
 
   calculateAverageAndRenderStars() {
-    const sum = this.stars.reduce((acc, el) => acc + el, 0);
-    this.average = sum / this.stars.length;
+    const sum = this.stars!.reduce((acc, el) => acc + el, 0);
+    this.average = sum! / this.stars!.length;
     for (let i = 0; i < 5; i++) {
       if (this.average >= i + 1) {
         this.starsToRender.push(1);

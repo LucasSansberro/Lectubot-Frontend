@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './book-review.component.css'
 })
 export class BookReviewComponent {
-@Input() review : string = ""
-@Input() reviewOwner : string = ""
+@Input() review : string | undefined
+@Input() reviewOwner : string | undefined
 }

@@ -7,5 +7,5 @@ import { Book } from 'src/app/models/Entities/Book';
   styleUrl: './book-profile-page-sidebar.component.css',
 })
 export class BookProfilePageSidebarComponent {
-  @Input() book!: Book;
+  @Input() book: Book | undefined;
 }
