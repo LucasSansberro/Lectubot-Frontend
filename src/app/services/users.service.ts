@@ -25,10 +25,13 @@ export class UsersService {
   getLoggedUserData(): void {
     forkJoin({
       userData: this.dataService.getLoggedUserData(),
-      booksRead: this.dataService.getOwnBooksRead()
+      booksRead: this.dataService.getBooksReadByValue('user'),
     }).subscribe({
-      next: (responses: { userData: APIResponse<User>, booksRead: APIResponse<BookRead[]> }) => {
-        console.log(responses)
+      next: (responses: {
+        userData: APIResponse<User>;
+        booksRead: APIResponse<BookRead[]>;
+      }) => {
+        console.log(responses);
         const userDataResponse = responses.userData;
         this.loggedInUser = userDataResponse.data!;
         const { discordId, avatar } = userDataResponse.data!;
@@ -41,7 +44,7 @@ export class UsersService {
       error: (e: Error) => {
         this.cookieService.delete('logged');
         alert('Error conectando con la base de datos: ' + e.name);
-      }
+      },
     });
   }
 

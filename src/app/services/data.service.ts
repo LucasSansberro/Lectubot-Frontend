@@ -91,16 +91,9 @@ export class DataService {
     );
   }
 
-  getOwnBooksRead(): Observable<APIResponse<BookRead[]>> {
-    return this.http.get<APIResponse<BookRead[]>>(
-      `${this.URL}/booksRead/ownbooksread`,
-      this.httpOptions
-    );
-  }
-
-  getBooksReadByUserOrBookId(
+  getBooksReadByValue(
     type: string,
-    id: string
+    id?: string
   ): Observable<APIResponse<BookRead[]>> {
     return this.http.get<APIResponse<BookRead[]>>(
       `${this.URL}/booksRead/${type}/${id}`,
