@@ -20,7 +20,9 @@
     </div>
   </div>
   <div class="d-flex justify-content-center pb-3 mt-2">
-    <button class="me-5 py-1 px-4 facebook-cyan rounded">Leer</button>
+    <button class="me-5 py-1 px-4 facebook-cyan rounded">
+      {{ readingBook ? "Actualizar" : "Leer" }}
+    </button>
     <button
       class="facebook-cyan py-1 px-4 rounded"
       routerLink="/libro/book._id"

@@ -9,6 +9,7 @@ import { Genre } from 'src/app/models/Enums/Genre';
 })
 export class HomePageMainComponent implements OnInit {
   @Input() books: Book[] = [];
+  @Input() booksInReadingStatus: Book[] = [];
   renderizedBooks: Book[] = [];
   filteredGenres: string[] = [
     'Todos los géneros',
@@ -21,6 +22,8 @@ export class HomePageMainComponent implements OnInit {
 
   ngOnInit(): void {
     this.renderizedBooks = this.books;
+    console.log(this.books)
+    console.log(this.booksInReadingStatus)
   }
 
   filterBooks(genre: string): void {
@@ -44,5 +47,8 @@ export class HomePageMainComponent implements OnInit {
       default:
         this.renderizedBooks = this.books;
     }
+  }
+  isBookInReadingStatus(id: string ): boolean {
+    return this.booksInReadingStatus.some(book => book._id === id);
   }
 }

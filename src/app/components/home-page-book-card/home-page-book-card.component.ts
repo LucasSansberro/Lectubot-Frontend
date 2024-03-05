@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
 
 @Component({
@@ -6,6 +6,10 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './home-page-book-card.component.html',
   styleUrl: './home-page-book-card.component.css',
 })
-export class HomePageBookCardComponent {
+export class HomePageBookCardComponent implements OnInit {
   @Input() book!: Book;
+  @Input() readingBook: boolean = false;
+  ngOnInit(): void {
+
+  }
 }

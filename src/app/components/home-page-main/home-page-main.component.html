@@ -16,8 +16,8 @@
 </div>
 <div class="most-read-books-container">
   @for (book of renderizedBooks; track book; let i = $index) {
-  <!-- TODO  Placeholder for empty array-->
   <app-home-page-book-card
+    [readingBook]="isBookInReadingStatus(renderizedBooks[i]._id!)"
     [book]="renderizedBooks[i]"
     class="card-size mx-3"
   ></app-home-page-book-card>

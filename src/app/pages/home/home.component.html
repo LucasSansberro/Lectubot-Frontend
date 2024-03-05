@@ -3,6 +3,12 @@
 </p>
 <app-carrousel [books]="books"></app-carrousel>
 <div class="d-flex mt-5">
-  <app-home-page-sidebar [books]="books"></app-home-page-sidebar>
-  <app-home-page-main class="w-100" [books]="books"></app-home-page-main>
+  <app-home-page-sidebar [books]="booksInReadingStatus"></app-home-page-sidebar>
+  @if(books.length>0){
+  <app-home-page-main
+    class="w-100"
+    [booksInReadingStatus]="booksInReadingStatus"
+    [books]="books"
+  ></app-home-page-main>
+  }
 </div>

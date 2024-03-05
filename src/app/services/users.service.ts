@@ -6,16 +6,20 @@ import { DataService } from './data.service';
 import { Observable, Subject } from 'rxjs';
 import { BookRead } from '../models/Entities/BookRead';
 import { forkJoin } from 'rxjs';
+import { BookReadStatus } from '../models/Enums/BookReadStatus';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
   loggedInUser: User | undefined;
+  booksInReadingStatus: BookRead[] = [];
   userProfilePic: string = '';
   userDataSubject: Subject<User> = new Subject<User>();
   userData$: Observable<User> = this.userDataSubject.asObservable();
-  booksReadByUser: BookRead[] = [];
+  booksInReadingSubject: Subject<BookRead[]> = new Subject<BookRead[]>();
+  booksInReadingData$: Observable<BookRead[]> =
+    this.booksInReadingSubject.asObservable();
 
   constructor(
     private dataService: DataService,
@@ -25,13 +29,16 @@ export class UsersService {
   getLoggedUserData(): void {
     forkJoin({
       userData: this.dataService.getLoggedUserData(),
-      booksRead: this.dataService.getBooksReadByValue('user'),
+      booksRead: this.dataService.getBooksReadByValue(
+        'user',
+        'ownUser',
+        BookReadStatus.reading
+      ),
     }).subscribe({
       next: (responses: {
         userData: APIResponse<User>;
         booksRead: APIResponse<BookRead[]>;
       }) => {
-        console.log(responses);
         const userDataResponse = responses.userData;
         this.loggedInUser = userDataResponse.data!;
         const { discordId, avatar } = userDataResponse.data!;
@@ -39,7 +46,8 @@ export class UsersService {
         this.userDataSubject.next(this.loggedInUser);
 
         const booksReadResponse = responses.booksRead;
-        this.booksReadByUser = booksReadResponse.data!;
+        this.booksInReadingStatus = booksReadResponse.data!;
+        this.booksInReadingSubject.next(this.booksInReadingStatus)
       },
       error: (e: Error) => {
         this.cookieService.delete('logged');

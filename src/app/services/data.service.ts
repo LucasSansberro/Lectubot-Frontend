@@ -7,6 +7,7 @@ import { User } from '../models/Entities/User';
 import { Genre } from '../models/Enums/Genre';
 import { BookRead } from '../models/Entities/BookRead';
 import { Author } from '../models/Entities/Author';
+import { BookReadStatus } from '../models/Enums/BookReadStatus';
 
 @Injectable({
   providedIn: 'root',
@@ -93,10 +94,13 @@ export class DataService {
 
   getBooksReadByValue(
     type: string,
-    id?: string
+    id?: string,
+    status?: BookReadStatus
   ): Observable<APIResponse<BookRead[]>> {
     return this.http.get<APIResponse<BookRead[]>>(
-      `${this.URL}/booksRead/${type}/${id}`,
+      `${this.URL}/booksRead/${type}/${id}${
+        status ? `?readStatus=${status}` : ''
+      }`,
       this.httpOptions
     );
   }
