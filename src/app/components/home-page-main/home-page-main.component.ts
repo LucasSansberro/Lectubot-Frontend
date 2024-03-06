@@ -22,8 +22,6 @@ export class HomePageMainComponent implements OnInit {
 
   ngOnInit(): void {
     this.renderizedBooks = this.books;
-    console.log(this.books)
-    console.log(this.booksInReadingStatus)
   }
 
   filterBooks(genre: string): void {

@@ -20,12 +20,15 @@
     </div>
   </div>
   <div class="d-flex justify-content-center pb-3 mt-2">
-    <button class="me-5 py-1 px-4 facebook-cyan rounded">
+    <button
+      class="me-5 py-1 px-4 facebook-cyan rounded"
+      (click)="openUpdateReadingModal(book)"
+    >
       {{ readingBook ? "Actualizar" : "Leer" }}
     </button>
     <button
       class="facebook-cyan py-1 px-4 rounded"
-      routerLink="/libro/book._id"
+      routerLink="/libro/{{ book._id }}"
     >
       Ir al sitio del libro
     </button>

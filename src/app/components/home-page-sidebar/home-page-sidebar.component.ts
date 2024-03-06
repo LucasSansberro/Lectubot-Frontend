@@ -15,7 +15,7 @@ export class HomePageSidebarComponent {
 
   openUpdateReadingModal(book: Book) {
     this.dialog.open(UpdateReadingStatusModalComponent, {
-      data: book,
+      data: { book, readingBook: true },
     });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -18,18 +18,19 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './update-reading-status-modal.component.html',
   styleUrl: './update-reading-status-modal.component.css',
 })
-export class UpdateReadingStatusModalComponent {
+export class UpdateReadingStatusModalComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<UpdateReadingStatusModalComponent>,
     private dialog: MatDialog,
     private userService: UsersService,
     private dataService: DataService,
-    @Inject(MAT_DIALOG_DATA) private book: Book
+    @Inject(MAT_DIALOG_DATA) public data: { book: Book; readingBook: boolean }
   ) {}
-
+  ngOnInit(): void {
+  }
   startReading() {
     const newBookRead: BookRead = {
-      book_id: this.book._id!,
+      book_id: this.data.book._id!,
       user_id: this.userService.loggedInUser?._id!,
       status: BookReadStatus.reading,
       started: new Date(),
@@ -39,7 +40,7 @@ export class UpdateReadingStatusModalComponent {
         console.log(resp);
         Swal.fire(
           'Comenzada la lectura!',
-          `${this.book.title} se agregó a tu lista de lectura`,
+          `${this.data.book.title} se agregó a tu lista de lectura`,
           'success'
         );
         this.closeModal();
@@ -49,7 +50,7 @@ export class UpdateReadingStatusModalComponent {
 
   finishReading() {
     this.dialog.open(FinishReadingStatusModalComponent, {
-      data: this.book,
+      data: this.data.book,
     });
   }
 

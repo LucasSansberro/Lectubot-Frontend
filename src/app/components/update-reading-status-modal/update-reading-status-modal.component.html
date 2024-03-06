@@ -6,8 +6,11 @@
     <i class="bi bi-x-lg" (click)="closeModal()"></i>
   </div>
   <div mat-dialog-content class="d-flex justify-content-between flex-column">
+    @if(!data.readingBook){
     <button class="shadow-button" (click)="startReading()">Leer</button>
+    } @else{
     <button class="shadow-button" (click)="finishReading()">Finalizado</button>
     <button class="shadow-button" (click)="DNF()">DNF</button>
+    }
   </div>
 </div>
