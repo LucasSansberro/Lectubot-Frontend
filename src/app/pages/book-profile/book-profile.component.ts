@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/models/Entities/Book';
+import { BookRead } from 'src/app/models/Entities/BookRead';
 import { DataService } from 'src/app/services/data.service';
+import { UsersService } from 'src/app/services/users.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,14 +13,36 @@ import Swal from 'sweetalert2';
 })
 export class BookProfileComponent implements OnInit {
   book!: Book;
+  readingBook: boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private userService: UsersService
   ) {}
 
   ngOnInit(): void {
     //TODO Crear token opaco para no andar mostrando el id de mongo en la url
     this.activatedRoute.params.subscribe((params) => {
+      if (this.userService.booksInReadingStatus.length == 0) {
+        this.userService.booksInReadingData$.subscribe(
+          (booksInReading: BookRead[]) => {
+            this.readingBook =
+              booksInReading.find(
+                (book) => book.book_id == params['libro-id']
+              ) != undefined
+                ? true
+                : false;
+          }
+        );
+      } else {
+        this.readingBook =
+          this.userService.booksInReadingStatus.find(
+            (book) => book.book_id == params['libro-id']
+          ) != undefined
+            ? true
+            : false;
+      }
+
       if (this.dataService.books.length == 0) {
         this.dataService.getBookById(params['libro-id']).subscribe({
           next: (resp) => {
@@ -38,5 +62,6 @@ export class BookProfileComponent implements OnInit {
         )!;
       }
     });
+
   }
 }

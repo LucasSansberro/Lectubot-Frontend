@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/Entities/Book';
 
 @Component({
@@ -6,6 +6,10 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './book-profile-page-sidebar.component.html',
   styleUrl: './book-profile-page-sidebar.component.css',
 })
-export class BookProfilePageSidebarComponent {
+export class BookProfilePageSidebarComponent implements OnInit {
   @Input() book: Book | undefined;
+  @Input() readingBook : boolean = false
+  ngOnInit(): void {
+      console.log(this.readingBook)
+  }
 }

@@ -5,12 +5,14 @@
     class="cover-image"
   />
   <button class="link-button mt-4">
-   Leer
+    {{ readingBook ? "Actualizar " : "Leer" }}
   </button>
   <div class="d-flex mt-4 mb-3 user-rating">
     <!-- Agregar puntaje propio de entity User -->
     <app-rating-stars [stars]="book?.stars!"></app-rating-stars>
     <p class="ms-2">Tu valoración</p>
   </div>
-  <p>Escribiste una <span class="fw-bold text-decoration-underline">reseña</span></p>
+  <p>
+    Escribiste una <span class="fw-bold text-decoration-underline">reseña</span>
+  </p>
 </div>
