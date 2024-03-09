@@ -6,10 +6,8 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './book-profile-page-sidebar.component.html',
   styleUrl: './book-profile-page-sidebar.component.css',
 })
-export class BookProfilePageSidebarComponent implements OnInit {
+export class BookProfilePageSidebarComponent {
   @Input() book: Book | undefined;
   @Input() readingBook : boolean = false
-  ngOnInit(): void {
-      console.log(this.readingBook)
-  }
+
 }

@@ -23,45 +23,51 @@ export class BookProfileComponent implements OnInit {
   ngOnInit(): void {
     //TODO Crear token opaco para no andar mostrando el id de mongo en la url
     this.activatedRoute.params.subscribe((params) => {
-      if (this.userService.booksInReadingStatus.length == 0) {
-        this.userService.booksInReadingData$.subscribe(
-          (booksInReading: BookRead[]) => {
-            this.readingBook =
-              booksInReading.find(
-                (book) => book.book_id == params['libro-id']
-              ) != undefined
-                ? true
-                : false;
-          }
-        );
-      } else {
-        this.readingBook =
-          this.userService.booksInReadingStatus.find(
-            (book) => book.book_id == params['libro-id']
-          ) != undefined
-            ? true
-            : false;
-      }
-
-      if (this.dataService.books.length == 0) {
-        this.dataService.getBookById(params['libro-id']).subscribe({
-          next: (resp) => {
-            this.book = resp.data!;
-          },
-          error: (resp) => {
-            Swal.fire(
-              'Error',
-              `Ocurrió un error al intentar conseguir el libro de la base de datos. Error: ${resp.error}`,
-              'error'
-            );
-          },
-        });
-      } else {
-        this.book = this.dataService.books.find(
-          (book) => book._id == params['libro-id']
-        )!;
-      }
+      this.assetReadingStatus(params['libro-id']);
+      this.loadBookData(params['libro-id']);
     });
-
+  }
+  assetReadingStatus(id: string) {
+    if (this.userService.booksInReadingStatus.length == 0) {
+      this.userService.booksInReadingData$.subscribe(
+        (booksInReading: BookRead[]) => {
+          const bookFound = booksInReading.find((book) => {
+            if (typeof book.book_id !== 'string') {
+              return book.book_id._id === id;
+            }
+            return false;
+          });
+          const booleanvalue = bookFound != undefined ? true : false;
+          this.readingBook = booleanvalue;
+        }
+      );
+    } else {
+      const bookFound = this.userService.booksInReadingStatus.find((book) => {
+        if (typeof book.book_id !== 'string') {
+          return book.book_id._id === id;
+        }
+        return false;
+      });
+      const booleanvalue = bookFound != undefined ? true : false;
+      this.readingBook = booleanvalue;
+    }
+  }
+  loadBookData(id: string) {
+    if (this.dataService.books.length == 0) {
+      this.dataService.getBookById(id).subscribe({
+        next: (resp) => {
+          this.book = resp.data!;
+        },
+        error: (resp) => {
+          Swal.fire(
+            'Error',
+            `Ocurrió un error al intentar conseguir el libro de la base de datos. Error: ${resp.error}`,
+            'error'
+          );
+        },
+      });
+    } else {
+      this.book = this.dataService.books.find((book) => book._id == id)!;
+    }
   }
 }
