@@ -11,8 +11,9 @@ import Swal from 'sweetalert2';
   styleUrl: './author-profile.component.css',
 })
 export class AuthorProfileComponent implements OnInit {
-  @Input() author: Author | undefined;
+  author: Author | undefined;
   books: Book[] = [];
+  test: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService
@@ -20,7 +21,18 @@ export class AuthorProfileComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.dataService.getAuthorById(params['autor-id']).subscribe({
-        next: (resp) => (this.author = resp.data!),
+        next: (resp) => {
+          this.test = {
+            _id: resp.data?._id,
+            name: resp.data?.name,
+          },
+          ((this.author = resp.data!));
+          this.dataService
+            .getBooksByValue('author',this.test)
+            .subscribe({
+              next: (resp2) => console.log(resp2),
+            });
+        },
         error: (resp) => {
           Swal.fire(
             'Error',
@@ -29,9 +41,6 @@ export class AuthorProfileComponent implements OnInit {
           );
         },
       });
-      this.books = this.dataService.books.filter(
-        (book) => book.author._id == params['autor-id']
-      );
     });
   }
 }

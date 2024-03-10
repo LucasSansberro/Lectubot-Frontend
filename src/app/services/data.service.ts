@@ -84,6 +84,12 @@ export class DataService {
     return this.http.get<APIResponse<Book>>(`${this.URL}/books/${bookId}`);
   }
 
+  getBooksByValue(type: string, id: string): Observable<APIResponse<Book[]>> {
+    return this.http.get<APIResponse<Book[]>>(
+      `${this.URL}/books/${type}/${id}`
+    );
+  }
+
   postBook(book: Book): Observable<APIResponse<Book>> {
     return this.http.post<APIResponse<Book>>(
       `${this.URL}/books`,
