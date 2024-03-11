@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap, tap, catchError, throwError } from 'rxjs';
 import { Author } from 'src/app/models/Entities/Author';
 import { Book } from 'src/app/models/Entities/Book';
 import { DataService } from 'src/app/services/data.service';
@@ -19,28 +20,24 @@ export class AuthorProfileComponent implements OnInit {
     private dataService: DataService
   ) {}
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      this.dataService.getAuthorById(params['autor-id']).subscribe({
-        next: (resp) => {
-          this.test = {
-            _id: resp.data?._id,
-            name: resp.data?.name,
-          },
-          ((this.author = resp.data!));
-          this.dataService
-            .getBooksByValue('author',this.test)
-            .subscribe({
-              next: (resp2) => console.log(resp2),
-            });
-        },
-        error: (resp) => {
+    this.activatedRoute.params
+      .pipe(
+        switchMap((params) =>
+          this.dataService.getAuthorById(params['autor-id'])
+        ),
+        tap((resp) => (this.author = resp.data!)),
+        switchMap((resp) =>
+          this.dataService.getBooksByValue('author', resp.data?._id!)
+        ),
+        catchError((error) => {
           Swal.fire(
             'Error',
-            `Ocurrió un error al buscar al autor en la base de datos. ${resp.error}`,
+            `Ocurrió un error al buscar al autor en la base de datos. ${error}`,
             'error'
           );
-        },
-      });
-    });
+          return throwError(() => new Error(error));
+        })
+      )
+      .subscribe((resp2) => console.log(resp2));
   }
 }
