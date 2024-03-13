@@ -6,8 +6,6 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './book-profile-page-main.component.html',
   styleUrl: './book-profile-page-main.component.css',
 })
-export class BookProfilePageMainComponent implements OnInit {
+export class BookProfilePageMainComponent {
   @Input() book: Book | undefined;
-
-  ngOnInit(){}
 }

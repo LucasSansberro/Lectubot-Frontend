@@ -43,6 +43,10 @@ export class AddBookModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadAuthorsNameAndList();
+  }
+
+  loadAuthorsNameAndList() {
     if (this.dataService.authorsNameAndIdList.length == 0) {
       this.dataService.getauthorsNameAndIdList().subscribe({
         next: (resp) => {

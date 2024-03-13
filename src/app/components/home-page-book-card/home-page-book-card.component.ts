@@ -13,6 +13,7 @@ export class HomePageBookCardComponent {
   @Input() readingBook: boolean = false;
 
   constructor(private dialog: MatDialog) {}
+
   openUpdateReadingModal(book: Book) {
     this.dialog.open(UpdateReadingStatusModalComponent, {
       data: { book, readingBook: this.readingBook },

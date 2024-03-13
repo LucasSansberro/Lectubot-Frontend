@@ -33,6 +33,10 @@ export class BooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.paginator!._intl.itemsPerPageLabel = 'Libros por página';
+    this.loadBooks();
+  }
+
+  loadBooks() {
     if (this.dataService.books.length == 0) {
       this.dataService.getBooks().subscribe({
         next: (resp) => {

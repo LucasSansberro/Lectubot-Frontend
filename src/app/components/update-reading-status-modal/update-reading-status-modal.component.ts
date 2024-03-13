@@ -18,7 +18,7 @@ import { Book } from 'src/app/models/Entities/Book';
   templateUrl: './update-reading-status-modal.component.html',
   styleUrl: './update-reading-status-modal.component.css',
 })
-export class UpdateReadingStatusModalComponent implements OnInit {
+export class UpdateReadingStatusModalComponent {
   constructor(
     private dialogRef: MatDialogRef<UpdateReadingStatusModalComponent>,
     private dialog: MatDialog,
@@ -26,8 +26,7 @@ export class UpdateReadingStatusModalComponent implements OnInit {
     private dataService: DataService,
     @Inject(MAT_DIALOG_DATA) public data: { book: Book; readingBook: boolean }
   ) {}
-  ngOnInit(): void {
-  }
+
   startReading() {
     const newBookRead: BookRead = {
       book_id: this.data.book._id!,

@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
         this.books = resp.data!;
       },
     });
+    this.loadBooksInReadingStatus();
+  }
+
+  loadBooksInReadingStatus() {
     if (this.userService.booksInReadingStatus.length == 0) {
       this.userService.booksInReadingData$.subscribe(
         (booksInReading: BookRead[]) => {
