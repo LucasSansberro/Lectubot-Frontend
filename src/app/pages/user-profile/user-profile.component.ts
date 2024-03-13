@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookRead } from 'src/app/models/Entities/BookRead';
 import { User } from 'src/app/models/Entities/User';
+import { DataService } from 'src/app/services/data.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -11,14 +12,18 @@ import { UsersService } from 'src/app/services/users.service';
 export class UserProfileComponent implements OnInit {
   username: string = '';
   profilePic: string = '';
-  booksRead: BookRead[] = [];
+  booksRead: any[] = [];
   dateOfCreation: string = '';
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {
     this.userService.loggedInUser == null
       ? this.getDataFromDB()
       : this.getDataFromMemory();
+    this.getBooksRead();
   }
 
   formatDate(dateString: string): string {
@@ -29,6 +34,14 @@ export class UserProfileComponent implements OnInit {
     return `${day < 10 ? '0' + day : day}/${
       month < 10 ? '0' + month : month
     }/${year}`;
+  }
+
+  getBooksRead() {
+    this.dataService.getBooksReadByValue('user', 'ownUser').subscribe({
+      next: (resp) => {
+        this.booksRead = resp.data!.map((book) => book.book_id);
+      },
+    });
   }
 
   getDataFromDB() {
