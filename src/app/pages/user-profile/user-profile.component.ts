@@ -21,8 +21,8 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.loggedInUser == null
-      ? this.getDataFromDB()
-      : this.getDataFromMemory();
+      ? this.getUserDataFromDB()
+      : this.getUserDataFromMemory();
     this.getBooksRead();
   }
 
@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  getDataFromDB() {
+  getUserDataFromDB() {
     this.userService.userData$.subscribe((userData: User) => {
       this.username = userData.username;
       this.profilePic = `https://cdn.discordapp.com/avatars/${userData.discordId}/${userData.avatar}.png`;
@@ -52,7 +52,7 @@ export class UserProfileComponent implements OnInit {
       this.booksRead = userData.books!;
     });
   }
-  getDataFromMemory() {
+  getUserDataFromMemory() {
     this.username = this.userService.loggedInUser?.username!;
     this.profilePic = this.userService.userProfilePic;
     this.dateOfCreation = this.formatDate(

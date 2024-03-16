@@ -1,17 +1,23 @@
-<div class="d-flex container mt-5">
-  <img
-    src="{{ profilePic }}"
-    alt="{{ username }} Discord profile pic"
-    class="user-avatar"
-  />
-  <div class="d-flex flex-column ms-5">
-    <h2>{{ username }}</h2>
-    <p class="member-since my-2">Miembro desde {{dateOfCreation}}</p>
-    <div class="my-3">
-      <p class="review-title">Reseña destacada</p>
+<div class="d-flex row  container-fluid mt-5">
+  <div class="col-4 image-div">
+    <img
+      src="{{ profilePic }}"
+      alt="{{ username }} Discord profile pic"
+      class="user-avatar"
+    />
+  </div>
+
+  <div class="mt-5 col-7 me-5">
+    <div class="d-flex flex-column">
+      <h2>{{ username }}</h2>
+      <p class="member-since my-2">Miembro desde {{ dateOfCreation }}</p>
+      <div class="my-3">
+        <p class="review-title">Reseña destacada</p>
+      </div>
     </div>
+
     <div>
-      <p>Libros leídos</p>
+      <p class="fw-bold mt-5">Libros leídos</p>
       <ul class="mt-3 vertical-border-separator">
         @for (book of booksRead; track book._id; let last = $last) {
         <app-book-item-list
