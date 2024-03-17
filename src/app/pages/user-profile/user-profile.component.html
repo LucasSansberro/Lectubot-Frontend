@@ -23,7 +23,7 @@
         <app-book-item-list
           [book]="book"
           class="d-block"
-          [readingStatus]="true"
+          [readingStatus]="isBookInReadingStatus(book)"
           [class.bottom-border-separator]="!last"
         ></app-book-item-list>
         }

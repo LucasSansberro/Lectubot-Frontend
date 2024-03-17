@@ -6,8 +6,15 @@
       class="book-cover"
     />
     <div class="d-flex flex-column justify-content-between ms-4">
-      <p class="fw-bold">{{ book.title }}</p>
-      <p>por {{ book.author.name }}</p>
+      <p class="fw-bold page-link" routerLink="/libro/{{ book._id }}">
+        {{ book.title }}
+      </p>
+      <p class="d-flex">
+        por
+        <span class="page-link ms-1" routerLink="/autor/{{ book.author._id }}">
+          {{ book.author.name }}</span
+        >
+      </p>
       <app-rating-stars [stars]="book.stars!"></app-rating-stars>
     </div>
   </div>
