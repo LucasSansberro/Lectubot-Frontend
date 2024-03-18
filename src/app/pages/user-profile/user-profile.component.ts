@@ -25,26 +25,8 @@ export class UserProfileComponent implements OnInit {
     this.userService.loggedInUser == null
       ? this.getUserDataFromDB()
       : this.getUserDataFromMemory();
-    this.getBooksRead();
+    this.getAllBooksRead();
     this.loadBooksInReadingStatus();
-  }
-
-  formatDate(dateString: string): string {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day < 10 ? '0' + day : day}/${
-      month < 10 ? '0' + month : month
-    }/${year}`;
-  }
-
-  getBooksRead() {
-    this.dataService.getBooksReadByValue('user', 'ownUser').subscribe({
-      next: (resp) => {
-        this.booksRead = resp.data!.map((book) => book.book_id as Book);
-      },
-    });
   }
 
   getUserDataFromDB() {
@@ -63,11 +45,19 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  getAllBooksRead() {
+    this.dataService.getBooksReadByValue('user', 'ownUser').subscribe({
+      next: (resp) => {
+        this.booksRead = resp.data!.map((book) => book.book_id as Book);
+      },
+    });
+  }
+
   loadBooksInReadingStatus() {
     if (this.userService.booksInReadingStatus.length == 0) {
       this.userService.booksInReadingData$.subscribe(
-        (booksInReading: BookRead[]) => {
-          this.booksInReadingStatus = booksInReading.map(
+        (booksInReadingData: BookRead[]) => {
+          this.booksInReadingStatus = booksInReadingData.map(
             (book) => book.book_id as Book
           );
         }
@@ -81,5 +71,15 @@ export class UserProfileComponent implements OnInit {
 
   isBookInReadingStatus(book: Book): boolean {
     return this.booksInReadingStatus.some((b) => b._id === book._id);
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' + day : day}/${
+      month < 10 ? '0' + month : month
+    }/${year}`;
   }
 }

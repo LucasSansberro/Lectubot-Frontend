@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.dataService.getBooks().subscribe({
       next: (resp) => {
+        //TODO Refactor para que incluya algunas lecturas y no todas las de la DB
         this.books = resp.data!;
       },
     });
@@ -28,8 +29,8 @@ export class HomeComponent implements OnInit {
   loadBooksInReadingStatus() {
     if (this.userService.booksInReadingStatus.length == 0) {
       this.userService.booksInReadingData$.subscribe(
-        (booksInReading: BookRead[]) => {
-          this.booksInReadingStatus = booksInReading.map(
+        (booksInReadingData: BookRead[]) => {
+          this.booksInReadingStatus = booksInReadingData.map(
             (book) => book.book_id as Book
           );
         }

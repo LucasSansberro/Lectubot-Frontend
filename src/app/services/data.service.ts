@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { APIResponse } from '../models/APIResponse';
 import { Book } from '../models/Entities/Book';
 import { User } from '../models/Entities/User';
-import { Genre } from '../models/Enums/Genre';
 import { BookRead } from '../models/Entities/BookRead';
 import { Author } from '../models/Entities/Author';
 import { BookReadStatus } from '../models/Enums/BookReadStatus';
